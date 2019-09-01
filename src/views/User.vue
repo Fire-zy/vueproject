@@ -1,12 +1,12 @@
 <template>
 	<div class="user">
-		<Top v-bind="item"></Top>
+		<Top :avatar_url="item.avatar_url" :login="item.login" :location="item.location" :created_at="item.created_at"></Top>
 		<div class="main">
 			<ul>
 				<li>
-					<Name v-bind:login="item.login"></Name>
-					<Personal v-bind="item"></Personal>
-					<Subnav v-bind="item"></Subnav>
+					<Name :login="item.login"></Name>
+					<Personal :bio="item.bio" :company="item.company" :box_location="item.box_location" :blog="item.blog"></Personal>
+					<Subnav :followers="item.followers" :following="item.following" :public_repos="item.public_repos" :public_gists="item.public_gists"></Subnav>
 				</li>
 			</ul>
 		</div>
