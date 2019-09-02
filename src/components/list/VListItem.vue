@@ -1,16 +1,20 @@
 <template>
-  <div>
-
+  <v-card class="v_list_item">
     <slot></slot>
-  </div>
+  </v-card>
 </template>
 
 <script>
+import VCard from '../simple/VCard'
 export default {
   name: 'VListItem',
+  components: { VCard },
 }
 </script>
 
-<style scoped lang="less">
-
+<style scoped>
+  .v_list_item + .v_list_item {
+    padding: 5px;
+    margin-top: 10px;
+  }
 </style>
