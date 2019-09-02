@@ -38,18 +38,18 @@
 
 <style lang="less">
 	/*header开始*/
-	
+
 	.top {
 		width: 100%;
 		height: 200px;
 	}
-	
+
 	.topHeader {
 		width: 100%;
 		height: 150px;
 		background-color: #5767be;
 	}
-	
+
 	.shop {
 		display: flex;
 		width: 92%;
@@ -59,12 +59,12 @@
 		flex-flow: row nowrap;
 		justify-content: space-between;
 	}
-	
+
 	.shop img {
 		width: 32px;
 		height: 32px;
 	}
-	
+
 	.status {
 		width: 100%;
 		height: 80px;
@@ -72,37 +72,37 @@
 		flex-flow: row nowrap;
 		margin: 15px 0 0 15px;
 	}
-	
+
 	.pic img {
 		height: 80px;
 		width: 80px;
 		border-radius: 90px 90px;
 	}
-	
+
 	.messages {
 		height: 80px;
 		width: 74%;
 		margin-left: 10px;
 	}
-	
+
 	.messages p {
 		height: auto;
 		font-size: 14px;
 		margin-top: 5px;
 		color: #FFFFFF;
 	}
-	
+
 	.messages .login {
 		font-size: 20px;
 	}
-	
+
 	.nav {
 		height: 50px;
 		display: flex;
 		justify-content: space-around;
 		background-color: #3f51b5;
 	}
-	
+
 	.nav span {
 		height: 50px;
 		color: #ffffff;
