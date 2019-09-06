@@ -10,6 +10,13 @@ module.exports={
 				pathRewrite:{
 					'^/api':''
 				}
+			},
+				'/zy':{
+				target:'https://api.github.com',
+				changeOrigin:true,
+				pathRewrite:{
+					'^/zy':''
+				}
 			}
 		}
 	}

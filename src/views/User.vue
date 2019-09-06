@@ -48,7 +48,8 @@
 		margin: 0;
 		padding: 0;
 	}
-	.main{
+	
+	.main {
 		width: auto;
 		list-style: none;
 		min-height: 80px;
