@@ -12,7 +12,7 @@ module.exports={
 				}
 			},
 				'/zy':{
-				target:'https://api.github.com',
+				target:'https://github.com',
 				changeOrigin:true,
 				pathRewrite:{
 					'^/zy':''

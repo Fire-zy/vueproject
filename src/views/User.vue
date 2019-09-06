@@ -34,11 +34,14 @@
 			}
 		},
 		created() {
-			let self = this;
-			this.$axios.get('/api/users/Fire-zy')
+			// 直接取localStorage里面的
+			const user = localStorage.getItem('LOGIN_USER')
+			this.item = JSON.parse(user)
+
+			/*this.$axios.get('/api/users/Fire-zy')
 				.then(response => {
 					self.item = response.data;
-				})
+				})*/
 		}
 	}
 </script>
@@ -48,7 +51,7 @@
 		margin: 0;
 		padding: 0;
 	}
-	
+
 	.main {
 		width: auto;
 		list-style: none;
