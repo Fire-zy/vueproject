@@ -1,32 +1,20 @@
 <template>
 	<div class="user">
 		<Top :avatar_url="item.avatar_url" :login="item.login" :location="item.location" :created_at="item.created_at"></Top>
-		<div class="main">
-			<ul>
-				<li>
-					<Name :login="item.login"></Name>
-					<Personal :bio="item.bio" :company="item.company" :box_location="item.box_location" :blog="item.blog"></Personal>
-					<Subnav :followers="item.followers" :following="item.following" :public_repos="item.public_repos" :public_gists="item.public_gists"></Subnav>
-				</li>
-			</ul>
-		</div>
-
-	</div>
+		<!--<List :login="item.login" :bio="item.bio" :company="item.company" :blog="item.blog" :followers="item.followers" :following="item.following" :public_repos="item.public_repos" :public_gists="item.public_gists"></List>-->
+	</div>	
+		
 </template>
 
 <script>
 	//	import axios from 'axios'
 	import Top from '@/components/Top.vue'
-	import Name from '@/components/Name.vue'
-	import Personal from '@/components/Personal.vue'
-	import Subnav from '@/components/Subnav.vue'
+//	import List from '@/components/List.vue'
 	export default {
 		name: 'user',
 		components: {
-			Top,
-			Name,
-			Personal,
-			Subnav
+			Top
+//			List
 		},
 		data() {
 			return {
@@ -34,27 +22,13 @@
 			}
 		},
 		created() {
-			let self = this;
-			this.$axios.get('/api/users/Fire-zy')
-				.then(response => {
-					self.item = response.data;
-				})
+			//直接取localStorage里面的数据
+			const user=localStorage.getItem('LOGIN_USER')
+			this.item=JSON.parse(user)
 		}
 	}
 </script>
 
 <style lang="less">
-	* {
-		margin: 0;
-		padding: 0;
-	}
-	
-	.main {
-		width: auto;
-		list-style: none;
-		min-height: 80px;
-		overflow: hidden;
-		margin: 10px 10px 0 10px;
-		box-shadow: 1px 1px 5px 1px #d7d7d7;
-	}
+
 </style>

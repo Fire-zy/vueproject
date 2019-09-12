@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'VList',
+  name: 'VList'
 }
 </script>
 

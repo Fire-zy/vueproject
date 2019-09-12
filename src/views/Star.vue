@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-app-bar></v-app-bar>
+    <!--<v-app-bar></v-app-bar>-->
     <v-list>
       <v-list-item v-for="item in stared" :key="item.id">
         <v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
@@ -9,14 +9,13 @@
   </v-container>
 </template>
 <script>
-import VAppBar from '../components/layout/VAppBar'
 import VContainer from '../components/layout/VContainer'
 import VList from '../components/list/VList'
 import VListItem from '../components/list/VListItem'
 import VAvatar from '../components/simple/VAvatar'
 
 export default {
-  components: { VAvatar, VListItem, VList, VContainer, VAppBar },
+  components: { VAvatar, VListItem, VList, VContainer },
   data () {
     return {
       stared: []
