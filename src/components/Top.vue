@@ -16,22 +16,34 @@
 				</div>
 			</div>
 		</div>
-		<v-app-bar></v-app-bar>
+		<div class="v_app_bar">
+			<span @click="tabName='List'">信息</span>
+			<span @click="tabName='Activity'">活动</span>
+			<span @click="tabName='Star'">星标</span>
+		</div>
+		<keep-alive>
+			<component :is="tabName"></component>
+		</keep-alive>
 	</div>
 </template>
 
 <script>
 	import moment from 'moment'
-	import VAppBar from '../components/layout/VAppBar'
+	import List from '@/components/List.vue'
+	import Activity from '@/views/Activity.vue'
+	import Star from '@/views/Star.vue'
 	export default {
 		name: 'Top',
 		data() {
 			return {
-				item: {}
+				item: {},
+				tabName: 'List'
 			}
 		},
 		components: {
-			VAppBar
+			List,
+			Activity,
+			Star
 		},
 		filters: {
 			dateFrm: function(el) {
@@ -112,13 +124,12 @@
 		background-color: #3f51b5;
 	}
 	
-	/*.nav span {
-		height: 50px;
-		color: #ffffff;
-		font-size: 18px;
-		margin-left: 10px;
-		line-height: 50px;
-	}*/
-
+	.v_app_bar {
+		color: #fff;
+		padding: 15px 0;
+		display: flex;
+		justify-content: space-around;
+		background-color: #3f51b5;
+	}
 	/*header结束*/
 </style>

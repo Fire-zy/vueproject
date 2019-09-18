@@ -1,9 +1,12 @@
 <template>
-	<div class="v_app_bar">
-		<span v-for="(tab,curTab) in tabs" :key="tab" @click="tabIndex=curTab">
+	<div class="tab">
+		<component v-bind:is="change" class="tab"></component>
+	
+		<div class="v_app_bar">
+			<button v-for="(tab,curTab) in tabs" :key="tab" @click="tabIndex=curTab">
 				{{tab}}
-			</span>
-		<component v-bind:is="change"></component>
+			</button>
+		</div>
 	</div>
 </template>
 
@@ -35,10 +38,10 @@
 </script>
 
 <style scoped lang="less">
-	.v_app_bar {
+	.v_app_bar button{
 		color: #fff;
 		padding: 15px 0;
-		display: flex;
+	 	display: flex;
 		justify-content: space-around;
 		background-color: #3f51b5;
 	}

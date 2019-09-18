@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-//import Home from './views/Home.vue'
 import App from './App.vue'
 import axios from 'axios'
 Vue.use(Router)
@@ -17,12 +16,6 @@ const routes = [{
 				import('@/views/User.vue')
 		},
 		{
-			path: 'stared',
-			name: 'userStared',
-			component: () =>
-				import('@/views/Star.vue')
-		},
-		{
 			path: 'login',
 			name: 'login',
 			component: () =>
@@ -33,6 +26,12 @@ const routes = [{
 			name: 'callback',
 			component: () =>
 				import('@/views/Callback.vue')
+		},
+		{
+			path: 'Followers',
+			name: 'Followers',
+			component: () =>
+				import('@/views/Followers.vue')
 		}
 	]
 }]
