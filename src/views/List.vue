@@ -1,31 +1,31 @@
 <template>
 	<v-list>
 		<div class="main">
-			<div class="box_name">{{login}}</div>
+			<div class="box_name">{{list.login}}</div>
 			<div class="personal">
-				<div class="box_motto">{{bio}}</div>
+				<div class="box_motto">{{list.bio}}</div>
 				<div class="box_email">
-					<img src="../assets/work.png" /> {{company}}
+					<img src="../assets/work.png" /> {{list.company}}
 				</div>
 				<div class="box_location">
-					<img src="../assets/link.png" /> {{blog}}
+					<img src="../assets/link.png" /> {{list.blog}}
 				</div>
 			</div>
 			<div class="subnav">
 				<div class="column">
-					<p class="date">{{followers}}</p>
-					<p><router-link to="'/Followers">跟随着</router-link></p>
+					<p class="date">{{list.followers}}</p>
+					<p><router-link :to="{path:'/Followers',query:{login:list.login}}">跟随着</router-link></p>
 				</div>
 				<div class="column">
-					<p class="date">{{following}}</p>
-					<p>跟随</p>
+					<p class="date">{{list.following}}</p>
+					<p><router-link :to="{path:'/Following',query:{login:list.login}}">跟随</router-link></p>
 				</div>
 				<div class="column">
-					<p class="date">{{public_repos}}</p>
+					<p class="date">{{list.public_repos}}</p>
 					<p>版本库</p>
 				</div>
 				<div class="column">
-					<p class="date">{{public_gists}}</p>
+					<p class="date">{{list.public_gists}}</p>
 					<p>主题帖</p>
 				</div>
 			</div>
@@ -45,7 +45,11 @@
 				list: []
 			}
 		},
-		props: ['login', 'bio', 'company', 'box_location', 'blog', 'followers', 'following', 'public_repos', 'public_gists']
+		created() {
+			//直接取localStorage里面的数据
+			const main = localStorage.getItem('LOGIN_USER')
+			this.list = JSON.parse(main)
+		}
 	}
 </script>
 

@@ -23,7 +23,7 @@
 				<span @click="tabName='Star'">星标</span>
 			</div>
 			<keep-alive>
-				<component :is="tabName" :login="item.login" :bio="item.bio" :company="item.company" :blog="item.blog" :followers="item.followers" :following="item.following" :public_repos="item.public_repos" :public_gists="item.public_gists"></component>
+				<component :is="tabName"></component>
 			</keep-alive>
 		</div>
 	</div>

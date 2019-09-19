@@ -23,6 +23,8 @@ export default {
   },
   created () {
     this.getStared()
+    const star=localStorage.getItem('LOGIN_USER')
+    this.stared=JSON.parse(star)
   },
   methods: {
     getStared () {

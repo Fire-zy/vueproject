@@ -1,9 +1,9 @@
 <template>
-	<div class="followers">
+	<div class="following">
 		<div class="top">
 			<img src="../assets/back.png" />
 			<div>
-				<span>Followers</span>
+				<span>Following</span>
 				<span></span>
 			</div>
 			
@@ -34,13 +34,14 @@
 		},
 		methods:{
 			getMessage(){
-				this.$axios.get("https://api.github.com/users/"+this.$route.query.login+"/followers")
+				this.$axios.get("https://api.github.com/users/"+this.$route.query.login+"/following")
 				.then(resp=>{
 					this.item=resp.data
 					console.log(resp)
 				})
 			}
-		}	
+		}
+		
 	}
 </script>
 
