@@ -1,39 +1,44 @@
 <template>
-  <v-container>
-    <!--<v-app-bar></v-app-bar>-->
-    <v-list>
-      <v-list-item v-for="item in stared" :key="item.id">
-        <v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
-      </v-list-item>
-    </v-list>
-  </v-container>
+	<v-container>
+		<!--<v-app-bar></v-app-bar>-->
+		<v-list>
+			<v-list-item v-for="item in stared" :key="item.id">
+				<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
+			</v-list-item>
+		</v-list>
+	</v-container>
 </template>
 <script>
-import VContainer from '../components/layout/VContainer'
-import VList from '../components/list/VList'
-import VListItem from '../components/list/VListItem'
-import VAvatar from '../components/simple/VAvatar'
+	import VContainer from '../components/layout/VContainer'
+	import VList from '../components/list/VList'
+	import VListItem from '../components/list/VListItem'
+	import VAvatar from '../components/simple/VAvatar'
 
-export default {
-  components: { VAvatar, VListItem, VList, VContainer },
-  data () {
-    return {
-      stared: []
-    }
-  },
-  created () {
-    this.getStared()
-    const star=localStorage.getItem('LOGIN_USER')
-    this.stared=JSON.parse(star)
-  },
-  methods: {
-    getStared () {
-      this.$axios.get('/api/users/bvvy/starred').then(resp => {
-        this.stared = resp.data
-      })
-    }
-  }
-}
+	export default {
+		components: {
+			VAvatar,
+			VListItem,
+			VList,
+			VContainer
+		},
+		data() {
+			return {
+				stared: []
+			}
+		},
+		props: ['login'],
+		created() {
+			this.getStared()
+		},
+		methods: {
+			getStared() {
+				this.$axios.get('/api/users/' + this.login + '/starred').then(resp => {
+					this.stared = resp.data
+					console.log(resp)
+				})
+			}
+		}
+	}
 </script>
 
 <style scoped lang="less">

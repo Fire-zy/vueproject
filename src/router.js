@@ -38,6 +38,18 @@ const routes = [{
 			name: 'Following',
 			component: () =>
 				import('@/views/Following.vue')
+		},
+		{
+			path: 'Repo',
+			name: 'Repo',
+			component: () =>
+				import('@/views/Repo.vue')
+		},
+		{
+			path: 'Gists',
+			name: 'Gists',
+			component: () =>
+				import('@/views/Gists.vue')
 		}
 	]
 }]

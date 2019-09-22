@@ -16,14 +16,14 @@
 						<p>Joined at {{item.created_at|dateFrm}}</p>
 					</div>
 				</div>
-			</div>
+			</div>			
 			<div class="v_app_bar">
 				<span @click="tabName='List'">信息</span>
 				<span @click="tabName='Activity'">活动</span>
 				<span @click="tabName='Star'">星标</span>
 			</div>
 			<keep-alive>
-				<component :is="tabName"></component>
+				<component :is="tabName" :login="item.login"></component>
 			</keep-alive>
 		</div>
 	</div>
@@ -62,7 +62,6 @@
 
 <style lang="less">
 	/*header开始*/
-	
 	.top {
 		width: 100%;
 		height: 200px;

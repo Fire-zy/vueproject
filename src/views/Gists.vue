@@ -1,11 +1,10 @@
 <template>
-	<div class="followers">
+	<div class="gists">
 		<div class="top">
-			<img src="../assets/back.png" @click="$router.back(-1)" />
+			<img src="../assets/back.png" @click="$router.back(-1)"/>
 			<div>
-				<span>Followers</span>
-			</div>
-			
+				<span>Gists</span>
+			</div>		
 		</div>
 		<v-list>
       <v-list-item v-for="item in item" :key="item.id">
@@ -21,7 +20,7 @@
 	import VListItem from '../components/list/VListItem'
 	import VAvatar from '../components/simple/VAvatar'
 	export default{
-		name:'Following',
+		name:'Gists',
 		components: { VAvatar, VListItem, VList },
 		data(){
 			return{
@@ -33,7 +32,7 @@
 		},
 		methods:{
 			getMessage(){
-				this.$axios.get("/api/users/"+this.$route.query.login+"/followers")
+				this.$axios.get("api/users/"+this.$route.query.login+"/gists")
 				.then(resp=>{
 					this.item=resp.data
 					console.log(resp)

@@ -1,10 +1,9 @@
 <template>
 	<div class="following">
 		<div class="top">
-			<img src="../assets/back.png" />
+			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<div>
 				<span>Following</span>
-				<span></span>
 			</div>
 			
 		</div>

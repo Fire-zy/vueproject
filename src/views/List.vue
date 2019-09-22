@@ -5,7 +5,7 @@
 			<div class="personal">
 				<div class="box_motto">{{list.bio}}</div>
 				<div class="box_email">
-					<img src="../assets/work.png" /> {{list.company}}
+					<!--<img src="../assets/work.png" />--> {{list.company}}
 				</div>
 				<div class="box_location">
 					<img src="../assets/link.png" /> {{list.blog}}
@@ -22,11 +22,11 @@
 				</div>
 				<div class="column">
 					<p class="date">{{list.public_repos}}</p>
-					<p>版本库</p>
+					<p><router-link :to="{path:'/Repo',query:{login:list.login}}">版本库</router-link></p>
 				</div>
 				<div class="column">
 					<p class="date">{{list.public_gists}}</p>
-					<p>主题帖</p>
+					<p><router-link :to="{path:'/Gists',query:{login:list.login}}">主题帖</router-link></p>
 				</div>
 			</div>
 		</div>
