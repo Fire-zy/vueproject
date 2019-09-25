@@ -5,7 +5,7 @@
 			<div class="personal">
 				<div class="box_motto">{{list.bio}}</div>
 				<div class="box_email">
-					<!--<img src="../assets/work.png" />--> {{list.company}}
+					<img src="../assets/work.png" /> {{list.company}}
 				</div>
 				<div class="box_location">
 					<img src="../assets/link.png" /> {{list.blog}}
@@ -42,13 +42,22 @@
 		},
 		data() {
 			return {
+				username:'',
 				list: []
 			}
 		},
+		props:['login'],
 		created() {
-			//直接取localStorage里面的数据
-			const main = localStorage.getItem('LOGIN_USER')
-			this.list = JSON.parse(main)
+			this.getList()
+		},
+		methods:{
+			getList(){
+				this.$axios.get("api/users/"+this.login)
+				.then(resp=>{
+					this.list=resp.data
+					console.log(resp)
+				})
+			}
 		}
 	}
 </script>

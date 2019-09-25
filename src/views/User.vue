@@ -3,7 +3,7 @@
 		<div class="top" :style="{backgroundImage: 'url(' + item.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
 			<div class="topHeader">
 				<div class="shop">
-					<img src="../assets/back.png" />
+					<img src="../assets/back.png" @click="$router.back(-1)"/>
 					<img src="../assets/else.png" class="else" />
 				</div>
 				<div class="status">
@@ -21,10 +21,12 @@
 				<span @click="tabName='List'">信息</span>
 				<span @click="tabName='Activity'">活动</span>
 				<span @click="tabName='Star'">星标</span>
+				
 			</div>
-			<keep-alive>
 				<component :is="tabName" :login="item.login"></component>
-			</keep-alive>
+			<!--<keep-alive>
+				
+			</keep-alive>-->
 		</div>
 	</div>
 </template>
@@ -53,9 +55,24 @@
 			}
 		},
 		created() {
-			//直接取localStorage里面的数据
-			const user = localStorage.getItem('LOGIN_USER')
-			this.item = JSON.parse(user)
+			if(this.$route.query.login){
+				this.getUser()
+			}else{
+//				直接取localStorage里面的数据
+				const user = localStorage.getItem('LOGIN_USER')
+				this.item = JSON.parse(user)
+			}		
+		},
+		methods:{
+			getUser(){
+				
+				this.$axios.get("api/users/"+this.$route.query.login)
+				.then(resp=>{
+					this.$nextTick(()=>{this.item=resp.data})
+					
+					console.log(resp)
+				})
+			}
 		}
 	}
 </script>
