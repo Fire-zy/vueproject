@@ -3,7 +3,7 @@
 		<div class="top" :style="{backgroundImage: 'url(' + item.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
 			<div class="topHeader">
 				<div class="shop">
-					<img src="../assets/back.png" @click="$router.back(-1)"/>
+					<img src="../assets/back.png" @click="$router.back(-1)" />
 					<img src="../assets/else.png" class="else" />
 				</div>
 				<div class="status">
@@ -16,14 +16,14 @@
 						<p>Joined at {{item.created_at|dateFrm}}</p>
 					</div>
 				</div>
-			</div>			
+			</div>
 			<div class="v_app_bar">
 				<span @click="tabName='List'">信息</span>
 				<span @click="tabName='Activity'">活动</span>
 				<span @click="tabName='Star'">星标</span>
-				
+
 			</div>
-				<component :is="tabName" :login="item.login"></component>
+			<component :is="tabName" :login="item.login" v-if="item.login"></component>
 			<!--<keep-alive>
 				
 			</keep-alive>-->
@@ -55,23 +55,23 @@
 			}
 		},
 		created() {
-			if(this.$route.query.login){
+			if(this.$route.query.login) {
 				this.getUser()
-			}else{
-//				直接取localStorage里面的数据
+			} else {
+				//				直接取localStorage里面的数据
 				const user = localStorage.getItem('LOGIN_USER')
 				this.item = JSON.parse(user)
-			}		
+			}
 		},
-		methods:{
-			getUser(){
-				
-				this.$axios.get("api/users/"+this.$route.query.login)
-				.then(resp=>{
-					this.$nextTick(()=>{this.item=resp.data})
-					
-					console.log(resp)
-				})
+		methods: {
+			getUser() {
+				this.$axios.get("api/users/" + this.$route.query.login)
+					.then(resp => {
+						this.$nextTick(() => {
+							this.item = resp.data
+						})
+						console.log(resp)
+					})
 			}
 		}
 	}
@@ -79,6 +79,7 @@
 
 <style lang="less">
 	/*header开始*/
+	
 	.top {
 		width: 100%;
 		height: 200px;

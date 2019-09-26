@@ -1,11 +1,10 @@
 <template>
 	<div class="repo">
 		<div class="top">
-			<img src="../assets/back.png" @click="$router.back(-1)"/>
+			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<div>
 				<span>Repo</span>
 			</div>
-
 		</div>
 		<v-list>
 			<v-list-item v-for="item in item" :key="item.id">
@@ -92,51 +91,58 @@
 		font-size: 20px;
 	}
 	
-
-	.pic_box{
+	.pic_box {
 		width: 10%;
 	}
+	
 	.content_box {
 		width: 90%;
 		display: flex;
 		flex-wrap: wrap;
 	}
-	.message_box{
+	
+	.message_box {
 		width: 90%;
 		display: flex;
 		justify-content: space-between;
 	}
-	.message_box span{
+	
+	.message_box span {
 		margin-right: -20px;
 	}
-	.name{
+	
+	.name {
 		color: cornflowerblue;
 	}
-	.language{
+	
+	.language {
 		font-size: 12px;
 		color: gray;
 	}
-	.data_box{
+	
+	.data_box {
 		width: 90%;
 		display: flex;
 		justify-content: space-between;
 	}
-	.data_box img{
+	
+	.data_box img {
 		width: 15px;
 		height: 15px;
 		margin-right: 3px;
 	}
-	.data_box span{
+	
+	.data_box span {
 		color: #8a8a8a;
 		font-size: 12px;
 		display: flex;
 		align-items: center;
 	}
-	.description_box{
+	
+	.description_box {
 		width: 90%;
 		font-weight: 600;
 		margin: 5px 0 5px 0;
 		font-family: "楷体";
 	}
-	
 </style>

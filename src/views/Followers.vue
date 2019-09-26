@@ -9,7 +9,7 @@
 		</div>
 		<v-list>
       <v-list-item v-for="item in item" :key="item.id">
-        <v-avatar :url="item.avatar_url" :radius="30"></v-avatar>
+        <router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.avatar_url" :radius="30"></v-avatar></router-link>
         <span>{{item.login}}</span>
       </v-list-item>
     </v-list>
