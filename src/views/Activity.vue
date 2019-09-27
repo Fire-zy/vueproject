@@ -3,7 +3,7 @@
 		<v-list>
 			<v-list-item v-for="item in item" :key="item.id">
 				<div class="message_box">
-					<v-avatar :url="item.actor.avatar_url" :radius="30"></v-avatar>
+					<router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.actor.avatar_url" :radius="30"></v-avatar></router-link>
 					<span class="login_box">{{item.actor.login}}</span>
 					<span class="date_box">{{item.created_at|dateFrm}}</span>				
 				</div>

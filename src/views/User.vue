@@ -8,7 +8,7 @@
 				</div>
 				<div class="status">
 					<div class="pic">
-						<img :src="item.avatar_url" />
+						<img :src="item.avatar_url" />				
 					</div>
 					<div class="messages">
 						<p class="login">{{item.login}}</p>
@@ -21,12 +21,12 @@
 				<span @click="tabName='List'">信息</span>
 				<span @click="tabName='Activity'">活动</span>
 				<span @click="tabName='Star'">星标</span>
-
 			</div>
-			<component :is="tabName" :login="item.login" v-if="item.login"></component>
-			<!--<keep-alive>
-				
-			</keep-alive>-->
+			<keep-alive>
+				<transition>
+					<component :is="tabName" :login="item.login" v-if="item.login"></component>
+				</transition>
+			</keep-alive>
 		</div>
 	</div>
 </template>
@@ -79,6 +79,17 @@
 
 <style lang="less">
 	/*header开始*/
+	
+	.v-enter,
+	.v-leave-to {
+		opacity: 0;
+		transform: translateX(80px);
+	}
+	
+	.v-enter-active,
+	.v-leave-active {
+		transition: all 0.4s ease;
+	}
 	
 	.top {
 		width: 100%;

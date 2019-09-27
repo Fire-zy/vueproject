@@ -7,7 +7,7 @@ Vue.use(Router)
 const routes = [{
 	path: '/',
 	name: 'app',
-	redirect:'/user',
+	redirect:'/HomePage',
 	component: App,
 	children: [{
 			path: 'user',
@@ -50,6 +50,12 @@ const routes = [{
 			name: 'Gists',
 			component: () =>
 				import('@/views/Gists.vue')
+		},
+		{
+			path: 'HomePage',
+			name: 'HomePage',
+			component: () =>
+				import('@/views/HomePage.vue')
 		}
 	]
 }]
