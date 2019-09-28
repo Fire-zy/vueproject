@@ -8,7 +8,7 @@
 				</div>
 				<div class="status">
 					<div class="pic">
-						<img :src="item.avatar_url" />				
+						<img :src="item.avatar_url" class="animated rubberBand"/>										
 					</div>
 					<div class="messages">
 						<p class="login">{{item.login}}</p>
@@ -163,7 +163,7 @@
 		padding: 15px 0;
 		display: flex;
 		justify-content: space-around;
-		background-color: #3f51b5;
+		background-color: #3F51B5;
 	}
 	/*header结束*/
 	/*main开始*/

@@ -1,5 +1,5 @@
 <template>
-	<div class="repo">
+	<div class="repo animated fadeInLeft">
 		<div class="top">
 			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<div>

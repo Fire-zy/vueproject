@@ -5,7 +5,7 @@
 			<div class="personal">
 				<div class="box_motto">{{list.bio}}</div>
 				<div class="box_email">
-					<img src="../assets/work.png" /> {{list.company}}
+					<!--<img src="../assets/work.png" />--> {{list.company}}
 				</div>
 				<div class="box_location">
 					<img src="../assets/link.png" /> {{list.blog}}

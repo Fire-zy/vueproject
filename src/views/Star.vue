@@ -49,11 +49,21 @@
 		},
 		props: ['login'],
 		created() {
-			this.getStared()
+			if(this.$route.query.login){
+				this.getStar()
+			}else{
+				this.getStared()
+			}			
 		},
 		methods: {
 			getStared() {
 				this.$axios.get('/api/users/' + this.login + '/starred').then(resp => {
+					this.stared = resp.data
+					console.log(resp)
+				})
+			},
+			getStar() {
+				this.$axios.get('/api/users/' + this.$route.query.login + '/starred').then(resp => {
 					this.stared = resp.data
 					console.log(resp)
 				})

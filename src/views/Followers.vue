@@ -4,8 +4,7 @@
 			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<div>
 				<span>Followers</span>
-			</div>
-			
+			</div>			
 		</div>
 		<v-list>
       <v-list-item v-for="item in item" :key="item.id">
