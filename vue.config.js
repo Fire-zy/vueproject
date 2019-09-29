@@ -1,6 +1,7 @@
 module.exports={
-	publicPath:'/',
-	devServer:{
+    publicPath:'/',
+
+    devServer:{
 		open:true,
 		port:'8080',
 		proxy:{

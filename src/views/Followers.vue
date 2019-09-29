@@ -1,11 +1,9 @@
 <template>
 	<div class="followers">
-		<div class="top">
+		<v-nav>
 			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<div>
-				<span>Followers</span>
-			</div>			
-		</div>
+			<span> Followers</span>
+		</v-nav>
 		<v-list>
       <v-list-item v-for="item in item" :key="item.id">
         <router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.avatar_url" :radius="30"></v-avatar></router-link>
@@ -19,9 +17,10 @@
 	import VList from '../components/list/VList'
 	import VListItem from '../components/list/VListItem'
 	import VAvatar from '../components/simple/VAvatar'
+	import VNav from '../components/navbar/VNav'
 	export default{
 		name:'Following',
-		components: { VAvatar, VListItem, VList },
+		components: { VAvatar, VListItem, VList,VNav },
 		data(){
 			return{
 				item:[]
@@ -46,19 +45,7 @@
 	*{
 		margin: 0;
 		padding: 0;
-	}
-	.top{
-		height: 50px;
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		background-color: #3F51B5;
-	}
-	.top img{
-		width: 30px;
-		height: 30px;
-		margin-left: 15px;
-	}
+	}	
 	.v_list_item{
 		display: flex;
 		justify-content: flex-start;
@@ -66,9 +53,5 @@
 	}
 	.v_list_item span{
 		margin-left: 5px;
-	}
-	.top span{
-		color: #FFFFFF;
-		font-size: 20px;
 	}
 </style>

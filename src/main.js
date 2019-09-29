@@ -8,6 +8,7 @@ import axios from 'axios'
 import moment from 'moment'
 import animate from 'animate.css'
 
+
 Vue.use(animate)
 
 Vue.prototype.$moment = moment

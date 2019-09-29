@@ -24,21 +24,22 @@
 			</div>
 			<div class="v-lattice-right">
 				<router-link :to="{path:'/Notification',query:{login:item.login}}">
-				<img src="../assets/latticeNotification.png" />
+					<img src="../assets/latticeNotification.png" />
 				</router-link>
-				
 				<span>Notification</span>
 			</div>
 		</div>
 		<div class="v-lattice-two">
 			<div class="v-lattice-left">
-				<img src="../assets/latticeIssues.png" class="lattice-pic" />
+				<router-link :to="{path:'/Issues',query:{login:item.login}}">
+					<img src="../assets/latticeIssues.png" class="lattice-pic" />
+				</router-link>
 				<span>Issues</span>
 			</div>
 			<div class="v-lattice-center">
 				<router-link :to="{path:'/Star',query:{login:item.login}}">
 					<img src="../assets/latticeStarred.png" class="lattice-pic" />
-				</router-link>				
+				</router-link>
 				<span>Starred Repo</span>
 			</div>
 			<div class="v-lattice-right">
@@ -49,10 +50,12 @@
 		<div class="v-lattice-three">
 			<div class="v-lattice-left">
 				<img src="../assets/latticeNews.png" class="lattice-pic" />
-				<span>News</span>
+				<span>Global News</span>
 			</div>
 			<div class="v-lattice-center">
-				<img src="../assets/latticeSearch.png" class="lattice-pic" />
+				<router-link :to="{path:'/Search',query:{login:item.login}}">
+					<img src="../assets/latticeSearch.png" class="lattice-pic" />
+				</router-link>
 				<span>Search</span>
 			</div>
 			<div class="v-lattice-right">
