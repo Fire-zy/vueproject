@@ -15,10 +15,10 @@
 			</div>
 		</div>
 		<keep-alive>
-				<transition>
-					<component :is="tabName"></component>
-				</transition>
-			</keep-alive>
+			<transition>
+				<component :is="tabName"></component>
+			</transition>
+		</keep-alive>
 	</div>
 </template>
 
@@ -46,7 +46,7 @@
 		},
 		methods:{
 			getNotifications(){
-				this.$axios.get("http://api.github.com/repos/octocat/Hello-World/notifications")
+				this.$axios.get()
 				.then(resp=>{
 					this.item=resp.data
 					console.log()

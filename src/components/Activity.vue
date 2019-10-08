@@ -54,11 +54,6 @@
 </script>
 
 <style scoped lang="less">
-	* {
-		margin: 0;
-		padding: 0;
-	}
-
 	.push_box span {
 		display: flex;
 		justify-content: flex-start;

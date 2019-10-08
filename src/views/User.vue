@@ -20,7 +20,7 @@
 			<div class="v_app_bar">
 				<span @click="tabName='List'">信息</span>
 				<span @click="tabName='Activity'">活动</span>
-				<span @click="tabName='Star'">星标</span>
+				<span @click="tabName='VStar'">星标</span>
 			</div>
 			<keep-alive>
 				<transition>
@@ -33,9 +33,9 @@
 
 <script>
 	import moment from 'moment'
-	import List from '@/views/List.vue'
-	import Activity from '@/views/Activity.vue'
-	import Star from '@/views/Star.vue'
+	import List from '@/components/List.vue'
+	import Activity from '@/components/Activity.vue'
+	import Star from '@/components/VStar.vue'
 	export default {
 		name: 'user',
 		data() {

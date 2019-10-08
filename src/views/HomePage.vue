@@ -37,7 +37,7 @@
 				<span>Issues</span>
 			</div>
 			<div class="v-lattice-center">
-				<router-link :to="{path:'/Star',query:{login:item.login}}">
+				<router-link :to="{path:'/StarredRepo',query:{login:item.login}}">
 					<img src="../assets/latticeStarred.png" class="lattice-pic" />
 				</router-link>
 				<span>Starred Repo</span>
@@ -49,7 +49,9 @@
 		</div>
 		<div class="v-lattice-three">
 			<div class="v-lattice-left">
-				<img src="../assets/latticeNews.png" class="lattice-pic" />
+				<router-link :to="{path:'/Event',query:{login:item.login}}">
+					<img src="../assets/latticeNews.png" class="lattice-pic" />	
+				</router-link>	
 				<span>Global News</span>
 			</div>
 			<div class="v-lattice-center">

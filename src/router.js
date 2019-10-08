@@ -7,9 +7,16 @@ Vue.use(Router)
 const routes = [{
 	path: '/',
 	name: 'app',
+	component: App,	
 	redirect:'/HomePage',
-	component: App,
-	children: [{
+	children: [
+		{
+			path: 'HomePage',
+			name: 'HomePage',
+			component: () =>
+				import('@/views/HomePage.vue')
+		},
+		{
 			path: 'user',
 			name: 'user',
 			component: () =>
@@ -52,12 +59,6 @@ const routes = [{
 				import('@/views/Gists.vue')
 		},
 		{
-			path: 'HomePage',
-			name: 'HomePage',
-			component: () =>
-				import('@/views/HomePage.vue')
-		},
-		{
 			path: 'Notification',
 			name: 'Notification',
 			component: () =>
@@ -74,6 +75,18 @@ const routes = [{
 			name: 'Search',
 			component: () =>
 				import('@/views/Search.vue')
+		},
+		{
+			path: 'StarredRepo',
+			name: 'StarredRepo',
+			component: () =>
+				import('@/views/StarredRepo.vue')
+		},
+		{
+			path: 'Event',
+			name: 'Event',
+			component: () =>
+				import('@/views/Event.vue')
 		}
 	]
 }]

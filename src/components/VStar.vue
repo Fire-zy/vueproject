@@ -1,33 +1,36 @@
 <template>
-	<v-container>
-		<!--<v-app-bar></v-app-bar>-->
-		<!--<v-list>
+	<div>
+		<v-container>
+			<!--<v-app-bar></v-app-bar>-->
+			<!--<v-list>
 			<v-list-item v-for="item in stared" :key="item.id">
 				<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
 			</v-list-item>
 		</v-list>-->
-		<v-list>
-			<v-list-item v-for="item in stared" :key="item.id">
-				<div class="pic_box">
-					<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
-				</div>
-				<div class="content_box">
-					<div class="message_box">
-						<span class="name">{{item.name}}</span>
-						<span class="language">{{item.language}}</span>
+			<v-list>
+				<v-list-item v-for="item in stared" :key="item.id">
+					<div class="pic_box">
+						<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
 					</div>
-					<div class="description_box">
-						{{item.description}}
+					<div class="content_box">
+						<div class="message_box">
+							<span class="name">{{item.name}}</span>
+							<span class="language">{{item.language}}</span>
+						</div>
+						<div class="description_box">
+							{{item.description}}
+						</div>
+						<div class="data_box">
+							<span><img src="../assets/star.png" />{{item.stargazers_count}}</span>
+							<span><img src="../assets/forks.png" /> {{item.forks}}</span>
+							<span><img src="../assets/user.png" />{{item.owner.login}}</span>
+						</div>
 					</div>
-					<div class="data_box">
-						<span><img src="../assets/star.png" />{{item.stargazers_count}}</span>
-						<span><img src="../assets/forks.png" /> {{item.forks}}</span>
-						<span><img src="../assets/user.png" />{{item.owner.login}}</span>
-					</div>
-				</div>
-			</v-list-item>
-		</v-list>
-	</v-container>
+				</v-list-item>
+			</v-list>
+		</v-container>
+	</div>
+
 </template>
 <script>
 	import VContainer from '../components/layout/VContainer'
@@ -36,6 +39,7 @@
 	import VAvatar from '../components/simple/VAvatar'
 
 	export default {
+		name: 'Vstar',
 		components: {
 			VAvatar,
 			VListItem,
@@ -49,11 +53,11 @@
 		},
 		props: ['login'],
 		created() {
-			if(this.$route.query.login){
+			if(this.$route.query.login) {
 				this.getStar()
-			}else{
+			} else {
 				this.getStared()
-			}			
+			}
 		},
 		methods: {
 			getStared() {
