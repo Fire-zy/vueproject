@@ -1,6 +1,6 @@
 <template>
 	<div class="login">
-		<button @click="onLoginClick">登 陆</button>
+		<button @click="onLoginClick">登 陆 </button>
 	</div>
 </template>
 

@@ -19,7 +19,7 @@
 		name:'Issues',
 		date(){
 			return{
-				item:[]
+				issues:[]
 			}
 		},
 		components: {
@@ -30,9 +30,13 @@
 		},
 		methods:{
 			getIssues(){
-				this.$axios.get("/api/user/issues")
+				this.$axios.get("/api/user/issues",{
+					headers: {
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				})
 				.then(resp=>{
-					this.item=resp.data
+					this.issues=resp.data
 					console.log(resp)
 				})
 			}

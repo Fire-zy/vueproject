@@ -7,7 +7,7 @@
 			</div>		
 		</div>
 		<v-list>
-      <v-list-item v-for="item in item" :key="item.id">
+      <v-list-item v-for="item in gists" :key="item.id">
         <v-avatar :url="item.avatar_url" :radius="30"></v-avatar>
         <span>{{item.login}}</span>
       </v-list-item>
@@ -24,7 +24,7 @@
 		components: { VAvatar, VListItem, VList },
 		data(){
 			return{
-				item:[]
+				gists:[]
 			}
 		},
 		created(){
@@ -34,7 +34,7 @@
 			getMessage(){
 				this.$axios.get("api/users/"+this.$route.query.login+"/gists")
 				.then(resp=>{
-					this.item=resp.data
+					this.gists=resp.data
 					console.log(resp)
 				})
 			}

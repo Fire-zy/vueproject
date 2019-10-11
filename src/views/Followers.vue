@@ -5,7 +5,7 @@
 			<span> Followers</span>
 		</v-nav>
 		<v-list>
-      <v-list-item v-for="item in item" :key="item.id">
+      <v-list-item v-for="item in followers" :key="item.id">
         <router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.avatar_url" :radius="30"></v-avatar></router-link>
         <span>{{item.login}}</span>
       </v-list-item>
@@ -23,7 +23,7 @@
 		components: { VAvatar, VListItem, VList,VNav },
 		data(){
 			return{
-				item:[]
+				followers:[]
 			}
 		},
 		created(){
@@ -33,7 +33,7 @@
 			getMessage(){
 				this.$axios.get("/api/users/"+this.$route.query.login+"/followers")
 				.then(resp=>{
-					this.item=resp.data
+					this.followers=resp.data
 					console.log(resp)
 				})
 			}

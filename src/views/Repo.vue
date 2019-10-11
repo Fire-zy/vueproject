@@ -5,7 +5,7 @@
 			<span> Repos</span>
 		</v-nav>
 		<v-list>
-			<v-list-item v-for="item in item" :key="item.id">
+			<v-list-item v-for="item in repo" :key="item.id">
 				<div class="pic_box">
 					<router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar></router-link>
 				</div>
@@ -43,7 +43,7 @@
 		},
 		data() {
 			return {
-				item: []
+				repo: []
 			}
 		},
 		created() {
@@ -53,7 +53,7 @@
 			getMessage() {
 				this.$axios.get("api/users/" + this.$route.query.login + "/repos")
 					.then(resp => {
-						this.item = resp.data
+						this.repo = resp.data
 						console.log(resp)
 					})
 			}

@@ -37,7 +37,7 @@
 		},
 		data() {
 			return {
-				item:{},
+				notification:{},
 				tabName: 'VAvatar'
 			}
 		},
@@ -46,9 +46,14 @@
 		},
 		methods:{
 			getNotifications(){		
-				this.$axios.get("/api/notifications")
+//				const accessToken = localStorage.getItem('ACCESS_TOKEN')
+				this.$axios.get("/api/notifications",{
+					headers: {
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				})
 				.then(resp=>{
-					this.item=resp.data
+					this.notification=resp.data
 					console.log(resp)
 				})
 			}

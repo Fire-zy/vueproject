@@ -1,69 +1,25 @@
 <template>
 	<div class="homepage">
+		<div class="nav_box">
+			<span>home</span>
+		</div>
+
 		<div class="v-user-pic">
-			<div class="nav_box">
-				<span>home</span>
-			</div>
 			<router-link :to="{path:'/User',query:{login:item.login}}">
 				<img :src="item.avatar_url" class="animated swing" />
 			</router-link>
 		</div>
-		<div class="v-lattice-one">
-			<div class="v-lattice-left">
-				<router-link :to="{path:'/User',query:{login:item.login}}">
-					<img src="../assets/latticeProfile.png" class="lattice-pic" />
-				</router-link>
-				<span>Profile</span>
-			</div>
 
-			<div class="v-lattice-center">
-				<router-link :to="{path:'/Repo',query:{login:item.login}}">
-					<img src="../assets/latticeRepo.png" />
-				</router-link>
-				<span>Repos</span>
-			</div>
-			<div class="v-lattice-right">
-				<router-link :to="{path:'/Notification',query:{login:item.login}}">
-					<img src="../assets/latticeNotification.png" />
-				</router-link>
-				<span>Notification</span>
-			</div>
-		</div>
-		<div class="v-lattice-two">
-			<div class="v-lattice-left">
-				<router-link :to="{path:'/Issues',query:{login:item.login}}">
-					<img src="../assets/latticeIssues.png" class="lattice-pic" />
-				</router-link>
-				<span>Issues</span>
-			</div>
-			<div class="v-lattice-center">
-				<router-link :to="{path:'/StarredRepo',query:{login:item.login}}">
-					<img src="../assets/latticeStarred.png" class="lattice-pic" />
-				</router-link>
-				<span>Starred Repo</span>
-			</div>
-			<div class="v-lattice-right">
-				<img src="../assets/latticeBookmarks.png" class="lattice-pic" />
-				<span>Bookmarks</span>
-			</div>
-		</div>
-		<div class="v-lattice-three">
-			<div class="v-lattice-left">
-				<router-link :to="{path:'/Event',query:{login:item.login}}">
-					<img src="../assets/latticeNews.png" class="lattice-pic" />	
-				</router-link>	
-				<span>Global News</span>
-			</div>
-			<div class="v-lattice-center">
-				<router-link :to="{path:'/Search',query:{login:item.login}}">
-					<img src="../assets/latticeSearch.png" class="lattice-pic" />
-				</router-link>
-				<span>Search</span>
-			</div>
-			<div class="v-lattice-right">
-				<img src="../assets/latticeTrace.png" class="lattice-pic" />
-				<span>Trace</span>
-			</div>
+		<div class="v-lattice">
+			<div class="v-lattice-item"></div>
+			<div class="v-lattice-item"></div>
+			<div class="v-lattice-item v-lattice-three"></div>
+			<div class="v-lattice-item"></div>
+			<div class="v-lattice-item"></div>
+			<div class="v-lattice-item  v-lattice-six"></div>
+			<div class="v-lattice-item"></div>
+			<div class="v-lattice-item"></div>
+			<div class="v-lattice-item  v-lattice-nine"></div>
 		</div>
 	</div>
 </template>
@@ -84,12 +40,77 @@
 </script>
 
 <style>
-	* {
-		margin: 0;
-		padding: 0;
+	.homepage {
+		display: flex;
+		flex-direction: column;
 	}
 	
-	.homepage img {
+	.nav_box span {
+		width: 100%;
+		display: block;
+		text-align: center;
+	}
+	
+	.nav_box {
+		width: 100%;
+		height: 50px;
+		line-height: 50px;
+		font-size: 20px;
+		color: #FFFFFF;
+		background-color: #3F51B5;
+	}
+	
+	.v-user-pic {
+		height: 170px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	
+	.v-user-pic img {
+		width: 120px;
+		height: 120px;
+		border-radius: 90px;
+	}
+	
+	.v-lattice {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+	}
+	
+	.v-lattice-item {
+		width: 33.1%;
+		height: 130px;	
+		border:solid 1px lightskyblue;;
+	}
+	.v-lattice .v-lattice-item{
+		border-left: none;
+	}
+	.v-lattice .v-lattice-three,.v-lattice-six,.v-lattice-nine{
+		border-right: none;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*.homepage img {
 		width: 50px;
 		height: 50px;
 	}
@@ -107,35 +128,6 @@
 		margin-bottom: 10px;
 	}
 	
-	.v-lattice-one,
-	.v-lattice-two,
-	.v-lattice-three {
-		width: 100%;
-		height: 130px;
-		display: flex;
-		justify-content: flex-start;
-		border-bottom: solid 2px lightskyblue;
-	}
-	
-	.v-lattice-one {
-		border-top: solid 2px lightskyblue;
-	}
-	
-	.v-lattice-left,
-	.v-lattice-center,
-	.v-lattice-right {
-		width: 33.3%;
-		height: 100%;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		align-items: center;
-		border-right: solid 2px lightskyblue;
-	}
-	
-	.homepage .v-lattice-right {
-		border-right: none;
-	}
 	
 	.v-user-pic {
 		display: flex;
@@ -158,5 +150,5 @@
 		color: #FFFFFF;
 		margin-top: -10px;
 		background-color: #3F51B5;
-	}
+	}*/
 </style>

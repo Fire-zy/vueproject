@@ -5,7 +5,7 @@
 			<span> Following</span>
 		</v-nav>
 		<v-list>
-			<v-list-item v-for="item in item" :key="item.id">
+			<v-list-item v-for="item in following" :key="item.id">
 				<router-link :to="{path:'/User',query:{login:item.login}}">
 					<v-avatar :url="item.avatar_url" :radius="30"></v-avatar>
 				</router-link>
@@ -30,7 +30,7 @@
 		},
 		data() {
 			return {
-				item: []
+				following: []
 			}
 		},
 		created() {
@@ -40,7 +40,7 @@
 			getMessage() {
 				this.$axios.get("api/users/" + this.$route.query.login + "/following")
 					.then(resp => {
-						this.item = resp.data
+						this.following = resp.data
 						console.log(resp)
 					})
 			}

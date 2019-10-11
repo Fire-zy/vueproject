@@ -5,7 +5,7 @@
 			<span> Global News</span>
 		</v-nav>
 		<v-list>
-			<v-list-item v-for="item in item" :key="item.id">
+			<v-list-item v-for="item in event" :key="item.id">
 				<div class="message_box">
 					<router-link :to="{path:'/User',query:{login:item.actor.login}}">
 						<v-avatar :url="item.actor.avatar_url" :radius="30"></v-avatar>
@@ -14,12 +14,12 @@
 					<span class="date_box">{{item.created_at|dateFrm}}</span>
 				</div>
 				<div class="push_box">
-					<span v-if="item.type=='PushEvent'">Push to master at {{item.repo.name}}</span>
-					<span v-else-if="item.type=='CreateEvent'">CreateEvent</span>
-					<span v-else-if="item.type=='ForkEvent'">ForkEvent</span>
-					<span v-else-if="item.type=='DeleteEvent'">DeleteEvent</span>
-					<span v-else-if="item.type=='WatchEvent'">WatchEvent</span>
-					<span v-else="item.type=='PullRequestEvent'">Opened pull request {{item.repo.name}}</span>
+					<span v-if="item.type==='PushEvent'">Push to master at {{item.repo.name}}</span>
+					<span v-else-if="item.type==='CreateEvent'">CreateEvent</span>
+					<span v-else-if="item.type==='ForkEvent'">ForkEvent</span>
+					<span v-else-if="item.type==='DeleteEvent'">DeleteEvent</span>
+					<span v-else-if="item.type==='WatchEvent'">WatchEvent</span>
+					<span v-else-if="item.type==='PullRequestEvent'">Opened pull request {{item.repo.name}}</span>
 					<span v-for="items in item.payload.commits" :key="items.id" class="message">{{items.message}}</span>
 				</div>
 			</v-list-item>
@@ -43,7 +43,7 @@
 		},
 		data() {
 			return {
-				item: []
+				event: []
 			}
 		},
 		filters: {
@@ -59,7 +59,7 @@
 			getEvent() {
 				this.$axios.get("api/events")
 					.then(resp => {
-						this.item = resp.data
+						this.event = resp.data
 						console.log(resp)
 					})
 			}
