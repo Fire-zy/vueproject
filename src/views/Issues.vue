@@ -19,11 +19,23 @@
 		name:'Issues',
 		date(){
 			return{
-				
+				item:[]
 			}
 		},
 		components: {
 			VNav
+		},
+		created(){
+			this.getIssues()
+		},
+		methods:{
+			getIssues(){
+				this.$axios.get("/api/user/issues")
+				.then(resp=>{
+					this.item=resp.data
+					console.log(resp)
+				})
+			}
 		}
 	}
 </script>

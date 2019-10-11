@@ -10,7 +10,6 @@
 		},
 		created() {
 			this.getAccess()
-//			console.log(this.$route.query.code)
 		},
 		methods: {
 			//优化代码结构
@@ -26,6 +25,7 @@
 						'code=' + this.$route.query.code,
 				}).then(resp => {
 					const accessToken = resp.data.access_token
+					console.log(resp)
 					localStorage.setItem('ACCESS_TOKEN',accessToken)
 					this.$router.push({name:'user'})//跳转到首页去(编程式路由跳转)
 				})

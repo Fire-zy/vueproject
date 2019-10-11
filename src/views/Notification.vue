@@ -9,9 +9,9 @@
 		</div>
 		<div class="v_tab_bar">
 			<div class="v_title">
-				<span @click="tabName='VAvatar'">信息</span>
-				<span @click="tabName='VListItem'">活动</span>
-				<span @click="tabName='VList'">星标</span>
+				<span @click="tabName='VAvatar'">UNREAD</span>
+				<span @click="tabName='VListItem'">PARTICIPANT</span>
+				<span @click="tabName='VList'">ALL</span>
 			</div>
 		</div>
 		<keep-alive>
@@ -45,11 +45,11 @@
 			this.getNotifications()
 		},
 		methods:{
-			getNotifications(){
-				this.$axios.get()
+			getNotifications(){		
+				this.$axios.get("/api/notifications")
 				.then(resp=>{
 					this.item=resp.data
-					console.log()
+					console.log(resp)
 				})
 			}
 		}

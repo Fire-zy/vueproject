@@ -98,7 +98,7 @@ const router = new Router({
 	routes
 })
 
-// 不在从主页直接跳去登录 用全局的导航，所有页面的访问都必须登录
+// 不再从主页直接跳去登录 用全局的导航，所有页面的访问都必须登录
 const WHITE_LIST = ['login', 'callback']
 router.beforeEach((to, from, next) => {
 	const accessToken = localStorage.getItem('ACCESS_TOKEN')
