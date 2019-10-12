@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div class="notification">
 		<v-nav>
 			<img src="../assets/back.png" @click="$router.back(-1)" />
@@ -9,9 +9,9 @@
 		</div>
 		<div class="v_tab_bar">
 			<div class="v_title">
-				<span @click="tabName='VAvatar'">UNREAD</span>
-				<span @click="tabName='VListItem'">PARTICIPANT</span>
-				<span @click="tabName='VList'">ALL</span>
+				<span @click="tabName='VUnread'">UNREAD</span>
+				<span @click="tabName='VParticipate'">PARTICIPANT</span>
+				<span @click="tabName='VAll'">ALL</span>
 			</div>
 		</div>
 		<keep-alive>
@@ -23,22 +23,22 @@
 </template>
 
 <script>
-	import VList from '../components/list/VList'
-	import VListItem from '../components/list/VListItem'
-	import VAvatar from '../components/simple/VAvatar'
+	import VAll from '../components/notifications/VAll'
+	import VParticipate from '../components/notifications/VParticipate'
+	import VUnread from '../components/notifications/VUnread'
 	import VNav from '../components/navbar/VNav'
 	export default {
 		name: 'Notification',
 		components: {
-			VAvatar,
-			VListItem,
-			VList,
+			VUnread,
+			VParticipate,
+			VAll,
 			VNav
 		},
 		data() {
 			return {
-				notification:{},
-				tabName: 'VAvatar'
+				item:{},
+				tabName: 'VUnread'
 			}
 		},
 		created(){
@@ -46,7 +46,6 @@
 		},
 		methods:{
 			getNotifications(){		
-//				const accessToken = localStorage.getItem('ACCESS_TOKEN')
 				this.$axios.get("/api/notifications",{
 					headers: {
 						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
@@ -54,7 +53,7 @@
 				})
 				.then(resp=>{
 					this.notification=resp.data
-					console.log(resp)
+//					console.log(resp)
 				})
 			}
 		}

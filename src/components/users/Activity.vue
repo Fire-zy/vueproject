@@ -1,14 +1,14 @@
 <template>
 	<div class="activity">
 		<v-list>
-			<v-list-item v-for="item in item" :key="item.id">
+			<v-list-item v-for="item in activity" :key="item.id">
 				<div class="message_box">
 					<router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.actor.avatar_url" :radius="30"></v-avatar></router-link>
 					<span class="login_box">{{item.actor.login}}</span>
 					<span class="date_box">{{item.created_at|dateFrm}}</span>				
 				</div>
 				<div class="push_box">
-					<span v-if="item.type=='PushEvent'">Push to master at {{item.repo.name}}</span>					
+					<span v-if="item.type==='PushEvent'">Push to master at {{item.repo.name}}</span>					
 					<span v-for="items in item.payload.commits" :key="items.id" class="message">{{items.message}}</span>
 				</div>
 			</v-list-item>
@@ -18,9 +18,9 @@
 
 <script>
 	import moment from 'moment'
-	import VList from '../components/list/VList'
-	import VListItem from '../components/list/VListItem'
-	import VAvatar from '../components/simple/VAvatar'
+	import VList from '../list/VList'
+	import VListItem from '../list/VListItem'
+	import VAvatar from '../simple/VAvatar'
 	export default {
 		name: 'Activity',
 		components: {
@@ -30,7 +30,7 @@
 		},
 		data() {
 			return {
-				item: {}
+				activity: {}
 			}
 		},
 		props:['login'],

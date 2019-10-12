@@ -6,24 +6,34 @@
 		</v-nav>
 		<div class="v_tab_bar">
 			<div class="v_title">
-				<span @click="tabName='VAvatar'">OPEN</span>
-				<span @click="tabName='VListItem'">CLOSE</span>
+				<span @click="tabName='VOpen'">OPEN</span>
+				<span @click="tabName='VClosed'">CLOSE</span>
 			</div>
 		</div>
+		<keep-alive>
+			<transition>
+				<component :is="tabName"></component>
+			</transition>
+		</keep-alive>
 	</div>
 </template>
 
 <script>
 	import VNav from '../components/navbar/VNav'
+	import VOpen from '../components/issues/VOpen'
+	import VClosed from '../components/issues/VClosed'
 	export default{
 		name:'Issues',
 		date(){
 			return{
-				issues:[]
+				issues:{},
+				tabName: 'VOpen'
 			}
 		},
 		components: {
-			VNav
+			VOpen,
+			VClosed,
+			VNav,
 		},
 		created(){
 			this.getIssues()

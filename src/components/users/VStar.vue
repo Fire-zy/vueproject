@@ -21,9 +21,9 @@
 							{{item.description}}
 						</div>
 						<div class="data_box">
-							<span><img src="../assets/star.png" />{{item.stargazers_count}}</span>
-							<span><img src="../assets/forks.png" /> {{item.forks}}</span>
-							<span><img src="../assets/user.png" />{{item.owner.login}}</span>
+							<span><img src="@/assets/star.png" />{{item.stargazers_count}}</span>
+							<span><img src="@/assets/forks.png" />{{item.forks}}</span>
+							<span><img src="@/assets/user.png" /> {{item.owner.login}}</span>
 						</div>
 					</div>
 				</v-list-item>
@@ -33,10 +33,10 @@
 
 </template>
 <script>
-	import VContainer from '../components/layout/VContainer'
-	import VList from '../components/list/VList'
-	import VListItem from '../components/list/VListItem'
-	import VAvatar from '../components/simple/VAvatar'
+	import VContainer from '../layout/VContainer'
+	import VList from '../list/VList'
+	import VListItem from '../list/VListItem'
+	import VAvatar from '../simple/VAvatar'
 
 	export default {
 		name: 'Vstar',

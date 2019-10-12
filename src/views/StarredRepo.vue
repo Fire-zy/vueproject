@@ -24,7 +24,7 @@
 //	import VListItem from '../components/list/VListItem'
 //	import VAvatar from '../components/simple/VAvatar'
 	import VNav from '../components/navbar/VNav'
-	import VStar from '../components/VStar'
+	import VStar from '../components/users/VStar'
 	export default{
 		name:'StarredRepo',
 		components: {

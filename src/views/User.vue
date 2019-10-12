@@ -33,9 +33,9 @@
 
 <script>
 	import moment from 'moment'
-	import List from '@/components/List.vue'
-	import Activity from '@/components/Activity.vue'
-	import Star from '@/components/VStar.vue'
+	import List from '../components/users/List.vue'
+	import Activity from '../components/users/Activity.vue'
+	import Star from '../components/users/VStar.vue'
 	export default {
 		name: 'user',
 		data() {

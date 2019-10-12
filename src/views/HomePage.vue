@@ -11,15 +11,63 @@
 		</div>
 
 		<div class="v-lattice">
-			<div class="v-lattice-item"></div>
-			<div class="v-lattice-item"></div>
-			<div class="v-lattice-item v-lattice-three"></div>
-			<div class="v-lattice-item"></div>
-			<div class="v-lattice-item"></div>
-			<div class="v-lattice-item  v-lattice-six"></div>
-			<div class="v-lattice-item"></div>
-			<div class="v-lattice-item"></div>
-			<div class="v-lattice-item  v-lattice-nine"></div>
+			<div class="v-lattice-item v-lattice-one">
+				<router-link :to="{path:'/User',query:{login:item.login}}">
+					<img src="../assets/latticeProfile.png" />
+				</router-link>
+				<span>Profile</span>
+			</div>
+			
+			<div class="v-lattice-item v-lattice-two">
+				<router-link :to="{path:'/Repo',query:{login:item.login}}">
+					<img src="../assets/latticeRepo.png" />
+				</router-link>
+				<span>Repos</span>
+			</div>
+			
+			<div class="v-lattice-item v-lattice-three">
+				<router-link :to="{path:'/Notification',query:{login:item.login}}">
+					<img src="../assets/latticeNotification.png" />
+				</router-link>
+				<span>Notification</span>
+			</div>
+			
+			<div class="v-lattice-item v-lattice-four">
+				<router-link :to="{path:'/Issues',query:{login:item.login}}">
+					<img src="../assets/latticeIssues.png"  />
+				</router-link>
+				<span>Issues</span>
+			</div>
+			
+			<div class="v-lattice-item v-lattice-five">
+				<router-link :to="{path:'/StarredRepo',query:{login:item.login}}">
+					<img src="../assets/latticeStarred.png" />
+				</router-link>
+				<span>Starred Repo</span>
+			</div>
+			
+			<div class="v-lattice-item  v-lattice-six">
+				<img src="../assets/latticeBookmarks.png"/>
+				<span>Bookmarks</span>
+			</div>
+			<div class="v-lattice-item">
+				<router-link :to="{path:'/Event',query:{login:item.login}}">
+					<img src="../assets/latticeNews.png"/>	
+				</router-link>	
+				<span>Global News</span>
+			</div>
+			
+			<div class="v-lattice-item">
+				<router-link :to="{path:'/Search',query:{login:item.login}}">
+					<img src="../assets/latticeSearch.png" />
+				</router-link>
+				<span>Search</span>
+			</div>
+			
+			<div class="v-lattice-item  v-lattice-nine">
+				<img src="../assets/latticeTrace.png" />
+				<span>Trace</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -82,6 +130,10 @@
 	.v-lattice-item {
 		width: 33.1%;
 		height: 130px;	
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		border:solid 1px lightskyblue;;
 	}
 	.v-lattice .v-lattice-item{
@@ -90,9 +142,18 @@
 	.v-lattice .v-lattice-three,.v-lattice-six,.v-lattice-nine{
 		border-right: none;
 	}
+	.v-lattice 
+	.v-lattice-one,.v-lattice-two,
+	.v-lattice-three,.v-lattice-four,
+	.v-lattice-five,.v-lattice-six{
+		border-bottom: none;
+	}
 	
-	
-	
+	.v-lattice img{
+		width: 50px;
+		height: 50px;
+		margin-bottom: 15px;
+	}
 	
 	
 	
