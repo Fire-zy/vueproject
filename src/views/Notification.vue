@@ -4,9 +4,6 @@
 			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<span> Notification</span>
 		</v-nav>
-		<div class="demo">
-			{{item.message}}
-		</div>
 		<div class="v_tab_bar">
 			<div class="v_title">
 				<span @click="tabName='VUnread'">UNREAD</span>
@@ -53,7 +50,6 @@
 				})
 				.then(resp=>{
 					this.notification=resp.data
-//					console.log(resp)
 				})
 			}
 		}

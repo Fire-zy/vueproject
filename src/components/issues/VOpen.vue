@@ -1,8 +1,9 @@
 <template>
 	<div>
+	<span v-if="flag" class="v-tips">No Issues</span>
 	<v-list>
-		<v-list-item v-for="item in open" :key="item.id">
-			<span v-if="item==false">there is nothing</span>
+		<v-list-item v-for="item in opening" :key="item.id">
+		
 		</v-list-item>
 	</v-list>
 	</div>
@@ -22,10 +23,10 @@
 		},
 		data(){
 			return{
-				open:{}
+				opening:{},
+				flag:false
 			}
 		},
-		props:['login'],
 		filters: {
 			dateFrm: function(el) {
 				return moment(el).format('ll');
@@ -42,8 +43,11 @@
 					}
 				})
 					.then(resp => {			
-							this.open = resp.data				
-						console.log(resp)
+						if(resp.data.length=0){
+							this.opening=resp.data
+						}else{
+							this.flag=true
+						}
 					})
 			}
 		}

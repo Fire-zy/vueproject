@@ -1,8 +1,9 @@
 <template>
 	<div>
+	<span v-if="flag" class="v-tips">No Issues</span>
 	<v-list>
 		<v-list-item v-for="item in closed" :key="item.id">
-			<span>there is nothing</span>
+			
 		</v-list-item>
 	</v-list>
 	</div>
@@ -22,7 +23,8 @@
 		},
 		data(){
 			return{
-				closed:{}
+				closed:{},
+				flag:true
 			}
 		},
 		props:['login'],
@@ -41,9 +43,12 @@
 						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
 					}
 				})
-					.then(resp => {			
-						this.closed = resp.data				
-						console.log(resp)
+					.then(resp => {	
+						if(resp.data.length!=0){
+							this.closed = resp.data	
+						}else{
+							this.flag=true
+						}
 					})
 			}
 		}

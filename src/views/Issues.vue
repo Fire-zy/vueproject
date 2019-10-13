@@ -1,4 +1,4 @@
-<template>
+ <template>
 	<div class="issues">
 		<v-nav>
 			<img src="../assets/back.png" @click="$router.back(-1)" />
@@ -7,7 +7,7 @@
 		<div class="v_tab_bar">
 			<div class="v_title">
 				<span @click="tabName='VOpen'">OPEN</span>
-				<span @click="tabName='VClosed'">CLOSE</span>
+				<span @click="tabName='VClosed'">CLOSED</span>
 			</div>
 		</div>
 		<keep-alive>
@@ -19,47 +19,32 @@
 </template>
 
 <script>
-	import VNav from '../components/navbar/VNav'
 	import VOpen from '../components/issues/VOpen'
 	import VClosed from '../components/issues/VClosed'
-	export default{
-		name:'Issues',
-		date(){
-			return{
-				issues:{},
-				tabName: 'VOpen'
-			}
-		},
+	import VNav from '../components/navbar/VNav'
+	export default {
+		name: 'Notification',
 		components: {
 			VOpen,
 			VClosed,
-			VNav,
+			VNav
 		},
-		created(){
-			this.getIssues()
-		},
-		methods:{
-			getIssues(){
-				this.$axios.get("/api/user/issues",{
-					headers: {
-						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
-					}
-				})
-				.then(resp=>{
-					this.issues=resp.data
-					console.log(resp)
-				})
+		data() {
+			return {
+				item:{},
+				tabName: 'VOpen'
 			}
 		}
 	}
 </script>
 
-<style>
-		.v_title {
+<style scoped lang="less">
+	.v_title {
 		color: #fff;
 		padding: 15px 0;
 		display: flex;
 		justify-content: space-around;
 		background-color: #3F51B5;
 	}
+
 </style>

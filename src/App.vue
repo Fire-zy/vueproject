@@ -17,4 +17,13 @@ export default {
     margin: 0;
     padding: 0;
 }
+.v-tips{
+	width: 100%;
+	height: 500px;
+	display: flex;
+	color: #808080;
+	align-items: center;
+	justify-content: center;
+	font-size:25px;
+}
 </style>

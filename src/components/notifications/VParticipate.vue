@@ -1,5 +1,6 @@
 <template>
 	<div>
+	<span v-if="flag" class="v-tips">No Notifications</span>
 	<v-list>
 		<v-list-item v-for="item in participate" :key="item.id">
 			<span v-if="item==false">there is nothing</span>
@@ -22,7 +23,8 @@
 		},
 		data(){
 			return{
-				participate:{}
+				participate:{},
+				flag:false
 			}
 		},
 		props:['login'],
@@ -42,12 +44,11 @@
 					}
 				})
 					.then(resp => {
-						if(resp.data==null){
-							this.participate=false
-						}else{
+						if(resp.data.length!=0){
 							this.participate = resp.data
+						}else{
+							this.flag=true
 						}					
-						console.log(resp)
 					})
 			}
 		}

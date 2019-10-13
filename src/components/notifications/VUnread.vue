@@ -1,8 +1,9 @@
 <template>
 	<div>
+	<span v-if="flag" class="v-tips">No Notifications</span>
 	<v-list>
 		<v-list-item v-for="item in unread" :key="item.id">
-			<span v-if="item==='null'">there is nothing</span>
+			
 		</v-list-item>
 	</v-list>
 	</div>
@@ -22,8 +23,8 @@
 		},
 		data(){
 			return{
-				unread:[]
-				
+				unread:[],
+				flag:false
 			}
 		},
 		props:['login'],
@@ -43,13 +44,12 @@
 					}
 				})
 					.then(resp => {
-						if(JSON.stringify(resp.data)=='{}'){
-							this.unread[0]="null"
-						}else{
+						if(resp.data.length!=0){
 							this.unread = resp.data
+						}else{
+							this.flag=true
 						}					
 						console.log(resp)
-						console.log(this.unread[0])
 					})
 			}
 		}

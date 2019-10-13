@@ -1,5 +1,6 @@
 <template>
 	<div>
+	<span v-if="flag" class="v-tips">No Notifications</span>
 	<v-list>
 		<v-list-item v-for="item in all" :key="item.id">
 			<span v-if="item==false">there is nothing</span>
@@ -22,7 +23,8 @@
 		},
 		data(){
 			return{
-				all:{}
+				all:{},
+				flag:false
 			}
 		},
 		props:['login'],
@@ -42,13 +44,14 @@
 					}
 				})
 					.then(resp => {
-						if(resp.data==null){
-							this.all=false
+						if(resp.data.length!=0){
+							this.all = resp.data							
 						}else{
-							this.all = resp.data
-						}					
+							this.flag=true
+						}				
 						console.log(resp)
 					})
+					
 			}
 		}
 	}
