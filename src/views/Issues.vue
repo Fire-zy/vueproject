@@ -5,10 +5,8 @@
 			<span> Issues</span>
 		</v-nav>
 		<div class="v_tab_bar">
-			<div class="v_title">
-				<span @click="tabName='VOpen'">OPEN</span>
-				<span @click="tabName='VClosed'">CLOSED</span>
-			</div>
+			<span @click="tabName='VOpen'">OPEN</span>
+			<span @click="tabName='VClosed'">CLOSED</span>
 		</div>
 		<keep-alive>
 			<transition>

@@ -7,11 +7,15 @@
 		<v-list>
 			<v-list-item v-for="item in repo" :key="item.id">
 				<div class="pic_box">
-					<router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar></router-link>
+					<router-link :to="{path:'/User',query:{login:item.owner.login}}">
+						<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
+					</router-link>
 				</div>
 				<div class="content_box">
 					<div class="message_box">
-						<span class="name">{{item.name}}</span>
+						<router-link :to="{path:'/RepoDetails',query:{login:item.owner.login,name:item.name}}">
+							<span class="name">{{item.name}}</span>
+						</router-link>	
 						<span class="language">{{item.language}}</span>
 					</div>
 					<div class="description_box">
@@ -93,6 +97,10 @@
 		margin-right: -20px;
 	}
 	
+	.message_box a{
+		text-decoration: none;
+		width: 90%;
+	}
 	.name {
 		color: cornflowerblue;
 	}

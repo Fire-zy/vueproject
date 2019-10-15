@@ -4,12 +4,10 @@
 			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<span> Notification</span>
 		</v-nav>
-		<div class="v_tab_bar">
-			<div class="v_title">
-				<span @click="tabName='VUnread'">UNREAD</span>
-				<span @click="tabName='VParticipate'">PARTICIPANT</span>
-				<span @click="tabName='VAll'">ALL</span>
-			</div>
+		<div class="v_tab_bar">	
+			<span @click="tabName='VUnread'">UNREAD</span>
+			<span @click="tabName='VParticipate'">PARTICIPANT</span>
+			<span @click="tabName='VAll'">ALL</span>
 		</div>
 		<keep-alive>
 			<transition>
@@ -57,12 +55,4 @@
 </script>
 
 <style scoped lang="less">
-	.v_title {
-		color: #fff;
-		padding: 15px 0;
-		display: flex;
-		justify-content: space-around;
-		background-color: #3F51B5;
-	}
-
 </style>

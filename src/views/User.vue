@@ -1,14 +1,14 @@
 <template>
 	<div class="user">
-		<div class="top" :style="{backgroundImage: 'url(' + item.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
-			<div class="topHeader">
+		<div class="v-top" :style="{backgroundImage: 'url(' + item.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
+			<div class="v-header">
 				<div class="shop">
 					<img src="../assets/back.png" @click="$router.back(-1)" />
 					<img src="../assets/else.png" class="else" />
 				</div>
 				<div class="status">
 					<div class="pic">
-						<img :src="item.avatar_url" class="animated rubberBand"/>										
+						<img :src="item.avatar_url" class="animated rubberBand" />
 					</div>
 					<div class="messages">
 						<p class="login">{{item.login}}</p>
@@ -17,7 +17,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="v_app_bar">
+			<div class="v_tab_bar">
 				<span @click="tabName='List'">信息</span>
 				<span @click="tabName='Activity'">活动</span>
 				<span @click="tabName='VStar'">星标</span>
@@ -91,19 +91,6 @@
 		transition: all 0.4s ease;
 	}
 	
-	.top {
-		width: 100%;
-		height: 200px;
-		background: url(../assets/work.png) no-repeat;
-	}
-	
-	.topHeader {
-		width: 100%;
-		height: 150px;
-		color: #FFFFFF;
-		background-color: rgba(63, 81, 181, 0.9);
-	}
-	
 	.shop {
 		display: flex;
 		width: 92%;
@@ -155,16 +142,8 @@
 		width: 100%;
 		display: flex;
 		justify-content: space-around;
-		background-color: #3f51b5;
 	}
 	
-	.v_app_bar {
-		color: #fff;
-		padding: 15px 0;
-		display: flex;
-		justify-content: space-around;
-		background-color: #3F51B5;
-	}
 	/*header结束*/
 	/*main开始*/
 	
