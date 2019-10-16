@@ -6,27 +6,40 @@
 		</v-nav>
 		<v-list>
 			<v-list-item v-for="item in repo" :key="item.id">
-				<div class="pic_box">
-					<router-link :to="{path:'/User',query:{login:item.owner.login}}">
-						<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
-					</router-link>
-				</div>
-				<div class="content_box">
-					<div class="message_box">
-						<router-link :to="{path:'/RepoDetails',query:{login:item.owner.login,name:item.name}}">
-							<span class="name">{{item.name}}</span>
-						</router-link>	
-						<span class="language">{{item.language}}</span>
+				<template v-slot:pic>
+					<div class="pic_box">
+						<router-link :to="{path:'/User',query:{login:item.owner.login}}">
+							<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
+						</router-link>
 					</div>
-					<div class="description_box">
-						{{item.description}}
-					</div>
+				</template>
+				
+				<!--<div class="content_box">-->
+					
+					<template v-slot:header>
+						<div class="message_box">
+							<router-link :to="{path:'/RepoDetails',query:{login:item.owner.login,name:item.name}}">
+								<span class="name">{{item.name}}</span>
+							</router-link>	
+							<span class="language">{{item.language}}</span>
+						</div>					
+					</template>
+
+					<template v-slot:main>
+						<div class="description_box">
+							{{item.description}}
+						</div>
+					</template>
+					
+				<template v-slot:footer>
 					<div class="data_box">
 						<span><img src="../assets/star.png" />{{item.stargazers_count}}</span>
 						<span><img src="../assets/forks.png" /> {{item.forks}}</span>
 						<span><img src="../assets/user.png" />{{item.owner.login}}</span>
 					</div>
-				</div>
+				</template>
+					
+				<!--</div>-->
 			</v-list-item>
 		</v-list>
 	</div>
@@ -66,12 +79,8 @@
 </script>
 
 <style scoped lang="less">
-	* {
-		margin: 0;
-		padding: 0;
-	}
 	
-
+/*
 	.v_list_item {
 		display: flex;
 		justify-content: flex-start;
@@ -134,5 +143,5 @@
 		font-weight: 600;
 		margin: 5px 0 5px 0;
 		font-family: "楷体";
-	}
+	}*/
 </style>
