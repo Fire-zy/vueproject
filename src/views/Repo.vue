@@ -1,147 +1,116 @@
 <template>
-	<div class="repo animated fadeInLeft">
-		<v-nav>
-			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<span> Repos</span>
-		</v-nav>
-		<v-list>
-			<v-list-item v-for="item in repo" :key="item.id">
-				<template v-slot:pic>
-					<div class="pic_box">
-						<router-link :to="{path:'/User',query:{login:item.owner.login}}">
-							<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
+	<div class="repo">
+		<div class="t-header">
+			<i class="fas fa-less-than"></i>
+			<span class="t-title">Repo</span>
+		</div>
+		<div class="t-list">
+			<div class="t-list-item" v-for="repo in repos">
+				<div>
+					<img :src="repo.owner.avatar_url" width="40" height="40" alt="avatar">
+				</div>
+				<div class="t-list-item__right">
+					<div class="t-repo">
+						<router-link :to="{path:'/RepoDetails',query:{login:repo.owner.login,name:repo.name}}">
+							<span>{{repo.name}}</span>	
 						</router-link>
+						
+						<span class="t-repo-lang">{{repo.language}}</span>
 					</div>
-				</template>
-				
-				<!--<div class="content_box">-->
-					
-					<template v-slot:header>
-						<div class="message_box">
-							<router-link :to="{path:'/RepoDetails',query:{login:item.owner.login,name:item.name}}">
-								<span class="name">{{item.name}}</span>
-							</router-link>	
-							<span class="language">{{item.language}}</span>
-						</div>					
-					</template>
-
-					<template v-slot:main>
-						<div class="description_box">
-							{{item.description}}
+					<div>{{repo.description || "-"}}</div>
+					<div class="t-repo-appender">
+						<div>
+							<i class="far fa-star"></i>
+							<span> {{repo.stargazers_count}}</span>
 						</div>
-					</template>
-					
-				<template v-slot:footer>
-					<div class="data_box">
-						<span><img src="../assets/star.png" />{{item.stargazers_count}}</span>
-						<span><img src="../assets/forks.png" /> {{item.forks}}</span>
-						<span><img src="../assets/user.png" />{{item.owner.login}}</span>
+						<div>
+							<i class="far fa-eye"></i>
+							<span> {{repo.watchers_count}}</span>
+						</div>
+						<div>
+							<i class="far fa-user"></i>
+							<span> {{repo.owner.login}}</span>
+						</div>
 					</div>
-				</template>
-					
-				<!--</div>-->
-			</v-list-item>
-		</v-list>
+				</div>
+			</div>
+			<div>
+
+			</div>
+		</div>
 	</div>
+
 </template>
 
 <script>
-	import VList from '../components/list/VList'
-	import VListItem from '../components/list/VListItem'
-	import VAvatar from '../components/simple/VAvatar'
-	import VNav from '../components/navbar/VNav'
 	export default {
 		name: 'Repo',
-		components: {
-			VAvatar,
-			VListItem,
-			VList,
-			VNav
-		},
+		components: {},
 		data() {
 			return {
-				repo: []
+				repos: []
 			}
 		},
 		created() {
 			this.getMessage()
 		},
 		methods: {
-			getMessage() {
-				this.$axios.get("api/users/" + this.$route.query.login + "/repos")
-					.then(resp => {
-						this.repo = resp.data
-						console.log(resp)
-					})
+			async getMessage() {
+				const resp = await this.$axios.get(`api/users/${this.$route.query.login}/repos`)
+				this.repos = resp.data
 			}
 		}
 	}
 </script>
 
 <style scoped lang="less">
+	.repo {
+		padding-bottom: 30px;
+	}
 	
-/*
-	.v_list_item {
+	.t-header {
+		padding: 20px 10px;
+		background-color: #3F51B5;
+		color: #fff
+	}
+	
+	.t-title {
+		font-weight: 800;
+		size: 30px;
+		margin-left: 10px;
+	}
+	
+	.t-list {}
+	
+	.t-list-item {
+		padding: 5px;
+	}
+	
+	.t-list-item__right {
+		flex-grow: 1;
+	}
+	
+	.t-list-item {
+		padding: 5px;
+		box-shadow: 1px 1px 5px 1px #d7d7d7;
+		margin-top: 10px;
 		display: flex;
-		justify-content: flex-start;
 	}
 	
-	.pic_box {
-		width: 10%;
+	.t-repo-lang {
+		font-size: 12px;
+		color: #666;
 	}
 	
-	.content_box {
-		width: 90%;
-		display: flex;
-		flex-wrap: wrap;
-	}
-	
-	.message_box {
-		width: 90%;
+	.t-repo {
 		display: flex;
 		justify-content: space-between;
 	}
 	
-	.message_box span {
-		margin-right: -20px;
-	}
-	
-	.message_box a{
-		text-decoration: none;
-		width: 90%;
-	}
-	.name {
-		color: cornflowerblue;
-	}
-	
-	.language {
-		font-size: 12px;
-		color: gray;
-	}
-	
-	.data_box {
-		width: 90%;
-		display: flex;
-		justify-content: space-between;
-	}
-	
-	.data_box img {
-		width: 15px;
-		height: 15px;
-		margin-right: 3px;
-	}
-	
-	.data_box span {
-		color: #8a8a8a;
+	.t-repo-appender {
+		color: #999999;
 		font-size: 12px;
 		display: flex;
-		align-items: center;
+		justify-content: space-around;
 	}
-	
-	.description_box {
-		width: 90%;
-		font-weight: 600;
-		margin: 5px 0 5px 0;
-		font-family: "楷体";
-	}*/
 </style>

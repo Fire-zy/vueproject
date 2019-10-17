@@ -1,5 +1,6 @@
 <template>
   <div class="v_pic">
+  <!--<slot name="pic"></slot>-->
   </div>
 </template>
 
@@ -9,6 +10,6 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 
 </style>

@@ -7,7 +7,7 @@ import store from './store'
 import axios from 'axios'
 import moment from 'moment'
 import animate from 'animate.css'
-
+import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(animate)
 

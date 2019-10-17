@@ -63,6 +63,9 @@
 	}
 	
 	.v_list_item span {
+		display: block;
+		width: 80px;
+		height: 15px;
 		margin-left: 5px;
 	}
 

@@ -19,5 +19,6 @@ export default {
 <style scoped lang="less">
 img {
   border-radius: 50%;
+  margin-right: 5px;
 }
 </style>

@@ -43,7 +43,7 @@
 					}
 				})
 					.then(resp => {			
-						if(resp.data.length=0){
+						if(resp.data.length==0){
 							this.opening=resp.data
 						}else{
 							this.flag=true

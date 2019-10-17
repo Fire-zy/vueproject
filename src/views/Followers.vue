@@ -42,16 +42,11 @@
 </script>
 
 <style scoped lang="less">
-	*{
-		margin: 0;
-		padding: 0;
-	}	
+
 	.v_list_item{
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 	}
-	.v_list_item span{
-		margin-left: 5px;
-	}
+
 </style>

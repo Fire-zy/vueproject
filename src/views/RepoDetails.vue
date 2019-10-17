@@ -23,7 +23,7 @@
 			</div>
 			<keep-alive>
 				<transition>
-					<component :is="tabName" v-if="item.login"></component>
+					<component :is="tabName" v-if="item.owner.login" :login="item.owner.login" :name="item.name"></component>
 				</transition>
 			</keep-alive>
 	</div>
