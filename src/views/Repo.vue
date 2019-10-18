@@ -1,116 +1,80 @@
 <template>
-	<div class="repo">
-		<div class="t-header">
-			<i class="fas fa-less-than"></i>
-			<span class="t-title">Repo</span>
-		</div>
-		<div class="t-list">
-			<div class="t-list-item" v-for="repo in repos">
-				<div>
-					<img :src="repo.owner.avatar_url" width="40" height="40" alt="avatar">
-				</div>
-				<div class="t-list-item__right">
-					<div class="t-repo">
-						<router-link :to="{path:'/RepoDetails',query:{login:repo.owner.login,name:repo.name}}">
-							<span>{{repo.name}}</span>	
-						</router-link>
-						
-						<span class="t-repo-lang">{{repo.language}}</span>
-					</div>
-					<div>{{repo.description || "-"}}</div>
-					<div class="t-repo-appender">
-						<div>
-							<i class="far fa-star"></i>
-							<span> {{repo.stargazers_count}}</span>
-						</div>
-						<div>
-							<i class="far fa-eye"></i>
-							<span> {{repo.watchers_count}}</span>
-						</div>
-						<div>
-							<i class="far fa-user"></i>
-							<span> {{repo.owner.login}}</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
 
-			</div>
-		</div>
-	</div>
+    <div class="repo">
+        <t-app-bar icon="fas fa-less-than" to="/" text="Repo"></t-app-bar>
+        <div class="t-list">
+            <div class="t-list-item" v-for="repo in repos" :key="repo.id">
+                <t-link :to="`/User?login=${repo.owner.login}`">
+                    <t-avatar :url="repo.owner.avatar_url"></t-avatar>
+                </t-link>
+                <div class="t-list-item__right">
+                    <t-title :title="repo.name" :sub="repo.language"></t-title>
+                    <t-title :title="repo.description || '-'"></t-title>
+                    <div class="t-repo-appender">
+                        <t-icon-bar icon="far fa-star" :text="repo.stargazers_count" to="/"></t-icon-bar>
+                        <t-icon-bar icon="far fa-eye" :text="repo.watchers_count" to="/"></t-icon-bar>
+                        <t-icon-bar icon="far fa-user" :text="repo.owner.login" to="/"></t-icon-bar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </template>
 
 <script>
-	export default {
-		name: 'Repo',
-		components: {},
-		data() {
-			return {
-				repos: []
-			}
-		},
-		created() {
-			this.getMessage()
-		},
-		methods: {
-			async getMessage() {
-				const resp = await this.$axios.get(`api/users/${this.$route.query.login}/repos`)
-				this.repos = resp.data
-			}
-		}
-	}
+
+
+    import TAvatar from "../components/temp/TAvatar";
+    import TLink from "../components/temp/TLink";
+    import TIconBar from "../components/temp/TIconBar";
+    import TTitle from "../components/temp/TTitle";
+    import TAppBar from "../components/temp/TAppBar";
+
+    export default {
+        name: 'Repo',
+        components: {TAppBar, TTitle, TIconBar, TLink, TAvatar},
+        data() {
+            return {
+                repos: []
+            }
+        },
+        created() {
+            this.getMessage()
+        },
+        methods: {
+            async getMessage() {
+                const resp = await this.$axios.get(`api/users/${this.$route.query.login}/repos`)
+                this.repos = resp.data
+            }
+        }
+    }
 </script>
 
 <style scoped lang="less">
-	.repo {
-		padding-bottom: 30px;
-	}
-	
-	.t-header {
-		padding: 20px 10px;
-		background-color: #3F51B5;
-		color: #fff
-	}
-	
-	.t-title {
-		font-weight: 800;
-		size: 30px;
-		margin-left: 10px;
-	}
-	
-	.t-list {}
-	
-	.t-list-item {
-		padding: 5px;
-	}
-	
-	.t-list-item__right {
-		flex-grow: 1;
-	}
-	
-	.t-list-item {
-		padding: 5px;
-		box-shadow: 1px 1px 5px 1px #d7d7d7;
-		margin-top: 10px;
-		display: flex;
-	}
-	
-	.t-repo-lang {
-		font-size: 12px;
-		color: #666;
-	}
-	
-	.t-repo {
-		display: flex;
-		justify-content: space-between;
-	}
-	
-	.t-repo-appender {
-		color: #999999;
-		font-size: 12px;
-		display: flex;
-		justify-content: space-around;
-	}
+    .repo {
+        padding-bottom: 30px;
+    }
+
+    .t-list-item__right {
+        flex-grow: 1;
+    }
+
+    .t-list-item {
+        padding: 8px;
+        box-shadow: 1px 1px 5px 1px #d7d7d7;
+        margin-top: 10px;
+        display: flex;
+    }
+
+
+
+    .t-repo-appender {
+        color: #999999;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-around;
+    }
+
+/*>>>>>>> fc89bfce7af1b2267afceb750f0c3cf5ab013193*/
 </style>
