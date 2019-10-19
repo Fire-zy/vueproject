@@ -1,6 +1,6 @@
 <template>
 	<div class="repodetails">
-		<div class="v-top" :style="{backgroundImage: 'url(' + item.owner.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
+		<div class="v-repodetails-top" v-if="item.owner" :style="{backgroundImage: 'url(' + item.owner.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
 			<div class="v-header">
 				<span class="v-details-tips">
 					<div class="v-details-img">
@@ -23,7 +23,7 @@
 			</div>
 			<keep-alive>
 				<transition>
-					<component :is="tabName" v-if="item.owner.login" :login="item.owner.login" :name="item.name"></component>
+					<component :is="tabName" v-if="item.owner" :login="item.owner.login" :name="item.name" :parentlogin="item.parent.owner.login"></component>
 				</transition>
 			</keep-alive>
 	</div>
@@ -52,12 +52,9 @@
 			this.getDetails()
 		},
 		methods: {
-			getDetails() {
-				this.$axios.get("api/repos/" + this.$route.query.login + "/" + this.$route.query.name)
-					.then(resp => {
-						this.item = resp.data
-						console.log(resp)
-					})
+			async getDetails() {
+				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
+				this.item=resp.data
 			}
 		}
 	}

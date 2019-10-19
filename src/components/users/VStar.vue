@@ -1,12 +1,6 @@
 <template>
 	<div>
 		<v-container>
-			<!--<v-app-bar></v-app-bar>-->
-			<!--<v-list>
-			<v-list-item v-for="item in stared" :key="item.id">
-				<v-avatar :url="item.owner.avatar_url" :radius="30"></v-avatar>
-			</v-list-item>
-		</v-list>-->
 			<v-list>
 				<v-list-item v-for="item in stared" :key="item.id">
 					<div class="pic_box">
@@ -63,13 +57,11 @@
 			getStared() {
 				this.$axios.get('/api/users/' + this.login + '/starred').then(resp => {
 					this.stared = resp.data
-					console.log(resp)
 				})
 			},
 			getStar() {
 				this.$axios.get('/api/users/' + this.$route.query.login + '/starred').then(resp => {
 					this.stared = resp.data
-					console.log(resp)
 				})
 			}
 		}

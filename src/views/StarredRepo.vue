@@ -1,5 +1,5 @@
 <template>
-	<div class="StarredRepo">	
+	<div class="StarredRepo">
 		<v-nav>
 			<img src="../assets/back.png" @click="$router.back(-1)" />
 			<span> StarredRepo</span>
@@ -8,7 +8,7 @@
 		<div>
 			<v-star></v-star>
 		</div>
-		
+
 	</div>
 </template>
 
@@ -39,7 +39,7 @@
 						}else{
 							this.flag=true
 						}
-						
+
 						console.log(resp)
 					})
 			}

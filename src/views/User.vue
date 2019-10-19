@@ -70,7 +70,6 @@
 						this.$nextTick(() => {
 							this.item = resp.data
 						})
-						console.log(resp)
 					})
 			}
 		}

@@ -55,7 +55,6 @@
 				this.$axios.get("api/users/"+this.login)
 				.then(resp=>{
 					this.list=resp.data
-					console.log(resp)
 				})
 			}
 		}

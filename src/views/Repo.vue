@@ -1,51 +1,45 @@
 <template>
 	<div class="repo">
-		<div class="t-header">
-			<i class="fas fa-less-than"></i>
-			<span class="t-title">Repo</span>
-		</div>
-		<div class="t-list">
-			<div class="t-list-item" v-for="repo in repos">
-				<div>
-					<img :src="repo.owner.avatar_url" width="40" height="40" alt="avatar">
-				</div>
+		<t-app-bar icon="fas fa-less-than" to="/" text="Repo"></t-app-bar>
+		<v-list>
+			<v-list-item v-for="repo in repos" :key="repo.id">
+				<t-link :to="`/User?login=${repo.owner.login}`">
+					<t-avatar :url="repo.owner.avatar_url"></t-avatar>
+				</t-link>
 				<div class="t-list-item__right">
-					<div class="t-repo">
-						<router-link :to="{path:'/RepoDetails',query:{login:repo.owner.login,name:repo.name}}">
-							<span>{{repo.name}}</span>	
-						</router-link>
-						
-						<span class="t-repo-lang">{{repo.language}}</span>
-					</div>
-					<div>{{repo.description || "-"}}</div>
+					<t-title :title="repo.name"  :sub="repo.language" :login="repo.owner.login"></t-title>
+					<t-title :description="repo.description || ''"></t-title>
 					<div class="t-repo-appender">
-						<div>
-							<i class="far fa-star"></i>
-							<span> {{repo.stargazers_count}}</span>
-						</div>
-						<div>
-							<i class="far fa-eye"></i>
-							<span> {{repo.watchers_count}}</span>
-						</div>
-						<div>
-							<i class="far fa-user"></i>
-							<span> {{repo.owner.login}}</span>
-						</div>
+						<t-icon-bar icon="far fa-star" :text="repo.stargazers_count" to="/"></t-icon-bar>
+						<t-icon-bar icon="far fa-eye" :text="repo.watchers_count" to="/"></t-icon-bar>
+						<t-icon-bar icon="far fa-user" :text="repo.owner.login" to="/"></t-icon-bar>
 					</div>
 				</div>
-			</div>
-			<div>
-
-			</div>
-		</div>
+			</v-list-item>
+		</v-list>
 	</div>
 
 </template>
 
 <script>
+	import TAvatar from "../components/temp/TAvatar";
+	import TLink from "../components/temp/TLink";
+	import TIconBar from "../components/temp/TIconBar";
+	import TTitle from "../components/temp/TTitle";
+	import TAppBar from "../components/temp/TAppBar";
+	import VList from '../components/list/VList';
+	import VListItem from '../components/list/VListItem';
 	export default {
 		name: 'Repo',
-		components: {},
+		components: {
+			TAppBar,
+			TTitle,
+			TIconBar,
+			TLink,
+			TAvatar,
+			VList,
+			VListItem
+		},
 		data() {
 			return {
 				repos: []
@@ -64,47 +58,15 @@
 </script>
 
 <style scoped lang="less">
+	.v_list_item{
+		display: flex;
+	}
 	.repo {
 		padding-bottom: 30px;
 	}
 	
-	.t-header {
-		padding: 20px 10px;
-		background-color: #3F51B5;
-		color: #fff
-	}
-	
-	.t-title {
-		font-weight: 800;
-		size: 30px;
-		margin-left: 10px;
-	}
-	
-	.t-list {}
-	
-	.t-list-item {
-		padding: 5px;
-	}
-	
 	.t-list-item__right {
 		flex-grow: 1;
-	}
-	
-	.t-list-item {
-		padding: 5px;
-		box-shadow: 1px 1px 5px 1px #d7d7d7;
-		margin-top: 10px;
-		display: flex;
-	}
-	
-	.t-repo-lang {
-		font-size: 12px;
-		color: #666;
-	}
-	
-	.t-repo {
-		display: flex;
-		justify-content: space-between;
 	}
 	
 	.t-repo-appender {

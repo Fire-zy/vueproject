@@ -12,7 +12,7 @@ export default {
 
 <style scoped>
 .v_card {
-  padding: 5px;
+  padding: 8px;
   box-shadow: 1px 1px 5px 1px #d7d7d7;
 }
 </style>
