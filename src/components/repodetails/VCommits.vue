@@ -1,13 +1,17 @@
 <template>
 	<div class="vcommits">
 		<v-list>
-			<v-list-item v-for="commit in commits" :key="commit.node_ids">
-				<t-link :to="`/User?login=${commit.author.login}`">
-					<t-avatar :url="commit.author.avatar_url"></t-avatar>
+			<v-list-item v-for="com in commits" :key="com.node_ids">
+				<t-link :to="`/User?login=${com.author.login}`">
+					<t-avatar :url="com.author.avatar_url"></t-avatar>
 				</t-link>
 				<div class="c-list-item__right">
-					<t-title :title="commit.author.login"></t-title>
-					<t-title :sub="commit.commit.committer.date|dateFrm"></t-title>
+					<t-title :title="com.author.login" :sub="com.commit.committer.date|dateFrm"></t-title>
+					<t-title :description="com.commit.message"></t-title>
+					<div class="c-commit-appender">
+						<span>{{com.sha}}</span>
+						<t-icon-bar icon="far fa-comments" :text="com.commit.comment_count" to="/"></t-icon-bar>
+					</div>
 				</div>
 			</v-list-item>
 		</v-list>
@@ -19,14 +23,12 @@
 	import TLink from "../temp/TLink"
 	import TIconBar from "../temp/TIconBar"
 	import TTitle from "../temp/TTitle"
-	import TAppBar from "../temp/TAppBar"
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
 	import moment from 'moment'
 	export default{
 		name:'VCommits',
 		components: {
-			TAppBar,
 			TTitle,
 			TIconBar,
 			TLink,
@@ -52,7 +54,10 @@
 			async getCommits(){
 				const resp=await this.$axios.get(`api/repos/${this.parentlogin}/${this.name}/commits`)
 				this.commits=resp.data
-				console.log(resp)
+				for(let v of resp.data){
+					v.sha=v.sha.slice(0,6)
+				}
+					console.log(resp.data)
 			}
 		}
 	}
@@ -64,5 +69,11 @@
 	}
 	.c-list-item__right{
 		flex-grow: 1;
+	}
+	.c-commit-appender{
+		color: #999999;
+		font-size: 12px;
+		display: flex;
+		justify-content: space-between;
 	}
 </style>

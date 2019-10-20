@@ -1,7 +1,12 @@
 <template>
 	<div class="t-title">
 		<div class="t-name">
-			<t-link :to="`/RepoDetails?login=${login}&name=${title}`">
+			<t-link v-if="login&&title" :to="`/RepoDetails?login=${login}&name=${title}`">
+				<span class="t-title-name">
+					{{title}}
+				</span>
+			</t-link>
+			<t-link v-else-if="title" :to="`/User?login=${title}`">
 				<span class="t-title-name">
 					{{title}}
 				</span>
@@ -13,7 +18,7 @@
 </template>
 
 <script>
-	import TLink from "../temp/TLink";
+	import TLink from "../temp/TLink"
 	export default {
 		name: 'TTitle',
 		components: {
@@ -43,14 +48,16 @@
 		color: #666;
 		margin-right: 10px;
 	}
-	
+	.t-des{
+		width: 100%;
+	}
 	.t-name{
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
 	}
 	.t-title {
-		margin-bottom: 3px;
+		margin-bottom: 5px;
 	}
 	.t-title-name{
 		color: #6495ED;

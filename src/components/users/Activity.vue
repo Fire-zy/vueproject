@@ -3,9 +3,10 @@
 		<v-list>
 			<v-list-item v-for="item in activity" :key="item.id">
 				<div class="message_box">
-					<router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.actor.avatar_url" :radius="30"></v-avatar></router-link>
-					<span class="login_box">{{item.actor.login}}</span>
-					<span class="date_box">{{item.created_at|dateFrm}}</span>				
+					<t-link :to="`/User?login=${item.actor.login}`">
+						<t-avatar :url="item.actor.avatar_url"></t-avatar>
+					</t-link>
+					<t-title :title="item.actor.login" :sub="item.created_at|dateFrm"></t-title>
 				</div>
 				<div class="push_box">
 					<span v-if="item.type==='PushEvent'">Push to master at {{item.repo.name}}</span>					
@@ -21,12 +22,18 @@
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
 	import VAvatar from '../simple/VAvatar'
+	import TLink from "../temp/TLink"
+	import TAvatar from "../temp/TAvatar"
+	import TTitle from "../temp/TTitle"
 	export default {
 		name: 'Activity',
 		components: {
 			VAvatar,
 			VListItem,
-			VList
+			VList,
+			TLink,
+			TAvatar,
+			TTitle
 		},
 		data() {
 			return {
@@ -46,7 +53,7 @@
 			getActivity() {
 				this.$axios.get("https://api.github.com/users/"+this.login+"/events")
 					.then(resp => {
-						this.item = resp.data
+						this.activity = resp.data
 					})
 			}
 		}
@@ -61,7 +68,6 @@
 	.message_box{
 		display: flex;
 		margin-left: 6px;
-		align-items: center;
 	}
 	.login_box{
 		width: 65%;

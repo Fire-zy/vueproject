@@ -1,13 +1,12 @@
 <template>
     <t-link :to="to">
         <i :class="icon"></i>
-        <span> {{text}}</span>
+        <span> {{text}} </span>
     </t-link>
 </template>
 
 <script>
     import TLink from "./TLink";
-
     export default {
         name: 'TIconBar',
         components: {TLink},
@@ -26,5 +25,5 @@
 </script>
 
 <style scoped>
-
+	
 </style>

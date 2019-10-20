@@ -39,7 +39,7 @@
 		data() {
 			return {
 				item: {},
-				tabName: 'VInfo'
+				tabName: 'VCommits'
 			}
 		},
 		components: {
