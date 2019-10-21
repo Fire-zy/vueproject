@@ -51,7 +51,7 @@
 				<span>Bookmarks</span>
 			</div>
 			<div class="v-lattice-item">
-				<router-link :to="{path:'/Event',query:{login:item.login}}">
+				<router-link :to="{path:'/Event'}">
 					<img src="../assets/latticeNews.png"/>	
 				</router-link>	
 				<span>Global News</span>
@@ -73,11 +73,14 @@
 </template>
 
 <script>
+//	import VActivity from '../components/users/Activity.vue'
 	export default {
 		name: 'HomePage',
+//		components:{VActivity},
 		data() {
 			return {
-				item: {}
+				item: {},
+//				tabName: 'VActivity'
 			}
 		},
 		created() {

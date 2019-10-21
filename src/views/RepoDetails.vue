@@ -33,13 +33,13 @@
 	import VInfo from '../components/repodetails/VInfo.vue'
 	import VFiles from '../components/repodetails/VFiles.vue'
 	import VCommits from '../components/repodetails/VCommits.vue'
-	import VActivity from '../components/repodetails/VActivity.vue'
+	import VActivity from '../components/users/Activity.vue'
 	export default {
 		name: 'RepoDetails',
 		data() {
 			return {
 				item: {},
-				tabName: 'VCommits'
+				tabName: 'VFiles'
 			}
 		},
 		components: {

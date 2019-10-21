@@ -8,8 +8,13 @@
 					</t-link>
 					<t-title :title="item.actor.login" :sub="item.created_at|dateFrm"></t-title>
 				</div>
-				<div class="push_box">
-					<span v-if="item.type==='PushEvent'">Push to master at {{item.repo.name}}</span>					
+				<div class="push_box" v-if="item.type">
+					<span v-if="item.type==='PushEvent'">Push to master at {{item.repo.name}}</span>
+					<span v-else-if="item.type==='CreateEvent'">CreateEvent</span>
+					<span v-else-if="item.type==='ForkEvent'">ForkEvent</span>
+					<span v-else-if="item.type==='DeleteEvent'">DeleteEvent</span>
+					<span v-else-if="item.type==='WatchEvent'">WatchEvent</span>
+					<span v-else-if="item.type==='PullRequestEvent'">Opened pull request {{item.repo.name}}</span>
 					<span v-for="items in item.payload.commits" :key="items.id" class="message">{{items.message}}</span>
 				</div>
 			</v-list-item>
@@ -21,14 +26,12 @@
 	import moment from 'moment'
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
-	import VAvatar from '../simple/VAvatar'
 	import TLink from "../temp/TLink"
 	import TAvatar from "../temp/TAvatar"
 	import TTitle from "../temp/TTitle"
 	export default {
 		name: 'Activity',
 		components: {
-			VAvatar,
 			VListItem,
 			VList,
 			TLink,
@@ -40,49 +43,51 @@
 				activity: {}
 			}
 		},
-		props:['login'],
+		props:['login','parentlogin'],
 		filters: {
 			dateFrm: function(el) {
 				return moment(el).format('ll');
 			}
 		},
 		created() {
-			this.getActivity()
+			if(this.parentlogin){
+				this.login=this.parentlogin
+				this.getActivity()
+			}else if(this.login){
+				this.getActivity()
+			}else{
+				this.getEvents()
+			}
 		},
 		methods: {
-			getActivity() {
-				this.$axios.get("https://api.github.com/users/"+this.login+"/events")
-					.then(resp => {
-						this.activity = resp.data
-					})
+			async getActivity(){
+				const resp=await this.$axios.get(`api/users/${this.login}/events`)
+				this.activity = resp.data
+			},
+			async getEvents(){
+				const resp=await this.$axios.get(`api/events`)
+				this.activity = resp.data
 			}
 		}
 	}
 </script>
 
 <style scoped lang="less">
-	.push_box span {
+	.v_list_item{
 		display: flex;
-		justify-content: flex-start;
+		flex-direction: column;
 	}
 	.message_box{
 		display: flex;
-		margin-left: 6px;
+		width: 100%;
 	}
-	.login_box{
-		width: 65%;
-		color: #6495ED;
-		margin-left: 10px;
-	}
-	.date_box {
-		color: #8A8A8A;
-		font-size: 12px;
+	.t-title{
+		display: flex;
+		width: 100%;
+		padding: 3px;
+		justify-content: space-between;
 	}
 	.push_box{
-		margin: 5px 0 0 10px;
-	}
-	.message{
-		font-size: 14px;
-		color: #8A8A8A;
+		margin: 5px;
 	}
 </style>

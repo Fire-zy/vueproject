@@ -41,7 +41,7 @@
 		data() {
 			return {
 				item: {},
-				tabName: 'List'
+				tabName: 'Activity'
 			}
 		},
 		components: {

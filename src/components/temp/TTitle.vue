@@ -1,5 +1,5 @@
 <template>
-	<div class="t-title">
+	<div class="t-title" v-if="title||description">
 		<div class="t-name">
 			<t-link v-if="login&&title" :to="`/RepoDetails?login=${login}&name=${title}`">
 				<span class="t-title-name">
@@ -11,9 +11,9 @@
 					{{title}}
 				</span>
 			</t-link>
-			<span class="t-sub">{{sub}}</span>
+			<span class="t-sub" v-if="sub">{{sub}}</span>
 		</div>
-		<span class="t-des">{{description}}</span>
+		<span class="t-des" v-if="description">{{description}}</span>
 	</div>
 </template>
 
