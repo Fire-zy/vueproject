@@ -7,7 +7,8 @@
 						<img src="../assets/back.png" @click="$router.back(-1)"/>
 					</div>			
 					<img src="../assets/StarLogo.png" />
-					<img src="../assets/CodeFork.png"/>
+					<img src="../assets/CodeFork.png" @click="showPopup"/>
+					<p-popup v-show="isPopupVisible" @close="closePopup"></p-popup>
 					<img src="../assets/else.png" />
 				</span>
 				<span class="v-details-name">{{item.name}}</span>
@@ -23,7 +24,8 @@
 			</div>
 			<keep-alive>
 				<transition>
-					<component :is="tabName" v-if="item.owner" :login="item.owner.login" :name="item.name" :parentlogin="item.parent.owner.login"></component>
+					<component :is="tabName" v-if="item.parent" :login="item.owner.login" :name="item.name" :parentlogin="item.parent.owner.login"></component>
+					<component :is="tabName" v-else-if="item.owner" :login="item.owner.login" :name="item.name" ></component>
 				</transition>
 			</keep-alive>
 	</div>
@@ -34,19 +36,22 @@
 	import VFiles from '../components/repodetails/VFiles.vue'
 	import VCommits from '../components/repodetails/VCommits.vue'
 	import VActivity from '../components/users/Activity.vue'
+	import PPopup from '../components/popup/PPopup.vue'
 	export default {
 		name: 'RepoDetails',
 		data() {
 			return {
 				item: {},
-				tabName: 'VFiles'
+				tabName: 'VFiles',
+				isPopupVisible: false
 			}
 		},
 		components: {
 			VInfo,
 			VFiles,
 			VActivity,
-			VCommits
+			VCommits,
+			PPopup
 		},
 		created() {
 			this.getDetails()
@@ -55,7 +60,9 @@
 			async getDetails() {
 				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
 				this.item=resp.data
-			}
+			},
+			showPopup(){ this.isPopupVisible = true }, 
+			closePopup(){ this.isPopupVisible = false }
 		}
 	}
 </script>
