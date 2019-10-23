@@ -48,7 +48,6 @@
 			}else{
 				this.getLogin()
 			}
-			
 		},
 		filters: {
 			dateFrm: function(el) {

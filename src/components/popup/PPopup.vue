@@ -3,12 +3,12 @@
     <div class="popup">
       <div class="popup-header popup_box">
         <slot name="header">
-          	Select branch or tag
+					Select branch or tag
         </slot>
       </div>
       <div class="popup-body popup_box">
         <slot name="body" v-for="p in popup">
-         	{{p.name}}
+					{{p.name}}
         </slot>
       </div>
       <div class="popup-footer popup_box">
@@ -25,21 +25,21 @@
 export default {
   name: 'PPopup',
   data(){
-  	return{
-  		popup:[]
-  	}
+		return{
+			popup:[]
+		}
   },
+  props:['name','login'],
   created(){
-  	
+		this.getPopup()
   },
   methods:{
     close (){
       this.$emit('close')
     },
     async getPopup() {
-			const resp=await this.$axios.get(`api/repos/Fire-zy/Daily-Interview-Question/branches`)
+			const resp=await this.$axios.get(`api/repos/${this.login}/${this.name}/branches`)
 			this.popup=resp.data
-			console.log(resp)
 		},
   }
 
@@ -69,15 +69,15 @@ export default {
   }
   
   .popup_box{
-  	padding: 5px;
-  	margin: 7px 10px 3px 10px;
+		padding: 5px;
+		margin: 7px 10px 3px 10px;
   }
   .popup-header {
-  	color: #000000;
+		color: #000000;
     border-bottom: 1px solid #eeeeee;
   }
   .popup-footer {
-  	display: flex;
+		display: flex;
     justify-content: flex-end;
   }
  

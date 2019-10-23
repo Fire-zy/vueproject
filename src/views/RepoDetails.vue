@@ -8,7 +8,7 @@
 					</div>			
 					<img src="../assets/StarLogo.png" />
 					<img src="../assets/CodeFork.png" @click="showPopup"/>
-					<p-popup v-show="isPopupVisible" @close="closePopup"></p-popup>
+					<p-popup v-show="isPopupVisible" @close="closePopup" :login="item.owner.login" :name="item.name"></p-popup>
 					<img src="../assets/else.png" />
 				</span>
 				<span class="v-details-name">{{item.name}}</span>
