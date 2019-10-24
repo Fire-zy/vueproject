@@ -1,14 +1,16 @@
 <template>
-	<li>
-		<span @click="toggle">
-      <em v-if="hasChild" class="far fa-star">{{open ? '-' : '+'}}</em>
-      <em v-if="!hasChild" class="far fa-eye"></em>
-      {{ data.url }}
-    </span>
-		<ul v-show="open" v-if="hasChild">
-			<tree-item v-for="(item, index) in data.commit" :data="item" :key="index"></tree-item>
-		</ul>
-	</li>
+	<div class="treeitem">
+		<li>
+			<span @click="toggle">
+	      <em v-if="hasChild" class="far fa-file">{{open ? '-' : '+'}}</em>
+	      <em v-if="!hasChild" class="far fa-file-code-o"></em>
+	      {{ data.type }}
+	    </span>
+			<ul v-show="open" v-if="hasChild">
+				<tree-item v-for="(item, index) in data.tree" :data="item" :key="index"></tree-item>
+			</ul>
+		</li>
+	</div>
 </template>
 
 <script>
@@ -16,7 +18,7 @@
 		name: 'TreeItem',
 		props: {
 			data: {
-				type: [Object, Array, String, Boolean],
+				type: [Object,Array],
 				required: true
 			}
 		},
@@ -25,10 +27,13 @@
 				open: false
 			}
 		},
+		created(){
+//			console.log("没调用之前")
+//			console.log(this.data)
+		},
 		computed: {
 			hasChild() {
-				return this.data.commit && this.data.commit.length
-				
+				return this.data.tree && this.data.tree.length
 			}
 		},
 		methods: {
