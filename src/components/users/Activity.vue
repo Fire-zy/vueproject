@@ -43,7 +43,7 @@
 				activity: {}
 			}
 		},
-		props:['login','parentlogin'],
+		props:['repologin','parentlogin'],
 		filters: {
 			dateFrm: function(el) {
 				return moment(el).format('ll');
@@ -61,7 +61,7 @@
 		},
 		methods: {
 			async getActivity(){
-				const resp=await this.$axios.get(`api/users/${this.login}/events`)
+				const resp=await this.$axios.get(`api/users/${this.repologin}/events`)
 				this.activity = resp.data
 			},
 			async getEvents(){

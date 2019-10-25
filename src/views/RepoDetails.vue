@@ -8,7 +8,7 @@
 					</div>			
 					<img src="../assets/StarLogo.png" />
 					<img src="../assets/CodeFork.png" @click="showPopup"/>
-					<p-popup v-show="isPopupVisible" @close="closePopup" :login="item.owner.login" :name="item.name"></p-popup>
+					<p-popup v-show="isPopupVisible" @close="closePopup" :repologin="item.owner.login" :reponame="item.name"></p-popup>
 					<img src="../assets/else.png" />
 				</span>
 				<span class="v-details-name">{{item.name}}</span>
@@ -24,8 +24,8 @@
 			</div>
 			<keep-alive>
 				<transition>
-					<component :is="tabName" v-if="item.parent" :login="item.owner.login" :name="item.name" :parentlogin="item.parent.owner.login"></component>
-					<component :is="tabName" v-else-if="item.owner" :login="item.owner.login" :name="item.name" ></component>
+					<component :is="tabName" v-if="item.parent" :repologin="item.owner.login" :reponame="item.name" :parentlogin="item.parent.owner.login"></component>
+					<component :is="tabName" v-else-if="item.owner" :repologin="item.owner.login" :reponame="item.name" ></component>
 				</transition>
 			</keep-alive>
 	</div>
@@ -42,7 +42,7 @@
 		data() {
 			return {
 				item: {},
-				tabName: 'VFiles',
+				tabName: 'VActivity',
 				isPopupVisible: false
 			}
 		},

@@ -41,7 +41,7 @@
 				commits:[]
 			}
 		},
-		props:['parentlogin','name','login'],
+		props:['parentlogin','reponame','repologin'],
 		created(){
 			if(this.parentlogin){
 				this.getParentLogin()
@@ -56,14 +56,14 @@
 		},
 		methods:{
 			async getParentLogin(){
-				const resp=await this.$axios.get(`api/repos/${this.parentlogin}/${this.name}/commits`)
+				const resp=await this.$axios.get(`api/repos/${this.parentlogin}/${this.reponame}/commits`)
 				this.commits=resp.data
 				for(let v of resp.data){
 					v.sha=v.sha.slice(0,6)
 				}
 			},
 			async getLogin(){
-				const resp=await this.$axios.get(`api/repos/${this.login}/${this.name}/commits`)
+				const resp=await this.$axios.get(`api/repos/${this.repologin}/${this.reponame}/commits`)
 				this.commits=resp.data
 				for(let v of resp.data){
 					v.sha=v.sha.slice(0,6)

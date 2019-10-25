@@ -44,7 +44,7 @@
 				info:{},
 			}
 		},
-		props:['login','name'],
+		props:['repologin','reponame'],
 		created(){
 			this.getInfo()
 		},
@@ -55,7 +55,7 @@
 		},
 		methods:{
 			async getInfo(){
-				const resp=await this.$axios.get(`api/repos/${this.login}/${this.name}`)
+				const resp=await this.$axios.get(`api/repos/${this.repologin}/${this.reponame}`)
 				this.info=resp.data
 			}
 		}

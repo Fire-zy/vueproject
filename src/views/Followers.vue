@@ -6,21 +6,24 @@
 		</v-nav>
 		<v-list>
       <v-list-item v-for="item in followers" :key="item.id">
-        <router-link :to="{path:'/User',query:{login:item.login}}"><v-avatar :url="item.avatar_url" :radius="30"></v-avatar></router-link>
+        <t-link :to="{path:'/User',query:{login:item.login}}">
+        	<v-avatar :url="item.avatar_url" :radius="30"></v-avatar>
+        </t-link>
         <span>{{item.login}}</span>
       </v-list-item>
     </v-list>
 	</div>
 </template>
 
-<script>
+<script scoped>
 	import VList from '../components/list/VList'
 	import VListItem from '../components/list/VListItem'
 	import VAvatar from '../components/simple/VAvatar'
 	import VNav from '../components/navbar/VNav'
+	import TLink from '../components/temp/TLink'
 	export default{
 		name:'Following',
-		components: { VAvatar, VListItem, VList,VNav },
+		components: { VAvatar, VListItem, VList,VNav,TLink },
 		data(){
 			return{
 				followers:[]

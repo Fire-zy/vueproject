@@ -28,8 +28,8 @@
 			}
 		},
 		created(){
-//			console.log("没调用之前")
-//			console.log(this.data)
+			console.log("没调用之前")
+			console.log(this.data.tree)
 		},
 		computed: {
 			hasChild() {

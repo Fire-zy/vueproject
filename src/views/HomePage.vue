@@ -1,48 +1,47 @@
 <template>
 	<div class="homepage">
-		<div class="nav_box">
-			<span>home</span>
-		</div>
-
+		<v-nav class="home_box">
+			<span>Home</span>
+		</v-nav>
 		<div class="v-user-pic">
-			<router-link :to="{path:'/User',query:{login:item.login}}">
+			<t-link :to="{path:'/User',query:{login:item.login}}">
 				<img :src="item.avatar_url" class="animated swing" />
-			</router-link>
+			</t-link>
 		</div>
 
 		<div class="v-lattice">
 			<div class="v-lattice-item v-lattice-one">
-				<router-link :to="{path:'/User',query:{login:item.login}}">
-					<img src="../assets/latticeProfile.png" />
-				</router-link>
+				<t-link :to="{path:'/User',query:{login:item.login}}">
+				 	<img src="../assets/latticeProfile.png" />
+        </t-link>
 				<span>Profile</span>
 			</div>
 			
 			<div class="v-lattice-item v-lattice-two">
-				<router-link :to="{path:'/Repo',query:{login:item.login}}">
+				<t-link :to="{path:'/Repo',query:{login:item.login}}">
 					<img src="../assets/latticeRepo.png" />
-				</router-link>
+				</t-link>
 				<span>Repos</span>
 			</div>
 			
 			<div class="v-lattice-item v-lattice-three">
-				<router-link :to="{path:'/Notification',query:{login:item.login}}">
+				<t-link :to="{path:'/Notification',query:{login:item.login}}">
 					<img src="../assets/latticeNotification.png" />
-				</router-link>
+				</t-link>
 				<span>Notification</span>
 			</div>
 			
 			<div class="v-lattice-item v-lattice-four">
-				<router-link :to="{path:'/Issues',query:{login:item.login}}">
+				<t-link :to="{path:'/Issues',query:{login:item.login}}">
 					<img src="../assets/latticeIssues.png"  />
-				</router-link>
+				</t-link>
 				<span>Issues</span>
 			</div>
 			
 			<div class="v-lattice-item v-lattice-five">
-				<router-link :to="{path:'/StarredRepo',query:{login:item.login}}">
+				<t-link :to="{path:'/StarredRepo',query:{login:item.login}}">
 					<img src="../assets/latticeStarred.png" />
-				</router-link>
+				</t-link>
 				<span>Starred Repo</span>
 			</div>
 			
@@ -51,16 +50,16 @@
 				<span>Bookmarks</span>
 			</div>
 			<div class="v-lattice-item">
-				<router-link :to="{path:'/Event'}">
+				<t-link :to="{path:'/Event',query:{login:item.login}}">
 					<img src="../assets/latticeNews.png"/>	
-				</router-link>	
+				</t-link>
 				<span>Global News</span>
 			</div>
 			
 			<div class="v-lattice-item">
-				<router-link :to="{path:'/Search',query:{login:item.login}}">
+				<t-link :to="{path:'/Search',query:{login:item.login}}">
 					<img src="../assets/latticeSearch.png" />
-				</router-link>
+				</t-link>
 				<span>Search</span>
 			</div>
 			
@@ -72,11 +71,12 @@
 	</div>
 </template>
 
-<script>
-//	import VActivity from '../components/users/Activity.vue'
+<script scope>
+	import VNav from '../components/navbar/VNav.vue'
+	import TLink from '../components/temp/TLink'
 	export default {
 		name: 'HomePage',
-//		components:{VActivity},
+		components:{TLink,VNav},
 		data() {
 			return {
 				item: {},
@@ -96,19 +96,9 @@
 		flex-direction: column;
 	}
 	
-	.nav_box span {
-		width: 100%;
-		display: block;
-		text-align: center;
-	}
-	
-	.nav_box {
-		width: 100%;
-		height: 50px;
-		line-height: 50px;
-		font-size: 20px;
-		color: #FFFFFF;
-		background-color: #3F51B5;
+	.home_box {
+		justify-content: center;
+		font-size: 23px;
 	}
 	
 	.v-user-pic {

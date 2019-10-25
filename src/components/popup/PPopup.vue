@@ -29,7 +29,7 @@ export default {
 			popup:[]
 		}
   },
-  props:['name','login'],
+  props:['reponame','repologin'],
   created(){
 		this.getPopup()
   },
@@ -38,7 +38,7 @@ export default {
       this.$emit('close')
     },
     async getPopup() {
-			const resp=await this.$axios.get(`api/repos/${this.login}/${this.name}/branches`)
+			const resp=await this.$axios.get(`api/repos/${this.repologin}/${this.reponame}/branches`)
 			this.popup=resp.data
 		},
   }
