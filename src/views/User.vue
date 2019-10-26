@@ -18,13 +18,13 @@
 				</div>
 			</div>
 			<div class="v_tab_bar">
-				<span @click="tabName='List'">信息</span>
-				<span @click="tabName='Activity'">活动</span>
-				<span @click="tabName='Star'">星标</span>
+				<span @click="tabName='List'">INFO</span>
+				<span @click="tabName='Activity'">ACTIVITY</span>
+				<span @click="tabName='Star'">STARRED</span>
 			</div>
 			<keep-alive>
 				<transition>
-					<component :is="tabName" :login="item.login" v-if="item.login"></component>
+					<component :is="tabName" :userlogin="item.login" v-if="item.login"></component>
 				</transition>
 			</keep-alive>
 		</div>

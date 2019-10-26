@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="v_list">
     <slot></slot>
   </div>
 </template>
@@ -11,5 +11,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-
+	
 </style>

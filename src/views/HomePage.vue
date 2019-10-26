@@ -12,7 +12,7 @@
 		<div class="v-lattice">
 			<div class="v-lattice-item v-lattice-one">
 				<t-link :to="{path:'/User',query:{login:item.login}}">
-				 	<img src="../assets/latticeProfile.png" />
+					<img src="../assets/latticeProfile.png" />
         </t-link>
 				<span>Profile</span>
 			</div>

@@ -42,7 +42,7 @@
 		data() {
 			return {
 				item: {},
-				tabName: 'VActivity',
+				tabName: 'VInfo',
 				isPopupVisible: false
 			}
 		},

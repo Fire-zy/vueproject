@@ -73,6 +73,6 @@
 		color: #999999;
 		font-size: 12px;
 		display: flex;
-		justify-content: space-around;
+		justify-content: space-between;
 	}
 </style>

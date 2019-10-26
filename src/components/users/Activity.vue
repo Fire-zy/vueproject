@@ -15,8 +15,8 @@
 					<span v-else-if="item.type==='DeleteEvent'">DeleteEvent</span>
 					<span v-else-if="item.type==='WatchEvent'">WatchEvent</span>
 					<span v-else-if="item.type==='PullRequestEvent'">Opened pull request {{item.repo.name}}</span>
-					<span v-for="items in item.payload.commits" :key="items.id" class="message">{{items.message}}</span>
 				</div>
+				<span class="message" v-for="items in item.payload.commits" :key="items.id" >{{items.message}}</span>
 			</v-list-item>
 		</v-list>
 	</div>
@@ -40,10 +40,11 @@
 		},
 		data() {
 			return {
-				activity: {}
+				activity: {},
+//				parameter:{}
 			}
 		},
-		props:['repologin','parentlogin'],
+		props:['parentlogin','userlogin','repologin'],
 		filters: {
 			dateFrm: function(el) {
 				return moment(el).format('ll');
@@ -51,23 +52,36 @@
 		},
 		created() {
 			if(this.parentlogin){
-				this.login=this.parentlogin
-				this.getActivity()
-			}else if(this.login){
-				this.getActivity()
+				this.getParent()
+			}else if(this.repologin){
+				this.getRepo()
+			}else if(this.userlogin){
+				this.getUser()
 			}else{
 				this.getEvents()
 			}
+//			this.toRepoDetails()
 		},
 		methods: {
-			async getActivity(){
+			async getParent(){
+				const resp=await this.$axios.get(`api/users/${this.parentlogin}/events`)
+				this.activity = resp.data
+			},
+			async getRepo(){
 				const resp=await this.$axios.get(`api/users/${this.repologin}/events`)
+				this.activity = resp.data
+			},
+			async getUser(){
+				const resp=await this.$axios.get(`api/users/${this.userlogin}/events`)
 				this.activity = resp.data
 			},
 			async getEvents(){
 				const resp=await this.$axios.get(`api/events`)
 				this.activity = resp.data
-			}
+			},
+//			toRepoDetails(){
+//				this.$router.push({path:'/RepoDetails'})
+//			}
 		}
 	}
 </script>
@@ -89,5 +103,10 @@
 	}
 	.push_box{
 		margin: 5px;
+	}
+	.message{
+		margin: 5px;
+		font-size: 15px;
+		color: #808080;
 	}
 </style>

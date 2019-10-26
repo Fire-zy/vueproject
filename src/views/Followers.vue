@@ -7,7 +7,7 @@
 		<v-list>
       <v-list-item v-for="item in followers" :key="item.id">
         <t-link :to="{path:'/User',query:{login:item.login}}">
-        	<v-avatar :url="item.avatar_url" :radius="30"></v-avatar>
+					<v-avatar :url="item.avatar_url" :radius="30"></v-avatar>
         </t-link>
         <span>{{item.login}}</span>
       </v-list-item>

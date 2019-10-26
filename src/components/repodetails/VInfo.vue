@@ -2,18 +2,21 @@
 	<div class="vinfo">
 		<v-list>
 			<v-list-item>
-				<span class="i-fullname">{{info.full_name}}</span>
-				<div class="i-parent">
-					<span v-if="info.fork===true">Forked</span>
-					<span v-if="info.parent">{{info.parent.full_name}}</span>
-				</div>
-				<div class="i-time">
+				<v-list>{{info.full_name}}</v-list>
+				<v-list v-if="info.parent" class="i-parent">
+					<t-link :to="`/RepoDetails?login=${info.parent.owner.login}&name=${info.parent.name}`">
+						<span v-if="info.fork===true">Forked </span>
+						<span v-if="info.parent">{{info.parent.full_name}}</span>
+					</t-link>
+				</v-list>
+				<v-list class="i-time">
 					<span v-if="info.fork===true">Forked at </span>
+					<span v-else-if="info.fork===false">Created at </span>
 					<span>{{info.created_at|dateFrm}}, </span>
 					<span v-if="info.fork===true">Lastest commit </span>
 					<span>{{info.pushed_at|dateFrm}}</span>
-				</div>
-				<div class="i-count">
+				</v-list>
+				<v-list class="i-count">
 					<div>
 						<span>{{info.stargazers_count}}</span>
 						<span class="i-stargazers">Stargazers</span>
@@ -26,7 +29,7 @@
 						<span>{{info.watchers}}</span>
 						<span class="i-stargazers">Watchers</span>
 					</div>
-				</div>
+				</v-list>
 			</v-list-item>
 		</v-list>
 	</div>
@@ -36,9 +39,10 @@
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
 	import moment from 'moment'
+	import TLink from "../temp/TLink"
 	export default{
 		name:'VInfo',
-		components: {VListItem, VList},
+		components: {VListItem, VList,TLink},
 		data(){
 			return{
 				info:{},
@@ -72,19 +76,24 @@
 	.i-parent{
 		color: #6495ED;
 	}
-	.v_list_item span{
+	.i-time{
+		color: #808080;
+	}
+	.v_list{
 			margin-bottom: 5px;
 	}
 	.i-fullname{
 		font-size: 18px;
 	}
 	.i-count{
+		color: #808080;
 		display: flex;
-		padding: 5px;
+		padding: 3px;
 		justify-content: space-between;
 	}
 	.i-count span{
 		display: flex;
+		margin: 5px;
 		justify-content: center;
 	}
 </style>
