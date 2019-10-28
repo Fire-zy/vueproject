@@ -17,32 +17,25 @@
 					<span>{{info.pushed_at|dateFrm}}</span>
 				</v-list>
 				<v-list class="i-count">
-					<div>
-						<span>{{info.stargazers_count}}</span>
-						<span class="i-stargazers">Stargazers</span>
-					</div>
-					<div>
-						<span>{{info.forks}}</span>
-						<span class="i-stargazers">Forks</span>
-					</div>
-					<div>
-						<span>{{info.watchers}}</span>
-						<span class="i-stargazers">Watchers</span>
-					</div>
+					<v-block v-if="info.owner" :para="info.open_issues_count" :text="`Issues`" :toblock="{path:'/Issues',query:{login:info.owner.login}}"></v-block>
+					<v-block :para="info.stargazers_count" :text="`Stargazers`" :toblock="{path:'/Issues'}"></v-block>
+					<v-block :para="info.forks" :text="`Forks`" :toblock="{path:'/Issues'}"></v-block>
+					<v-block :para="info.watchers" :text="`Watchers`" :toblock="{path:'/Issues'}"></v-block>
 				</v-list>
 			</v-list-item>
 		</v-list>
 	</div>
 </template>
 
-<script>
+<script scoped>
 	import VList from '../list/VList'
+	import VBlock from '../list/VBlock'
 	import VListItem from '../list/VListItem'
 	import moment from 'moment'
 	import TLink from "../temp/TLink"
 	export default{
 		name:'VInfo',
-		components: {VListItem, VList,TLink},
+		components: {VListItem, VList,TLink,VBlock},
 		data(){
 			return{
 				info:{},
@@ -77,10 +70,8 @@
 		color: #6495ED;
 	}
 	.i-time{
+		margin: 7px 0 7px 0;
 		color: #808080;
-	}
-	.v_list{
-			margin-bottom: 5px;
 	}
 	.i-fullname{
 		font-size: 18px;
@@ -88,12 +79,6 @@
 	.i-count{
 		color: #808080;
 		display: flex;
-		padding: 3px;
 		justify-content: space-between;
-	}
-	.i-count span{
-		display: flex;
-		margin: 5px;
-		justify-content: center;
 	}
 </style>

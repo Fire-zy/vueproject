@@ -24,7 +24,7 @@
 		data(){
 			return{
 				closed:{},
-				flag:true
+				flag:false
 			}
 		},
 		props:['login'],

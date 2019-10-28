@@ -2,8 +2,9 @@
 	<div>
 	<span v-if="flag" class="v-tips">No Issues</span>
 	<v-list>
-		<v-list-item v-for="item in opening" :key="item.id">
-		
+		<v-list-item v-for="event in events" :key="event.id">
+			<t-avatar :url="event.user.avatar_url"></t-avatar>
+			<span>{{event.user.login}}</span>
 		</v-list-item>
 	</v-list>
 	</div>
@@ -13,18 +14,20 @@
 	import moment from 'moment'
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
-//	import VAvatar from '../simple/VAvatar'
+	import TAvatar from "../temp/TAvatar"
 	export default{
 		name:'VOpen',
 		components: {
 //			VAvatar,
 			VListItem,
-			VList
+			VList,
+			TAvatar
 		},
 		data(){
 			return{
 				opening:{},
-				flag:false
+				flag:false,
+				events:[]
 			}
 		},
 		filters: {
@@ -33,7 +36,11 @@
 			}
 		},
 		created() {
-			this.getVAll()
+			if(this.$route.query.login){
+				this.getIssuesEvents()
+			}else{
+				this.getVAll()
+			}
 		},
 		methods: {
 			getVAll() {
@@ -42,13 +49,18 @@
 						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
 					}
 				})
-					.then(resp => {			
-						if(resp.data.length==0){
-							this.opening=resp.data
+					.then(resp => {	
+						if(resp.data.length!=0){
+							this.opening = resp.data	
 						}else{
 							this.flag=true
 						}
 					})
+			},
+			async getIssuesEvents() {
+				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues`)
+				this.events = resp.data
+				console.log(resp)
 			}
 		}
 	}
