@@ -4,7 +4,14 @@
 	<v-list>
 		<v-list-item v-for="event in events" :key="event.id">
 			<t-avatar :url="event.user.avatar_url"></t-avatar>
-			<span>{{event.user.login}}</span>
+			<div class="v_open_right">
+				<t-title :title="event.user.login" :sub="event.created_at|dateFrm" :to="`/User?login=${event.user.login}`"></t-title>
+				<t-title :description="event.title || ''"></t-title>
+				<div class="t-event-appender">
+					<t-icon-bar icon="far fa-tag" :text="event.number" to="/"></t-icon-bar>
+					<t-icon-bar icon="far fa-comment" :text="event.comments" to="/"></t-icon-bar>
+				</div>
+			</div>
 		</v-list-item>
 	</v-list>
 	</div>
@@ -15,13 +22,16 @@
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
 	import TAvatar from "../temp/TAvatar"
+	import TTitle from "../temp/TTitle"
+	import TIconBar from "../temp/TIconBar"
 	export default{
 		name:'VOpen',
 		components: {
-//			VAvatar,
 			VListItem,
 			VList,
-			TAvatar
+			TAvatar,
+			TTitle,
+			TIconBar
 		},
 		data(){
 			return{
@@ -60,11 +70,22 @@
 			async getIssuesEvents() {
 				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues`)
 				this.events = resp.data
-				console.log(resp)
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
+	.v_list_item{
+		display: flex;
+	}
+	.v_open_right{
+		flex-grow: 1;
+	}
+	.t-event-appender{
+		color: #999999;
+		font-size: 12px;
+		display: flex;
+		justify-content: space-between;
+	}
 </style>

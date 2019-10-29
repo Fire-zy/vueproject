@@ -79,9 +79,6 @@
 				const resp=await this.$axios.get(`api/events`)
 				this.activity = resp.data
 			},
-//			toRepoDetails(){
-//				this.$router.push({path:'/RepoDetails'})
-//			}
 		}
 	}
 </script>

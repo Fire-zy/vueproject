@@ -7,7 +7,7 @@
 				</t-link>
 				<t-link :to="`/RepoDetails?login=${star.owner.login}&name=${star.name}`">
 					<div class="t-list-item__right">
-						<t-title :title="star.name" :sub="star.language" :login="star.owner.login"></t-title>
+						<t-title :title="star.name" :sub="star.language"  :to="`/RepoDetails?login=${star.owner.login}&name=${star.name}`"></t-title>
 						<t-title :description="star.description || ''"></t-title>
 						<div class="t-star-appender">
 							<t-icon-bar icon="far fa-star" :text="star.stargazers_count" to="/"></t-icon-bar>

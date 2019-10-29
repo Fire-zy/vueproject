@@ -11,10 +11,6 @@
 </script>
 
 <style>
-	* {
-		margin: 0;
-		padding: 0;
-	}
 	
 	.v_nav {
 		height: 50px;

@@ -32,7 +32,7 @@
 			</div>
 			
 			<div class="v-lattice-item v-lattice-four">
-				<t-link :to="{path:'/Issues',query:{login:item.login}}">
+				<t-link :to="{path:'/Issues'}">
 					<img src="../assets/latticeIssues.png"  />
 				</t-link>
 				<span>Issues</span>

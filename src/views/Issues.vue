@@ -30,7 +30,7 @@
 		data() {
 			return {
 				item:{},
-				tabName: 'VOpen'
+				tabName: 'VClosed'
 			}
 		}
 	}

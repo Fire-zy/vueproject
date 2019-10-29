@@ -2,8 +2,16 @@
 	<div>
 	<span v-if="flag" class="v-tips">No Issues</span>
 	<v-list>
-		<v-list-item v-for="item in closed" :key="item.id">
-			
+		<v-list-item v-for="event in events" :key="event.id">
+			<t-avatar :url="event.issue.user.avatar_url"></t-avatar>
+			<div class="v_open_right">
+				<t-title :title="event.issue.user.login" :sub="event.created_at|dateFrm" :to="`/User?login=${event.issue.user.login}`"></t-title>
+				<t-title :description="event.issue.title || ''"></t-title>
+				<div class="t-event-appender">
+					<t-icon-bar icon="far fa-tag" :text="event.issue.number" to="/"></t-icon-bar>
+					<t-icon-bar icon="far fa-comment" :text="event.issuecomments" to="/"></t-icon-bar>
+				</div>
+			</div>
 		</v-list-item>
 	</v-list>
 	</div>
@@ -13,28 +21,36 @@
 	import moment from 'moment'
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
-//	import VAvatar from '../simple/VAvatar'
+	import TAvatar from "../temp/TAvatar"
+	import TTitle from "../temp/TTitle"
+	import TIconBar from "../temp/TIconBar"
 	export default{
-		name:'VClosed',
+		name:'VOpen',
 		components: {
-//			VAvatar,
 			VListItem,
-			VList
+			VList,
+			TAvatar,
+			TTitle,
+			TIconBar
 		},
 		data(){
 			return{
-				closed:{},
-				flag:false
+				opening:{},
+				flag:false,
+				events:[],
 			}
 		},
-		props:['login'],
 		filters: {
 			dateFrm: function(el) {
 				return moment(el).format('ll');
 			}
 		},
 		created() {
-			this.getVAll()
+			if(this.$route.query.login){
+				this.getIssuesEvents()
+			}else{
+				this.getVAll()
+			}
 		},
 		methods: {
 			getVAll() {
@@ -45,15 +61,35 @@
 				})
 					.then(resp => {	
 						if(resp.data.length!=0){
-							this.closed = resp.data	
+							this.opening = resp.data	
 						}else{
 							this.flag=true
 						}
 					})
+			},
+			async getIssuesEvents() {
+				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues/events`)
+				for(let v of resp.data){
+					if(v.event=="closed"){
+						this.events.push(v)
+					}
+				}	
 			}
 		}
 	}
 </script>
 
-<style>
+<style scoped>
+	.v_list_item{
+		display: flex;
+	}
+	.v_open_right{
+		flex-grow: 1;
+	}
+	.t-event-appender{
+		color: #999999;
+		font-size: 12px;
+		display: flex;
+		justify-content: space-between;
+	}
 </style>

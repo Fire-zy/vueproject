@@ -1,12 +1,7 @@
 <template>
 	<div class="t-title" v-if="title||description">
 		<div class="t-name">
-			<t-link v-if="login&&title" :to="`/RepoDetails?login=${login}&name=${title}`">
-				<span class="t-title-name">
-					{{title}}
-				</span>
-			</t-link>
-			<t-link v-else-if="title" :to="`/User?login=${title}`">
+			<t-link v-if="to" :to="to">
 				<span class="t-title-name">
 					{{title}}
 				</span>
@@ -29,7 +24,7 @@
 				type: String,
 			},
 			sub: {
-				type: String,
+				type: [String,Number],
 				default: ''
 			},
 			login: {
@@ -37,6 +32,9 @@
 			},
 			description: {
 				type: String
+			},
+			to:{
+				type: [String, Object]
 			}
 		}
 	}

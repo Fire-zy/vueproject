@@ -7,7 +7,7 @@
 					<t-avatar :url="repo.owner.avatar_url"></t-avatar>
 				</t-link>
 				<div class="t-list-item__right">
-					<t-title :title="repo.name"  :sub="repo.language" :login="repo.owner.login"></t-title>
+					<t-title :title="repo.name"  :sub="repo.language" :to="`/RepoDetails?login=${repo.owner.login}&name=${repo.name}`"></t-title>
 					<t-title :description="repo.description || ''"></t-title>
 					<div class="t-repo-appender">
 						<t-icon-bar icon="far fa-star" :text="repo.stargazers_count" to="/"></t-icon-bar>
