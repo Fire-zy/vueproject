@@ -1,19 +1,21 @@
 <template>
 	<div>
-	<span v-if="flag" class="v-tips">No Issues</span>
-	<v-list>
-		<v-list-item v-for="event in events" :key="event.id">
-			<t-avatar :url="event.issue.user.avatar_url"></t-avatar>
-			<div class="v_open_right">
-				<t-title :title="event.issue.user.login" :sub="event.created_at|dateFrm" :to="`/User?login=${event.issue.user.login}`"></t-title>
-				<t-title :description="event.issue.title || ''"></t-title>
-				<div class="t-event-appender">
-					<t-icon-bar icon="far fa-tag" :text="event.issue.number" to="/"></t-icon-bar>
-					<t-icon-bar icon="far fa-comment" :text="event.issuecomments" to="/"></t-icon-bar>
-				</div>
-			</div>
-		</v-list-item>
-	</v-list>
+		<span v-if="flag" class="v-tips">No Issues</span>
+		<v-list>
+			<v-list-item v-for="event in events" :key="event.id">
+				<t-avatar :url="event.issue.user.avatar_url"></t-avatar>
+					<div class="v_open_right">
+						<t-link :to="{path:'/IssuesEdit'}">
+							<t-title :title="event.issue.user.login" :sub="event.created_at|dateFrm" :to="`/User?login=${event.issue.user.login}`"></t-title>
+							<t-title :description="event.issue.title || ''"></t-title>
+							<div class="t-event-appender">
+								<t-icon-bar icon="far fa-tag" :text="event.issue.number" to="/"></t-icon-bar>
+								<t-icon-bar icon="far fa-comment" :text="event.issuecomments" to="/"></t-icon-bar>
+							</div>
+						</t-link>	
+					</div>
+			</v-list-item>
+		</v-list>
 	</div>
 </template>
 
@@ -24,6 +26,7 @@
 	import TAvatar from "../temp/TAvatar"
 	import TTitle from "../temp/TTitle"
 	import TIconBar from "../temp/TIconBar"
+	import TLink from '../temp/TLink'
 	export default{
 		name:'VOpen',
 		components: {
@@ -31,7 +34,8 @@
 			VList,
 			TAvatar,
 			TTitle,
-			TIconBar
+			TIconBar,
+			TLink
 		},
 		data(){
 			return{

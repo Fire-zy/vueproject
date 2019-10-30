@@ -17,10 +17,10 @@
 					<span>{{info.pushed_at|dateFrm}}</span>
 				</v-list>
 				<v-list class="i-count">
-					<v-block v-if="info.owner" :para="info.open_issues_count" :text="`Issues`" :toblock="{path:'/Issues',query:{login:info.owner.login}}"></v-block>
-					<v-block :para="info.stargazers_count" :text="`Stargazers`" :toblock="{path:'/Issues'}"></v-block>
-					<v-block :para="info.forks" :text="`Forks`" :toblock="{path:'/Issues'}"></v-block>
-					<v-block :para="info.watchers" :text="`Watchers`" :toblock="{path:'/Issues'}"></v-block>
+					<v-block v-if="info.owner" :para="info.open_issues_count" :text="`Issues`" :to="{path:'/Issues',query:{login:info.owner.login}}"></v-block>
+					<v-block :para="info.stargazers_count" :text="`Stargazers`" :to="{path:'/Issues'}"></v-block>
+					<v-block v-if="info.owner" :para="info.forks" :text="`Forks`" :to="{path:'/Forks'}"></v-block>
+					<v-block :para="info.watchers" :text="`Watchers`" :to="{path:'/Issues'}"></v-block>
 				</v-list>
 			</v-list-item>
 		</v-list>

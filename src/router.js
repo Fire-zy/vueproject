@@ -93,6 +93,18 @@ const routes = [{
 			name: 'RepoDetails',
 			component: () =>
 				import('@/views/RepoDetails.vue')
+		},
+		{
+			path: 'IssuesEdit',
+			name: 'IssuesEdit',
+			component: () =>
+				import('@/views/IssuesEdit.vue')
+		},
+		{
+			path: 'Forks',
+			name: 'Forks',
+			component: () =>
+				import('@/views/Forks.vue')
 		}
 	]
 }]

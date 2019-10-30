@@ -1,6 +1,6 @@
 <template>
 	<div class="v_block">
-		<t-link :to="toblock">
+		<t-link :to="to">
 			<div class="v_block_item">
 				<span class="v_block_p">{{para}}</span>
 				<span>{{text}}</span>
@@ -21,7 +21,7 @@
 			text:{
 				type: String
 			},
-			toblock:{
+			to:{
 				type: [String,Object]
 			}
 		}
