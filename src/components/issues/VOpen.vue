@@ -68,7 +68,7 @@
 					})
 			},
 			async getIssuesEvents() {
-				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues`)
+				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}/issues`)
 				this.events = resp.data
 			}
 		}

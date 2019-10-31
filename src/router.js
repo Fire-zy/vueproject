@@ -105,6 +105,18 @@ const routes = [{
 			name: 'Forks',
 			component: () =>
 				import('@/views/Forks.vue')
+		},
+		{
+			path: 'Stargazers',
+			name: 'Stargazers',
+			component: () =>
+			import('@/views/Stargazers.vue')
+		},
+		{
+			path: 'Watchers',
+			name: 'Watchers',
+			component: () =>
+			import('@/views/Watchers.vue')
 		}
 	]
 }]

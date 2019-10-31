@@ -1,14 +1,15 @@
 <template>
 	<div class="issueedit">
-		<v-nav>
-			<div class="icon">
-				<i class="fas fa-less-than" @click="$router.back(-1)"></i>
-				<div class="icon_right">
-					<span>CLOSED</span>
-					<i class="fas fa-ellipsis-v"></i>
-				</div>
+		<div class="issues_nav_message">
+			<t-icon-bar>
+				<span>CLOSED</span>
+				<i class="fas fa-ellipsis-v"></i>
+			</t-icon-bar>
+			<div>
+				<!--<t-avatar :url=""></t-avatar>-->
 			</div>
-		</v-nav>
+		</div>
+
 		<div class="issues_item_message">
 			<!--<t-avtar :url=""></t-avtar>-->
 			<get-list-item></get-list-item>
@@ -27,6 +28,7 @@
 	import TAvatar from "../components/temp/TAvatar";
 	import VNav from '../components/navbar/VNav'
 	import TLink from '../components/temp/TLink'
+	import TIconBar from "../components/temp/TIconBar"
 	export default {
 		name: 'VIssuesEdit',
 		components: {
@@ -35,19 +37,20 @@
 			VList,
 			VNav,
 			TLink,
-			GetListItem
+			GetListItem,
+			TIconBar
 		},
 		data() {
 			return {
-//				following: []
+				//				following: []
 			}
 		},
 		created() {
-//			this.getMessage()
+
 		},
 		methods: {
 			getMessage() {
-				this.$axios.get("api/users/" + this.$route.query.login + "/following")
+				this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues/events/${this.$route.query.id}`)
 					.then(resp => {
 						this.following = resp.data
 						console.log(resp)
@@ -59,22 +62,11 @@
 </script>
 
 <style scoped lang="less">
-/*.v_nav{
-	display: flex;
-	align-items: flex-start;
+.issues_nav_message{
 	height: 200px;
-}*/
-.icon{
-	width: 100%;
-	display: flex;
-	margin: 15px;
-	justify-content: space-between;
-	color: white;
+	background-color: #3F51B5;
 }
-.icon_right{
-	width: 25%;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+.fas{
+	margin-left: 10px;
 }
 </style>

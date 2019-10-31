@@ -17,9 +17,9 @@
 					<span>{{info.pushed_at|dateFrm}}</span>
 				</v-list>
 				<v-list class="i-count">
-					<v-block v-if="info.owner" :para="info.open_issues_count" :text="`Issues`" :to="{path:'/Issues',query:{login:info.owner.login}}"></v-block>
-					<v-block :para="info.stargazers_count" :text="`Stargazers`" :to="{path:'/Issues'}"></v-block>
-					<v-block v-if="info.owner" :para="info.forks" :text="`Forks`" :to="{path:'/Forks'}"></v-block>
+					<v-block v-if="info.owner" :para="info.open_issues_count" :text="`Issues`" :to="`/Issues?login=${info.owner.login}&name=${info.name}`"></v-block>
+					<v-block v-if="info.owner" :para="info.stargazers_count" :text="`Stargazers`" :to="`/Stargazers?login=${info.owner.login}&name=${info.name}`"></v-block>
+					<v-block v-if="info.owner" :para="info.forks" :text="`Forks`" :to="`/Forks?login=${info.owner.login}&name=${info.name}`"></v-block>
 					<v-block :para="info.watchers" :text="`Watchers`" :to="{path:'/Issues'}"></v-block>
 				</v-list>
 			</v-list-item>
@@ -66,7 +66,7 @@
 		justify-content: space-around;
 		flex-direction: column;
 	}
-	.i-parent{
+	.v_list .i-parent{
 		color: #6495ED;
 	}
 	.i-time{

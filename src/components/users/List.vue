@@ -11,24 +11,23 @@
 			</v-list>
 		</div>
 		<div class="sub_nav">
-			<v-block :para="list.followers" :text="`followers`" :toblock="{path:'/Followers',query:{login:list.login}}"></v-block>
-			<v-block :para="list.following" :text="`following`" :toblock="{path:'/Following',query:{login:list.login}}"></v-block>
-			<v-block :para="list.public_repos" :text="`repos`" :toblock="{path:'/Repo',query:{login:list.login}}"></v-block>
-			<v-block :para="list.public_gists" :text="`gists`" :toblock="{path:'/Gists',query:{login:list.login}}"></v-block>
+			<v-block :para="list.followers" :text="`followers`" :to="{path:'/Followers',query:{login:list.login}}"></v-block>
+			<v-block :para="list.following" :text="`following`" :to="{path:'/Following',query:{login:list.login}}"></v-block>
+			<v-block :para="list.public_repos" :text="`repos`" :to="{path:'/Repo',query:{login:list.login}}"></v-block>
+			<v-block :para="list.public_gists" :text="`gists`" :to="{path:'/Gists',query:{login:list.login}}"></v-block>
 		</div>
 	</div>
 </template>
 
 <script scoped>
 	import VList from '../list/VList'
-	import VListItem from '../list/VList'
+//	import VListItem from '../list/VList'
 	import VBlock from '../list/VBlock'
 	export default {
 		name: 'List',
 		components: {
 			VList,
 			VBlock,
-			VListItem
 		},
 		data() {
 			return {

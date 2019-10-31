@@ -41,7 +41,7 @@
 		},
 		methods:{
 			async getForks(){
-				const resp=await this.$axios.get(`api/repos/Fire-zy/vueproject/forks`)
+				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}/forks`)
 				this.forks=resp.data
 			}
 		}

@@ -2,10 +2,10 @@
 	<div>
 		<span v-if="flag" class="v-tips">No Issues</span>
 		<v-list>
-			<v-list-item v-for="event in events" :key="event.id">
+			<v-list-item v-for="event in events" :key="event.id" >
 				<t-avatar :url="event.issue.user.avatar_url"></t-avatar>
-					<div class="v_open_right">
-						<t-link :to="{path:'/IssuesEdit'}">
+					<div class="v_open_right" :events="event.id">
+						<t-link :to="`/IssuesEdit?login=${event.actor.login}&id=${event.id}`">
 							<t-title :title="event.issue.user.login" :sub="event.created_at|dateFrm" :to="`/User?login=${event.issue.user.login}`"></t-title>
 							<t-title :description="event.issue.title || ''"></t-title>
 							<div class="t-event-appender">
@@ -72,7 +72,7 @@
 					})
 			},
 			async getIssuesEvents() {
-				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues/events`)
+				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}/issues/events`)
 				for(let v of resp.data){
 					if(v.event=="closed"){
 						this.events.push(v)
