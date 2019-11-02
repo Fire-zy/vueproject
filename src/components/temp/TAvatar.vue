@@ -1,5 +1,7 @@
 <template>
-  <img :alt="url" :width="radius" :height="radius" :src="url"/>
+	<div class="t_avatar">
+  	<img :alt="url" :width="radius" :height="radius" :src="url"/>
+	</div>
 </template>
 
 <script>

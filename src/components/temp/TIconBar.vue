@@ -47,6 +47,7 @@
 		display:flex;
 		padding: 15px;
 		color: #FFFFFF;
+		align-items: center;
 		justify-content: space-between;
 	}
 	.icon_right{

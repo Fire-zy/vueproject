@@ -6,7 +6,8 @@
 				<i class="fas fa-ellipsis-v"></i>
 			</t-icon-bar>
 			<div>
-				<!--<t-avatar :url=""></t-avatar>-->
+				<t-avatar v-if="edit.actor" :url="edit.issue.user.avatar_url" :radius="100"></t-avatar>
+				<get-list-item></get-list-item>
 			</div>
 		</div>
 
@@ -42,18 +43,18 @@
 		},
 		data() {
 			return {
-				//				following: []
+				edit:{}
 			}
 		},
 		created() {
-
+			this.getEdit()
 		},
 		methods: {
-			getMessage() {
-				this.$axios.get(`api/repos/${this.$route.query.login}/vueproject/issues/events/${this.$route.query.id}`)
+			getEdit() {
+				this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}/issues/events/${this.$route.query.id}`)
 					.then(resp => {
-						this.following = resp.data
-						console.log(resp)
+						this.edit = resp.data
+						console.log(this.edit)
 					})
 			}
 		}
@@ -61,12 +62,19 @@
 	}
 </script>
 
-<style scoped lang="less">
+<style scoped>
 .issues_nav_message{
-	height: 200px;
+	height: 180px;
 	background-color: #3F51B5;
 }
 .fas{
 	margin-left: 10px;
+}
+.t_avatar{
+	background-color: pink;
+	width: 33%;
+	display: flex;
+	margin-top: 10px;
+	justify-content: center;
 }
 </style>
