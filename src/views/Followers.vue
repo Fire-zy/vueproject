@@ -1,9 +1,6 @@
 <template>
 	<div class="followers">
-		<v-nav>
-			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<span> Followers</span>
-		</v-nav>
+		<t-app-bar icon="fas fa-arrow-left" text="Followers"></t-app-bar>
 		<v-list>
       <v-list-item v-for="item in followers" :key="item.id">
         <t-link :to="{path:'/User',query:{login:item.login}}">
@@ -19,11 +16,11 @@
 	import VList from '../components/list/VList'
 	import VListItem from '../components/list/VListItem'
 	import VAvatar from '../components/simple/VAvatar'
-	import VNav from '../components/navbar/VNav'
 	import TLink from '../components/temp/TLink'
+	import TAppBar from "../components/temp/TAppBar"
 	export default{
 		name:'Following',
-		components: { VAvatar, VListItem, VList,VNav,TLink },
+		components: { VAvatar, VListItem, VList,TLink,TAppBar },
 		data(){
 			return{
 				followers:[]

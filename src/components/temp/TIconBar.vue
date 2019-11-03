@@ -7,15 +7,16 @@
 	
 	<!--不需要router-link且有多个icon-->
 	<div v-else-if="!text" class="icon">
-		<i class="fas fa-less-than" @click="$router.back(-1)"></i>
+		<i class="fas fa-arrow-left" @click="$router.back(-1)"></i>
 		<div class="icon_right">
 			<slot></slot>
 		</div>
 	</div>	
 	
 	<!--不需要router-link，且只有text和返回上一级-->
-	<div v-else-if="!to">
-		<i :class="icon"></i>
+	<div v-else-if="!to" class="arrow-left">
+		<i :class="icon"  @click="$router.back(-1)"></i>
+		<!--<i class="fas fa-arrow-left" @click="$router.back(-1)"></i>-->
 		<span> {{text}} </span>
 	</div>
 

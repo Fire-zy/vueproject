@@ -2,9 +2,11 @@
 	<div class="vcommits">
 		<v-list>
 			<v-list-item v-for="com in commits" :key="com.node_ids">
+				<!--头像-->
 				<t-link :to="`/User?login=${com.author.login}`">
 					<t-avatar :url="com.author.avatar_url"></t-avatar>
 				</t-link>
+				<!--item右边的信息-->
 				<div class="c-list-item__right">
 					<t-title :title="com.author.login" :sub="com.commit.committer.date|dateFrm"></t-title>
 					<t-title :description="com.commit.message"></t-title>
@@ -43,10 +45,10 @@
 		},
 		props:['parentlogin','reponame','repologin'],
 		created(){
-			if(this.parentlogin){
+			if(this.parentlogin){		//如果有parentlogin参数的时候，则调用getParentLogin()
 				this.getParentLogin()
 			}else{
-				this.getLogin()
+				this.getLogin()		//否则调用getLogin()
 			}
 		},
 		filters: {

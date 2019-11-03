@@ -1,9 +1,8 @@
  <template>
 	<div class="notification">
-		<v-nav>
-			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<span> Notification</span>
-		</v-nav>
+		<t-app-bar icon="fas fa-arrow-left" text="Notification"></t-app-bar>
+		
+		<!--tab-->
 		<div class="v_tab_bar">	
 			<span @click="tabName='VUnread'">UNREAD</span>
 			<span @click="tabName='VParticipate'">PARTICIPANT</span>
@@ -21,14 +20,14 @@
 	import VAll from '../components/notifications/VAll'
 	import VParticipate from '../components/notifications/VParticipate'
 	import VUnread from '../components/notifications/VUnread'
-	import VNav from '../components/navbar/VNav'
+	import TAppBar from "../components/temp/TAppBar"
 	export default {
 		name: 'Notification',
 		components: {
 			VUnread,
 			VParticipate,
 			VAll,
-			VNav
+			TAppBar
 		},
 		data() {
 			return {

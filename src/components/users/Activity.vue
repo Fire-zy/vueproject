@@ -6,7 +6,7 @@
 					<t-link :to="`/User?login=${item.actor.login}`">
 						<t-avatar :url="item.actor.avatar_url"></t-avatar>
 					</t-link>
-					<t-title :title="item.actor.login" :sub="item.created_at|dateFrm"></t-title>
+					<t-title :title="item.actor.login" :sub="item.created_at|dateFrm"  :to="`/User?login=${item.actor.login}`"></t-title>
 				</div>
 				<div class="push_box" v-if="item.type">
 					<span v-if="item.type==='PushEvent'">Push to master at {{item.repo.name}}</span>
@@ -51,16 +51,15 @@
 			}
 		},
 		created() {
-			if(this.parentlogin){
+			if(this.parentlogin){	//如果有RepoDetails组件传过来的parentlogin，就调用getParent()
 				this.getParent()
-			}else if(this.repologin){
+			}else if(this.repologin){		//如果有RepoDetails组件传过来的repologin，就调用getRepo()
 				this.getRepo()
-			}else if(this.userlogin){
+			}else if(this.userlogin){		//如果有User组件传过来的userlogin，就调用getUser()
 				this.getUser()
 			}else{
-				this.getEvents()
+				this.getEvents()		//如果没有任何参数传过来，就
 			}
-//			this.toRepoDetails()
 		},
 		methods: {
 			async getParent(){

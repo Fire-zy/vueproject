@@ -1,6 +1,6 @@
 <template>
 	<div class="Forks">
-		<t-app-bar icon="fas fa-arrow-left" to="/" text="Forks"></t-app-bar>
+		<t-app-bar icon="fas fa-arrow-left" text="Forks"></t-app-bar>
 		<v-list>
 			<v-list-item v-for="fo in forks" :key="fo.id">
 				<t-avatar :url="fo.owner.avatar_url"></t-avatar>
@@ -9,7 +9,9 @@
 						<t-title :title="fo.name" :sub="fo.language" :to="`/User?login=${fo.owner.login}`"></t-title>
 						<div class="forks_appender_icon">
 							<t-icon-bar  icon="far fa-star" :text="fo.stargazers_count"></t-icon-bar>
-							<div><img src="../assets/forks.png">{{fo.forks_count}}</div>
+								<div>
+									<img src="../assets/forks.png">{{fo.forks_count}}
+								</div>
 							<t-icon-bar  icon="far fa-user" :text="fo.owner.login"></t-icon-bar>
 						</div>
 					</t-link>
@@ -21,7 +23,6 @@
 
 <script>
 	import VList from '../components/list/VList'
-//	import VBlock from '../components/list/VBlock'
 	import VListItem from '../components/list/VListItem'
 	import TLink from "../components/temp/TLink"
 	import TAppBar from "../components/temp/TAppBar"

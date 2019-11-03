@@ -1,9 +1,6 @@
 <template>
 	<div class="search">
-		<v-nav>
-			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<span> Search</span>
-		</v-nav>
+		<t-app-bar icon="fas fa-arrow-left" text="Search"></t-app-bar>
 		<div class="v_search_input">
 			<div class="v_left"></div>
 			<input class="v_input" />
@@ -15,7 +12,7 @@
 </template>
 
 <script>
-	import VNav from '../components/navbar/VNav'
+	import TAppBar from "../components/temp/TAppBar"
 	export default{
 		name:'Search',
 		data(){
@@ -23,15 +20,11 @@
 				
 			}
 		},
-		components:{VNav}
+		components:{TAppBar}
 	}
 </script>
 
 <style>
-	*{
-		margin: 0;
-		padding: 0;
-	}
 
 	.v_search_input{
 		display: flex;

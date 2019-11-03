@@ -1,14 +1,19 @@
 <template>
 	<div class="repo">
-		<t-app-bar icon="fas fa-less-than" to="/" text="Repo"></t-app-bar>
+		<!--顶部的各类来凝结-->
+		<t-app-bar icon="fas fa-arrow-left" text="Repo"></t-app-bar>
 		<v-list>
+			<!--遍历数组-->
 			<v-list-item v-for="repo in repos" :key="repo.id">
 				<t-link :to="`/User?login=${repo.owner.login}`">
 					<t-avatar :url="repo.owner.avatar_url"></t-avatar>
 				</t-link>
+				<!--item右边的详细信息-->
 				<div class="t-list-item__right">
 					<t-title :title="repo.name"  :sub="repo.language" :to="`/RepoDetails?login=${repo.owner.login}&name=${repo.name}`"></t-title>
 					<t-title :description="repo.description || ''"></t-title>
+					
+					<!--item右边底部的标识-->
 					<div class="t-repo-appender">
 						<t-icon-bar icon="far fa-star" :text="repo.stargazers_count" to="/"></t-icon-bar>
 						<t-icon-bar icon="far fa-eye" :text="repo.watchers_count" to="/"></t-icon-bar>
@@ -22,13 +27,13 @@
 </template>
 
 <script>
-	import TAvatar from "../components/temp/TAvatar";
-	import TLink from "../components/temp/TLink";
-	import TIconBar from "../components/temp/TIconBar";
-	import TTitle from "../components/temp/TTitle";
-	import TAppBar from "../components/temp/TAppBar";
-	import VList from '../components/list/VList';
-	import VListItem from '../components/list/VListItem';
+	import TAvatar from "../components/temp/TAvatar"
+	import TLink from "../components/temp/TLink"
+	import TIconBar from "../components/temp/TIconBar"
+	import TTitle from "../components/temp/TTitle"
+	import TAppBar from "../components/temp/TAppBar"
+	import VList from '../components/list/VList'
+	import VListItem from '../components/list/VListItem'
 	export default {
 		name: 'Repo',
 		components: {

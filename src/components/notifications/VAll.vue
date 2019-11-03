@@ -13,11 +13,9 @@
 	import moment from 'moment'
 	import VList from '../list/VList'
 	import VListItem from '../list/VListItem'
-//	import VAvatar from '../simple/VAvatar'
 	export default{
 		name:'VAll',
 		components: {
-//			VAvatar,
 			VListItem,
 			VList
 		},
@@ -44,14 +42,12 @@
 					}
 				})
 					.then(resp => {
-						if(resp.data.length!=0){
+						if(resp.data.length!=0){	//如果有数据，则存入all中
 							this.all = resp.data							
 						}else{
-							this.flag=true
+							this.flag=true //否则flag为true,显示No Notifications
 						}				
-						console.log(resp)
 					})
-					
 			}
 		}
 	}

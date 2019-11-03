@@ -1,4 +1,4 @@
-<template>
+4<template>
 	<div class="t-title" v-if="title||description">
 		<div class="t-name">
 			<t-link v-if="to" :to="to">
@@ -40,7 +40,7 @@
 	}
 </script>
 
-<style scoped>
+<style>
 	.t-sub {
 		font-size: 12px;
 		color: #666;

@@ -1,6 +1,6 @@
 <template>
 	<div class="Watchers">
-		<t-app-bar icon="fas fa-arrow-left" to="/" text="Watchers"></t-app-bar>
+		<t-app-bar icon="fas fa-arrow-left"  text="Watchers"></t-app-bar>
 		<v-list>
 			<v-list-item v-for="wat in watchers" :key="wat.id">
 				<t-avatar :url="wat.avatar_url"></t-avatar>

@@ -1,6 +1,6 @@
 <template>
 	<div class="Stargazers">
-		<t-app-bar icon="fas fa-arrow-left" to="/" text="Stargazers"></t-app-bar>
+		<t-app-bar icon="fas fa-arrow-left" text="Stargazers"></t-app-bar>
 		<v-list>
 			<v-list-item v-for="sta in stargazers" :key="sta.id">
 				<t-avatar :url="sta.avatar_url"></t-avatar>

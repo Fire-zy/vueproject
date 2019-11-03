@@ -1,9 +1,8 @@
  <template>
 	<div class="issues">
-		<v-nav>
-			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<span> Issues</span>
-		</v-nav>
+		<t-app-bar icon="fas fa-arrow-left" text="Issues"></t-app-bar>
+		
+		<!--一个tab-->
 		<div class="v_tab_bar">
 			<span @click="tabName='VOpen'">OPEN</span>
 			<span @click="tabName='VClosed'">CLOSED</span>
@@ -19,13 +18,13 @@
 <script>
 	import VOpen from '../components/issues/VOpen'
 	import VClosed from '../components/issues/VClosed'
-	import VNav from '../components/navbar/VNav'
+	import TAppBar from "../components/temp/TAppBar"
 	export default {
 		name: 'Notification',
 		components: {
 			VOpen,
 			VClosed,
-			VNav
+			TAppBar
 		},
 		data() {
 			return {

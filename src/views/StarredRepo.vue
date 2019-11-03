@@ -1,24 +1,20 @@
 <template>
 	<div class="StarredRepo">
-		<v-nav>
-			<img src="../assets/back.png" @click="$router.back(-1)" />
-			<span> StarredRepo</span>
-		</v-nav>
+		<t-app-bar icon="fas fa-arrow-left" text="StarredRepo"></t-app-bar>
 		<span v-if="flag" class="v-tips">No StarredRepo</span>
 		<div>
 			<v-star></v-star>
 		</div>
-
 	</div>
 </template>
 
 <script>
-	import VNav from '../components/navbar/VNav'
+	import TAppBar from "../components/temp/TAppBar"
 	import VStar from '../components/users/VStar'
 	export default{
 		name:'StarredRepo',
 		components: {
-			VNav,
+			TAppBar,
 			VStar
 		},
 		data(){

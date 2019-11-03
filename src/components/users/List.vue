@@ -21,7 +21,6 @@
 
 <script scoped>
 	import VList from '../list/VList'
-//	import VListItem from '../list/VList'
 	import VBlock from '../list/VBlock'
 	export default {
 		name: 'List',

@@ -1,21 +1,20 @@
 <template>
     <div class="t-app-bar">
-        <t-icon-bar class="t-title" :to="to" :text="text" :icon="icon"></t-icon-bar>
+        <t-icon-bar class="t-title"  :text="text" :icon="icon"></t-icon-bar>
     </div>
 </template>
 
 <script>
 
-    import TLink from "./TLink";
+//  import TLink from "./TLink";
     import TIconBar from "./TIconBar";
-
     export default {
         name: 'TAppBar',
-        components: {TIconBar, TLink},
+        components: {TIconBar},
         props: {
-            to: {
-                type: [String, Object]
-            },
+//          to: {
+//              type: [String, Object]
+//          },
             icon: {
                 type: String
             },
@@ -28,15 +27,14 @@
 
 <style scoped>
     .t-app-bar {
-        padding: 20px 10px;
+        padding: 10px 10px;
         background-color: #3F51B5;
         color: #fff
     }
 
     .t-title {
-        font-weight: 800;
-        size: 30px;
-        margin-left: 10px;
+        font-weight: 500;
+        font-size: 20px;
     }
 
 </style>

@@ -1,6 +1,8 @@
 <template>
 	<div class="user">
 		<div class="v-top" :style="{backgroundImage: 'url(' + item.avatar_url + ')', backgroundSize:'100%',backgroundPosition:'12px'}">
+			
+			<!--header的详细信息-->
 			<div class="v-header">
 				<div class="shop">
 					<img src="../assets/back.png" @click="$router.back(-1)" />
@@ -17,6 +19,8 @@
 					</div>
 				</div>
 			</div>
+			
+			<!--tab的切换-->
 			<div class="v_tab_bar">
 				<span @click="tabName='List'">INFO</span>
 				<span @click="tabName='Activity'">ACTIVITY</span>
@@ -55,6 +59,7 @@
 			}
 		},
 		created() {
+			//调用getUser()
 			if(this.$route.query.login) {
 				this.getUser()
 			} else {
