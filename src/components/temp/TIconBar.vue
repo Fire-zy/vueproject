@@ -16,7 +16,6 @@
 	<!--不需要router-link，且只有text和返回上一级-->
 	<div v-else-if="!to" class="arrow-left">
 		<i :class="icon"  @click="$router.back(-1)"></i>
-		<!--<i class="fas fa-arrow-left" @click="$router.back(-1)"></i>-->
 		<span> {{text}} </span>
 	</div>
 
@@ -48,12 +47,15 @@
 		display:flex;
 		padding: 15px;
 		color: #FFFFFF;
+		font-size: 20px;
 		align-items: center;
+		background-color: #3F51B5;
 		justify-content: space-between;
 	}
 	.icon_right{
+		width: 90%;
 		display: flex;
 		align-items: center;
-		justify-content: flex-end;
+		justify-content: space-between;
 	}
 </style>

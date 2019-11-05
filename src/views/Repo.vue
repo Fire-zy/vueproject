@@ -1,7 +1,12 @@
 <template>
 	<div class="repo">
 		<!--顶部的各类来凝结-->
-		<t-app-bar icon="fas fa-arrow-left" text="Repo"></t-app-bar>
+		<t-icon-bar>
+			<span>Repo</span>
+			<t-link :to="`/CreatNewRepo`">
+				<i class="fas fa-plus"></i>
+			</t-link>
+		</t-icon-bar>
 		<v-list>
 			<!--遍历数组-->
 			<v-list-item v-for="repo in repos" :key="repo.id">
@@ -31,13 +36,11 @@
 	import TLink from "../components/temp/TLink"
 	import TIconBar from "../components/temp/TIconBar"
 	import TTitle from "../components/temp/TTitle"
-	import TAppBar from "../components/temp/TAppBar"
 	import VList from '../components/list/VList'
 	import VListItem from '../components/list/VListItem'
 	export default {
 		name: 'Repo',
 		components: {
-			TAppBar,
 			TTitle,
 			TIconBar,
 			TLink,

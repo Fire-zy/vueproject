@@ -49,11 +49,6 @@
 </script>
 
 <style scoped lang="less">
-	* {
-		margin: 0;
-		padding: 0;
-	}
-	
 	.v_list_item {
 		display: flex;
 		justify-content: flex-start;

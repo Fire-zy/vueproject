@@ -117,6 +117,12 @@ const routes = [{
 			name: 'Watchers',
 			component: () =>
 			import('@/views/Watchers.vue')
+		},
+		{
+			path: 'CreatNewRepo',
+			name: 'CreatNewRepo',
+			component: () =>
+			import('@/views/CreatNewRepo.vue')
 		}
 	]
 }]
