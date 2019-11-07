@@ -123,6 +123,12 @@ const routes = [{
 			name: 'CreatNewRepo',
 			component: () =>
 			import('@/views/CreatNewRepo.vue')
+		},
+		{
+			path: 'EditRepo',
+			name: 'EditRepo',
+			component: () =>
+			import('@/views/EditRepo.vue')
 		}
 	]
 }]
