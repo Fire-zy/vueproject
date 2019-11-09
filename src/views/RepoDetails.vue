@@ -17,7 +17,7 @@
 				<!--详细信息-->
 				<div class="v-details-edit">
 					<span class="v-details-name">{{item.name}}</span>
-					<t-link to='/EditRepo'>
+					<t-link :to="`/EditRepo?login=${item.owner.login}&name=${item.name}`">
 						<i class="fas fa-edit"></i>
 					</t-link>
 				
