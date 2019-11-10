@@ -16,7 +16,6 @@
           <div class="btn-green" @click="close">CANCEL</div>
         </slot>
       </div>
-      
     </div>
   </div>
 </template>

@@ -57,10 +57,8 @@
 			}
 		},
 		created() {
-			//		console.log(this.$route.query.login)
 			const user = localStorage.getItem('LOGIN_USER')
 			this.users = JSON.parse(user)
-			console.log(JSON.parse(user))
 		},
 		methods: {
 			creatRepo() {
@@ -75,7 +73,7 @@
 						headers: {
 							Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
 						}
-					}).then(resp => {
+					}).then(() => {
 						alert("创建成功")
 					})
 				}

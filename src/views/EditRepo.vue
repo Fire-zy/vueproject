@@ -4,15 +4,16 @@
 		<div>
 			<v-list v-if="item.owner">
 				<!--显示reponame-->
-				<v-list-item>
-					<p>Repository name</p>
-					<P>{{item.owner.login}}</P>
-				</v-list-item>
+				<t-link :to="`/EditRepoName?login=${item.owner.login}&name=${item.name}`">
+					<v-list-item>
+						<span>Repository name</span>
+						<span>{{item.owner.login}}</span>
+					</v-list-item>
+				</t-link>
+			
 				<!--显示repo的状态-->
 				<v-list-item>
-					<!--<p v-if="!item.private">public</p>
-					<p v-else-if="item.private">private</p>-->
-					<von-toggle :text="toggleText" v-model="pushNotification"></von-toggle>
+					<von-toggle :text="toggleText" :editlogin="item.owner.login" :editname="item.name" v-model="pushNotification"></von-toggle>
 				</v-list-item>
 			</v-list>
 		</div>
@@ -24,10 +25,10 @@
 	import VList from '../components/list/VList'
 	import VListItem from '../components/list/VListItem'
 	import VonToggle from '../components/toggle/VonToggle'
-	
+	import TLink from "../components/temp/TLink"
 	export default{
 		name:'EditRepo',
-		components:{TAppBar,VList,VListItem,VonToggle},
+		components:{TAppBar,VList,VListItem,VonToggle,TLink},
 		data(){
 			return{
 				item:{},
@@ -42,11 +43,15 @@
 			async getEditRepo(){
 				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
 				this.item=resp.data
-				console.log(resp.data.private)
 			},
 		}
 	}
 </script>
 
-<style>
+<style scoped>
+	.v_list_item{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
 </style>

@@ -10,7 +10,9 @@
 					</div>			
 					<img src="../assets/StarLogo.png" />
 					<img src="../assets/CodeFork.png" @click="showPopup"/>
-					<p-popup v-show="isPopupVisible" @close="closePopup" :repologin="item.owner.login" :reponame="item.name"></p-popup>
+					<transition enter-active-class="animated zoomIn" leave-active-class="animated zoomOut" :duration="50">
+						<p-popup v-show="isPopupVisible" @close="closePopup" :repologin="item.owner.login" :reponame="item.name"></p-popup>
+					</transition>
 					<img src="../assets/else.png" />
 				</div>
 				
