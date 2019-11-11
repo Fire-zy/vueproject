@@ -13,7 +13,11 @@
 			
 				<!--显示repo的状态-->
 				<v-list-item>
-					<von-toggle :text="toggleText" :editlogin="item.owner.login" :editname="item.name" v-model="pushNotification"></von-toggle>
+					<von-toggle :text="toggleText[0]" :checked="pushNotification" :editlogin="item.owner.login" :editname="item.name" v-model="pushNotification"></von-toggle>
+				</v-list-item>
+				
+				<v-list-item>
+					<von-toggle :text="toggleText[1]" :checked="wikiState" :editlogin="item.owner.login" :editname="item.name" v-model="wikiState"></von-toggle>
 				</v-list-item>
 			</v-list>
 		</div>
@@ -32,8 +36,9 @@
 		data(){
 			return{
 				item:{},
-				toggleText: "Public",
-				pushNotification: true,	//v-model通过动态绑定值到c=value,这里最初的value值为true
+				toggleText:['Public','Wiki'],
+				pushNotification: '',	//v-model通过动态绑定值到value,这里最初的value值为true
+				wikiState:''
 			}
 		},
 		created(){
@@ -43,6 +48,8 @@
 			async getEditRepo(){
 				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
 				this.item=resp.data
+				this.pushNotification=resp.data.private
+				this.wikiState=resp.data.has_wiki
 			},
 		}
 	}

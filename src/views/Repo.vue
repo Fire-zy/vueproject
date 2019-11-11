@@ -54,11 +54,27 @@
 			}
 		},
 		created() {
-			this.getMessage()
+			if(this.$route.query.login){
+				this.getPublicRepo()
+			}else{
+				this.getAllRepo()
+			}
 		},
 		methods: {
-			async getMessage() {
-				const resp = await this.$axios.get(`api/users/${this.$route.query.login}/repos`)
+			async getAllRepo() {		//获取所有的repo
+				const resp = await this.$axios.get(`api/user/repos`,{
+					headers: {
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				})
+				this.repos = resp.data
+			},
+			async getPublicRepo() {		//获取公开的repo
+				const resp = await this.$axios.get(`api/users/${this.$route.query.login}/repos`,{
+					headers: {
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				})
 				this.repos = resp.data
 			}
 		}

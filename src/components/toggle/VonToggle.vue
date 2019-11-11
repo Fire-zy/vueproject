@@ -2,8 +2,9 @@
 	<div class="von_toggle">
 		<span v-text="text"></span>
 		<span>
-      <input class="mui-switch mui-switch-animbg" type="checkbox" ref="checkbox" :value="value" checked
+      <input class="mui-switch mui-switch-animbg" type="checkbox" ref="checkbox" :value="value" :checked="checked"
         @click="onToggle($event.target.checked)">
+        <span>{{value}}</span>
 		</span>
 	</div>
 </template>
@@ -23,25 +24,30 @@
 			},
 			value: {
 				type: Boolean,
-				required: true
+//				required: true
 			},
 			editlogin:{
 				type:String
 			},
 			editname:{
 				type:String
+			},
+			checked:{
+				type:Boolean
 			}
 		},
 		created(){
-//				consle.log(this.login)
-			
+				console.log("官方"+this.checked)
 		},
 		methods: {
 			onToggle(value) {
+				console.log("点击后"+!this.value)
 				this.$emit('input', value) //点击单选框的饿时候，触发里面的@click(因为v-model提供的是value属性和oninput事件,但是在这里我们需要的是checked属性，而不是value,并且当点击单选框的时候不会触发oninput事件)
 				this.$axios.patch(`api/repos/${this.editlogin}/${this.editname}`,
 				{
-					private:this.value
+					private:!this.value,
+					is_template:this.value,
+					has_wiki:this.value
 				},
 				{
 					headers:{

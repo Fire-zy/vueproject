@@ -18,7 +18,7 @@
 			</div>
 			
 			<div class="v-lattice-item v-lattice-two">
-				<t-link :to="{path:'/Repo',query:{login:item.login}}">
+				<t-link :to="{path:'/Repo'}">
 					<img src="../assets/latticeRepo.png" />
 				</t-link>
 				<span>Repos</span>
