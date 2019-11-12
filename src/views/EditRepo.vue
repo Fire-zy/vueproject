@@ -11,13 +11,19 @@
 					</v-list-item>
 				</t-link>
 			
-				<!--显示repo的状态-->
+				<!--切换private-->
 				<v-list-item>
-					<von-toggle :text="toggleText[0]" :checked="pushNotification" :editlogin="item.owner.login" :editname="item.name" v-model="pushNotification"></von-toggle>
+					<von-toggle @input="onPrivateToggle()" :text="toggleText[0]" :checked="pushNotification"  v-model="pushNotification"></von-toggle>
 				</v-list-item>
 				
+				<!--切换wiki-->
 				<v-list-item>
-					<von-toggle :text="toggleText[1]" :checked="wikiState" :editlogin="item.owner.login" :editname="item.name" v-model="wikiState"></von-toggle>
+					<von-toggle @input="onWikiToggle()" :text="toggleText[1]" :checked="wikiState" v-model="wikiState"></von-toggle>
+				</v-list-item>
+				
+				<!--切换issues-->
+				<v-list-item>
+					<von-toggle  @input="onIssuesToggle()" :text="toggleText[2]" :checked="IssuesState" v-model="IssuesState"></von-toggle>
 				</v-list-item>
 			</v-list>
 		</div>
@@ -36,9 +42,10 @@
 		data(){
 			return{
 				item:{},
-				toggleText:['Public','Wiki'],
+				toggleText:['Private','Wiki','Issues'],
 				pushNotification: '',	//v-model通过动态绑定值到value,这里最初的value值为true
-				wikiState:''
+				wikiState:'',
+				IssuesState:''
 			}
 		},
 		created(){
@@ -50,7 +57,31 @@
 				this.item=resp.data
 				this.pushNotification=resp.data.private
 				this.wikiState=resp.data.has_wiki
+				this.IssuesState=resp.data.has_issues
 			},
+			
+			onPrivateToggle(){
+				this.send({private:!this.value})
+			},
+			onWikiToggle(){
+				this.send({has_wiki:!this.value})
+			},
+			onIssuesToggle(){
+				this.send({has_issues:!this.value})
+			},
+			
+//			提交参数的公共方法
+			send(params){
+				this.$axios.patch(`api/repos/${this.$route.query.login}/${this.$route.query.name}`,params,
+				{
+					headers:{
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				})
+				.then(()=>{
+					console.log('修改成功')
+				})
+			}
 		}
 	}
 </script>

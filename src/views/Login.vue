@@ -12,7 +12,7 @@
 				window.location.href='https://github.com/login/oauth/authorize?'+
 				'client_id=4af3400d61f2ba9c28f3'+
 				'&redirect_uri=http://localhost:8080/callback'+
-				'&scope=notifications user repo public_repo gist'
+				'&scope=notifications user repo public_repo gist repo:status repo_deployment'
 			}
 		}
 	}

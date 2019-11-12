@@ -3,7 +3,7 @@
 		<span v-text="text"></span>
 		<span>
       <input class="mui-switch mui-switch-animbg" type="checkbox" ref="checkbox" :value="value" :checked="checked"
-        @click="onToggle($event.target.checked)">
+        @click="onPrivateToggle($event.target.checked)">
         <span>{{value}}</span>
 		</span>
 	</div>
@@ -26,40 +26,59 @@
 				type: Boolean,
 //				required: true
 			},
-			editlogin:{
-				type:String
-			},
-			editname:{
-				type:String
-			},
 			checked:{
 				type:Boolean
 			}
 		},
 		created(){
-				console.log("官方"+this.checked)
+			
 		},
 		methods: {
-			onToggle(value) {
-				console.log("点击后"+!this.value)
-				this.$emit('input', value) //点击单选框的饿时候，触发里面的@click(因为v-model提供的是value属性和oninput事件,但是在这里我们需要的是checked属性，而不是value,并且当点击单选框的时候不会触发oninput事件)
-				this.$axios.patch(`api/repos/${this.editlogin}/${this.editname}`,
-				{
-					private:!this.value,
-					is_template:this.value,
-					has_wiki:this.value
-				},
-				{
-					headers:{
-						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
-					}
-				})
-				.then(()=>{
-					console.log('修改成功')
-				})
+		onPrivateToggle(value){
+			this.$emit('input', value)
+// 			this.send({private:!this.value})
+		},	
+//		send(params) {
+//		this.$axios.patch(`api/repos/${this.editlogin}/${this.editname}`,
+//			{
+//				params
+//			},
+//			{
+//				headers:{
+//					Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+//				}
+//			})
+//			.then(()=>{
+//				console.log('修改成功')
+//			})
+//		},	
+		
+		
+		
+		
+//		
+//			onToggle(value) {
+//					this.$emit('input', value) //点击单选框的饿时候，触发里面的@click(因为v-model提供的是value属性和oninput事件,但是在这里我们需要的是checked属性，而不是value,并且当点击单选框的时候不会触发oninput事件)
+//					this.$axios.patch(`api/repos/${this.editlogin}/${this.editname}`,
+//					{
+//						private:!this.value,
+//						is_template:!this.value,
+//						has_wiki:!this.value,
+//						has_issues:!this.value
+//					},
+//					{
+//						headers:{
+//							Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+//						}
+//					})
+//					.then(()=>{
+//						console.log('修改成功')
+//					})
+//				}
+			
 			} 														
 		}
-	}
+
 </script>
 
 <style scoped>

@@ -76,7 +76,11 @@
 		},
 		methods: {
 			async getDetails() {
-				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
+				const resp=await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`,{
+					headers:{
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				})
 				this.item=resp.data
 			},
 			showPopup(){ this.isPopupVisible = true }, //弹出Popup窗口
