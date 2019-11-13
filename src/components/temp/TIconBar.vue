@@ -7,9 +7,11 @@
 	
 	<!--不需要router-link且有多个icon-->
 	<div v-else-if="!text" class="icon">
-		<i class="fas fa-arrow-left" @click="$router.back(-1)"></i>
-		<div class="icon_right">
-			<slot></slot>
+		<div class="icon_content">
+			<i class="fas fa-arrow-left" @click="$router.back(-1)"></i>
+			<div class="icon_right">
+				<slot></slot>
+			</div>
 		</div>
 	</div>	
 	
@@ -45,12 +47,17 @@
 <style scoped>
 	.icon{
 		display:flex;
-		padding: 15px;
+		height: 50px;
 		color: #FFFFFF;
 		font-size: 20px;
-		align-items: center;
 		background-color: #3F51B5;
+	}
+	.icon_content{
+		display: flex;
+		align-items: center;
 		justify-content: space-between;
+		width: 90%;
+		margin: 5px;
 	}
 	.icon_right{
 		width: 90%;

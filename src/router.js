@@ -135,6 +135,18 @@ const routes = [{
 			name: 'EditRepoName',
 			component: () =>
 			import('@/views/EditRepoName.vue')
+		},
+		{
+			path: 'EditDescription',
+			name: 'EditDescription',
+			component: () =>
+			import('@/views/EditDescription.vue')
+		},
+		{
+			path: 'EditDefaultBranch',
+			name: 'EditDefaultBranch',
+			component: () =>
+			import('@/views/EditDefaultBranch.vue')
 		}
 	]
 }]

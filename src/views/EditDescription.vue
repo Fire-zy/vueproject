@@ -1,13 +1,11 @@
 <template>
 	<div>
-		<!--<t-app-bar icon="fas fa-arrow-left" text="Edit the repository name"></t-app-bar>-->
 		<t-icon-bar>
-			<span>Edit the repository name</span>
-			<span @click="editName()">完成</span>
+			<span>Edit description</span>
+			<span @click="editDescription()">完成</span>
 		</t-icon-bar>
 		<div class="edit_item">
-			<!--<input type="text" class="edit_name_box" v-model="item.name" />-->
-			<textarea class="edit_name_box" v-model="item.name"></textarea>
+			<textarea class="edit_description_box" v-model="item.description"></textarea>
 		</div>
 	</div>
 </template>
@@ -15,29 +13,31 @@
 <script>
 	import TIconBar from "../components/temp/TIconBar"
 	export default {
-		name: 'EditRepoName',
+		name: 'EditDescription',
 		components: {
 			TIconBar
 		},
 		data() {
 			return {
 				item: {
-					name: ''
+					description: ''
 				},
 			}
 		},
 		created() {
-			this.getRepoName()
+			this.getDescription()
 		},
 		methods: {
-			async getRepoName() {
+			async getDescription() {
 				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
-				this.item.name = resp.data.name
+				this.item.description = resp.data.description
 			},
-			editName() {
-				this.$axios.patch(`api/repos/${this.$route.query.login}/${this.$route.query.name}`, {
-						name: this.item.name
-					}, {
+			editDescription() {
+				this.$axios.patch(`api/repos/${this.$route.query.login}/${this.$route.query.name}`, 
+					{
+						description: this.item.description
+					}, 
+					{
 						headers: {
 							Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
 						}
@@ -61,13 +61,14 @@
 		background-color: #f4f5fa;
 	}
 	
-	.edit_name_box {
-		width: 350px;
-		height: 100px;
+	.edit_description_box {
+		width: 100%;
+		height: 50px;
 		border: none;
 		padding: 10px;
 		font-size: 20px;
 		font-family: arial;
+		line-height: 50px;
 		margin-top: 15px;
 		outline: none;
 	}

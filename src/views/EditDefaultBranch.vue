@@ -2,12 +2,11 @@
 	<div>
 		<!--<t-app-bar icon="fas fa-arrow-left" text="Edit the repository name"></t-app-bar>-->
 		<t-icon-bar>
-			<span>Edit the repository name</span>
-			<span @click="editName()">完成</span>
+			<span>Edit Default Branch</span>
+			<span @click="editDdefaultBranch()">完成</span>
 		</t-icon-bar>
 		<div class="edit_item">
-			<!--<input type="text" class="edit_name_box" v-model="item.name" />-->
-			<textarea class="edit_name_box" v-model="item.name"></textarea>
+			<textarea class="edit_default_branch" v-model="item.branch"></textarea>
 		</div>
 	</div>
 </template>
@@ -15,28 +14,28 @@
 <script>
 	import TIconBar from "../components/temp/TIconBar"
 	export default {
-		name: 'EditRepoName',
+		name: 'EditDefaultBranch',
 		components: {
 			TIconBar
 		},
 		data() {
 			return {
 				item: {
-					name: ''
+					branch: ''
 				},
 			}
 		},
 		created() {
-			this.getRepoName()
+			this.getDdefaultBranch()
 		},
 		methods: {
-			async getRepoName() {
+			async getDdefaultBranch() {
 				const resp = await this.$axios.get(`api/repos/${this.$route.query.login}/${this.$route.query.name}`)
-				this.item.name = resp.data.name
+				this.item.branch = resp.data.default_branch
 			},
-			editName() {
+			editDdefaultBranch() {
 				this.$axios.patch(`api/repos/${this.$route.query.login}/${this.$route.query.name}`, {
-						name: this.item.name
+						branch: this.item.default_branch
 					}, {
 						headers: {
 							Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
@@ -61,13 +60,14 @@
 		background-color: #f4f5fa;
 	}
 	
-	.edit_name_box {
-		width: 350px;
-		height: 100px;
+	.edit_default_branch {
+		width: 100%;
+		height: 50px;
 		border: none;
 		padding: 10px;
 		font-size: 20px;
 		font-family: arial;
+		line-height: 50px;
 		margin-top: 15px;
 		outline: none;
 	}
