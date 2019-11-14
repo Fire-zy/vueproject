@@ -1,61 +1,70 @@
 <template>
 	<div class="edit_repo">
 		<t-app-bar icon="fas fa-arrow-left" text="Edit the repository"></t-app-bar>
-		<div>
 			<v-list v-if="item.owner">
+
 				<!--显示reponame-->
-				<t-link :to="`/EditRepoName?login=${item.owner.login}&name=${item.name}`">
-					<v-list-item>
-						<span>Repository name</span>
-						<span>{{item.name}}</span>
-					</v-list-item>
-				</t-link>
+				<e-edit-content 
+					:to="`/EditRepoName?login=${item.owner.login}&name=${item.name}`" 
+					title='Repository name' 
+					:content='item.name'>
+				</e-edit-content>
 				
-				<t-link :to="`/EditDescription?login=${item.owner.login}&name=${item.name}`">
-					<v-list-item>
-						<span>Description</span>
-						<span class="edit_content">{{item.description}}</span>
-					</v-list-item>
-				</t-link>
+				<!--显示description-->
+				<e-edit-content 
+					:to="`/EditDescription?login=${item.owner.login}&name=${item.name}`"
+					title='Description' 
+					:content='item.description'>
+				</e-edit-content>
 				
-				<t-link :to="`/EditDefaultBranch?login=${item.owner.login}&name=${item.name}`">
-					<v-list-item>
-						<span>EditDefaultBranch</span>
-						<span class="edit_content">{{item.default_branch}}</span>
-					</v-list-item>
-				</t-link>
+				<!--显示default_branch-->
+				<e-edit-content 
+					:to="`/EditDefaultBranch?login=${item.owner.login}&name=${item.name}`"
+					title='EditDefaultBranch' 
+					:content='item.default_branch'>
+				</e-edit-content>
 				
 				<!--切换private-->
-				<v-list-item>
-					<von-toggle @input="onPrivateToggle()" :text="toggleText[0]" :checked="pushNotification"  v-model="pushNotification"></von-toggle>
-				</v-list-item>
+					<von-toggle @input="onPrivateToggle()" 
+						:text="toggleText[0]" 
+						:checked="pushNotification"  
+						v-model="pushNotification">
+					</von-toggle>
 				
 				<!--切换wiki-->
-				<v-list-item>
-					<von-toggle @input="onWikiToggle()" :text="toggleText[1]" :checked="wikiState" v-model="wikiState"></von-toggle>
-				</v-list-item>
+					<von-toggle @input="onWikiToggle()" 
+						:text="toggleText[1]" 
+						:checked="wikiState" 
+						v-model="wikiState">
+					</von-toggle>
 				
 				<!--切换issues-->
-				<v-list-item>
-					<von-toggle  @input="onIssuesToggle()" :text="toggleText[2]" :checked="IssuesState" v-model="IssuesState"></von-toggle>
-				</v-list-item>
+					<von-toggle  @input="onIssuesToggle()" 
+						:text="toggleText[2]" 
+						:checked="IssuesState" 
+						v-model="IssuesState">
+					</von-toggle>
 				
-				<!--切换Project-->
-				<v-list-item>
-					<von-toggle  @input="onProjectToggle()" :text="toggleText[3]" :checked="Project" v-model="Project"></von-toggle>
-				</v-list-item>
+					<von-toggle  @input="onProjectToggle()" 
+						:text="toggleText[3]" 
+						:checked="Project" 
+						v-model="Project">
+					</von-toggle>
 				
 				<!--切换Template-->
-				<v-list-item v-if="Template">
-					<von-toggle  @input="onTemplateToggle()" :text="toggleText[4]" :checked="Template" v-model="Template"></von-toggle>
-				</v-list-item>
+					<von-toggle v-if="Template"	@input="onTemplateToggle()" 
+						:text="toggleText[4]" 
+						:checked="Template" 
+						v-model="Template">
+					</von-toggle>
 				
 				<!--切换archived-->
-				<v-list-item>
-					<von-toggle  @input="onArchivedToggle()" :text="toggleText[5]" :checked="Archived" v-model="Archived"></von-toggle>
-				</v-list-item>
+					<von-toggle  @input="onArchivedToggle()" 
+						:text="toggleText[5]" 
+						:checked="Archived" 
+						v-model="Archived">
+					</von-toggle>
 			</v-list>
-		</div>
 	</div>
 </template>
 
@@ -65,9 +74,10 @@
 	import VListItem from '../components/list/VListItem'
 	import VonToggle from '../components/toggle/VonToggle'
 	import TLink from "../components/temp/TLink"
+	import EEditContent from "../components/edit/EEditContent"
 	export default{
 		name:'EditRepo',
-		components:{TAppBar,VList,VListItem,VonToggle,TLink},
+		components:{TAppBar,VList,VListItem,VonToggle,TLink,EEditContent},
 		data(){
 			return{
 				item:{},

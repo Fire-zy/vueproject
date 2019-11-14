@@ -119,10 +119,10 @@ const routes = [{
 			import('@/views/Watchers.vue')
 		},
 		{
-			path: 'CreatNewRepo',
-			name: 'CreatNewRepo',
+			path: 'CreateNewRepo',
+			name: 'CreateNewRepo',
 			component: () =>
-			import('@/views/CreatNewRepo.vue')
+			import('@/views/CreateNewRepo.vue')
 		},
 		{
 			path: 'EditRepo',

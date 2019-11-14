@@ -3,7 +3,7 @@
 		<!--顶部的各类来凝结-->
 		<t-icon-bar>
 			<span>Repo</span>
-			<t-link :to="`/CreatNewRepo`">
+			<t-link :to="`/CreateNewRepo`">
 				<i class="fas fa-plus"></i>
 			</t-link>
 		</t-icon-bar>
