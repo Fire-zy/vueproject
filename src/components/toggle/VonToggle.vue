@@ -3,9 +3,9 @@
 		<v-list-item>
 			<span v-text="text"></span>
 			<span>
-	      <input class="mui-switch mui-switch-animbg" type="checkbox" ref="checkbox" :value="value" :checked="checked"
-	        @click="onPrivateToggle($event.target.checked)">
-	        <!--<span>{{value}}</span>-->
+			<input class="mui-switch mui-switch-animbg" type="checkbox" ref="checkbox" :value="value" :checked="checked"
+					@click="onPrivateToggle($event.target.checked)">
+					<span>{{value}}</span>
 			</span>
 		</v-list-item>
 	</div>
@@ -28,15 +28,14 @@
 				required: true
 			},
 			value: {
-				type: Boolean,
+				type:  [Boolean,String]
 				//				required: true
 			},
 			checked: {
-				type: Boolean
+				type: [Boolean,String]
 			}
 		},
 		created() {
-
 		},
 		methods: {
 			onPrivateToggle(value) {

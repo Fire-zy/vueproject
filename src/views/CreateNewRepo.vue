@@ -41,9 +41,15 @@
 			<div class="create_step">
 				<von-toggle
 					text="auto_init" 
-					:checked="AutoInit" 
+					:checked="false" 
 					v-model="AutoInit">
 				</von-toggle>
+				
+				<e-edit-content
+					:to="`/AddGitignore`"
+					title='AddGitignore' 
+					:content='content'>
+				</e-edit-content>
 			</div>
 			
 			<!--创建按钮-->
@@ -59,18 +65,21 @@
 	import TAppBar from "../components/temp/TAppBar"
 	import TAvatar from "../components/temp/TAvatar"
 	import VonToggle from '../components/toggle/VonToggle'
+	import EEditContent from "../components/edit/EEditContent"
 	export default {
 		name: 'CreatNewRepo',
 		components: {
 			TAppBar,
 			TAvatar,
-			VonToggle
+			VonToggle,
+			EEditContent
 		},
 		data() {
 			return {
 				reponame: '',
 				description: '',
-				AutoInit:'true',
+				content:'',
+				AutoInit:'false',
 				picked: 'false',
 				users: {}
 			}
@@ -87,7 +96,8 @@
 					this.$axios.post('api/user/repos', {
 						name: this.reponame,
 						description: this.description,
-						private: this.picked
+						private: this.picked,
+						auto_init:this.AutoInit
 					}, {
 						headers: {
 							Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`

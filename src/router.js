@@ -147,6 +147,12 @@ const routes = [{
 			name: 'EditDefaultBranch',
 			component: () =>
 			import('@/views/EditDefaultBranch.vue')
+		},
+		{
+			path: 'AddGitignore',
+			name: 'AddGitignore',
+			component: () =>
+			import('@/views/AddGitignore.vue')
 		}
 	]
 }]
