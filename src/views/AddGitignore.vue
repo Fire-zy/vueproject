@@ -7,10 +7,10 @@
 		</t-icon-bar>
 		<div class="Add_gitignore_list">
 			<ul>
-			<li v-for="(list,index) in lists" :key="index" 
+				<li v-for="(list,index) in lists" :key="index" 
 					:class="flag==index?'choosed':'choosed1'" 
 					@click="choosePay(index)"> {{list}}
-			</li>
+				</li>
 			</ul>
 
 		</div>
@@ -154,28 +154,23 @@
 					'stella'
 				],
 				flag:-1,
-				vaule:''
+				gitignore:''
 			}
 		},
 		created() {
 		},
 		methods:{
 			choosePay (index) {
-				let t = this
-				t.flag = index
-//	     	t.value = moneyList[index]
+				this.flag = index
+	     	this.gitignore = this.lists[index]
+//	     	this.$emit('input',this.gitignore)
+	     	this.$router.push(`/CreateNewRepo?gitignore=${this.gitignore}`)
 			},
 		}
 	}
 </script>
 
 <style scoped>
-	/*.Add_gitignore_list li{
-		height: 40px;
-		line-height: 40px;
-		margin-left: 10px;
-		border-bottom: 1px solid #D7D7D7;
-	}*/
 	ul,li{
    display: flex;
    flex-wrap: wrap;

@@ -153,6 +153,12 @@ const routes = [{
 			name: 'AddGitignore',
 			component: () =>
 			import('@/views/AddGitignore.vue')
+		},
+		{
+			path: 'AddLicense',
+			name: 'AddLicense',
+			component: () =>
+			import('@/views/AddLicense.vue')
 		}
 	]
 }]

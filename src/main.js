@@ -8,6 +8,10 @@ import axios from 'axios'
 import moment from 'moment'
 import animate from 'animate.css'
 
+import routerThen from 'vue-router-then'
+routerThen.initRouter(router)
+Vue.use(routerThen)
+
 import  '@fortawesome/fontawesome-free/css/all.css'
 //import 'font-awesome/scss/font-awesome.scss'
 //require('./node_modules/_font-awesome@4.7.0@font-awesome/css/font-awesome.min.css');

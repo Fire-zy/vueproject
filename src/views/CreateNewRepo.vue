@@ -45,11 +45,17 @@
 					v-model="AutoInit">
 				</von-toggle>
 				
-				<e-edit-content
-					:to="`/AddGitignore`"
-					title='AddGitignore' 
-					:content='content'>
-				</e-edit-content>
+					<e-edit-content v-model="historyGitignore"
+						v-model-link="`/AddGitignore`"
+						title='AddGitignore' 
+						:content='historyGitignore'>
+					</e-edit-content>
+					
+					<e-edit-content v-model="content2"
+						v-model-link="`/AddGitignore`"
+						title='AddLicense' 
+						:content='content2'>
+					</e-edit-content>
 			</div>
 			
 			<!--创建按钮-->
@@ -78,15 +84,21 @@
 			return {
 				reponame: '',
 				description: '',
-				content:'',
+				content1:'',
+				content2:'',
 				AutoInit:'false',
 				picked: 'false',
-				users: {}
+				users: {},
+				historyGitignore:''
 			}
 		},
 		created() {
 			const user = localStorage.getItem('LOGIN_USER')
 			this.users = JSON.parse(user)
+			this.getHistoryData()
+		},
+		activated(){
+			
 		},
 		methods: {
 			creatRepo() {
@@ -97,7 +109,8 @@
 						name: this.reponame,
 						description: this.description,
 						private: this.picked,
-						auto_init:this.AutoInit
+						auto_init:this.AutoInit,
+						gitignore_template:this.$route.query.gitignore
 					}, {
 						headers: {
 							Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
@@ -105,6 +118,13 @@
 					}).then(() => {
 						alert("创建成功")
 					})
+				}
+			},
+			getHistoryData(){
+				if(this.$route.query.gitignore){
+					this.historyGitignore=this.$route.query.gitignore
+				}else if(this.$route.query.license){
+					this.content2=this.$route.query.license
 				}
 			}
 		}
@@ -214,6 +234,10 @@
 	/*选择按钮结束*/
 	
 	/*按钮的样式*/
+	
+	.create_step{
+		height: 100%;
+	}
 	
 	/*确认按钮开始*/
 	.create_button {
