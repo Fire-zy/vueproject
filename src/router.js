@@ -122,7 +122,10 @@ const routes = [{
 			path: 'CreateNewRepo',
 			name: 'CreateNewRepo',
 			component: () =>
-			import('@/views/CreateNewRepo.vue')
+			import('@/views/CreateNewRepo.vue'),
+			meta:{
+				KeepAlive:true
+			}
 		},
 		{
 			path: 'EditRepo',
@@ -152,7 +155,10 @@ const routes = [{
 			path: 'AddGitignore',
 			name: 'AddGitignore',
 			component: () =>
-			import('@/views/AddGitignore.vue')
+			import('@/views/AddGitignore.vue'),
+			meta:{
+				keepAlive: false
+			}
 		},
 		{
 			path: 'AddLicense',

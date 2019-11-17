@@ -8,9 +8,6 @@ import axios from 'axios'
 import moment from 'moment'
 import animate from 'animate.css'
 
-import routerThen from 'vue-router-then'
-routerThen.initRouter(router)
-Vue.use(routerThen)
 
 import  '@fortawesome/fontawesome-free/css/all.css'
 //import 'font-awesome/scss/font-awesome.scss'

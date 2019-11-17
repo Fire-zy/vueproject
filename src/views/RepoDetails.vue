@@ -22,6 +22,8 @@
 					<t-link :to="`/EditRepo?login=${item.owner.login}&name=${item.name}`">
 						<i class="fas fa-edit"></i>
 					</t-link>
+					
+					<i  class="fas fa-trash" @click="deleteRepo"></i>
 				
 				</div>
 				<div class="v-details-language">
@@ -82,6 +84,16 @@
 					}
 				})
 				this.item=resp.data
+			},
+			deleteRepo(){
+				this.$axios.delete(`api/repos/${this.$route.query.login}/${this.$route.query.name}`, 
+				{
+					headers: {
+						Authorization: `token ${localStorage.getItem('ACCESS_TOKEN')}`
+					}
+				}).then(() => {
+					alert("删除成功")
+				})
 			},
 			showPopup(){ this.isPopupVisible = true }, //弹出Popup窗口
 			closePopup(){ this.isPopupVisible = false }	//关闭Popup窗口

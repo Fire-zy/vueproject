@@ -64,6 +64,7 @@
 						:checked="Archived" 
 						v-model="Archived">
 					</von-toggle>
+					
 			</v-list>
 	</div>
 </template>
@@ -110,6 +111,7 @@
 			},
 			onWikiToggle(){
 				this.send({has_wiki:this.wikiState})
+				console.log(this.wikiState)
 			},
 			onIssuesToggle(){
 				this.send({has_issues:this.IssuesState})

@@ -1,6 +1,6 @@
 --<template>
 	<div class="e_edit_content">
-		<v-list v-if="to">
+		<v-list>
 			<t-link :to="to">
 				<v-list-item>
 					<span>{{title}}</span>
@@ -8,14 +8,6 @@
 				</v-list-item>
 			</t-link>
 		</v-list>
-		
-		<v-list v-else-if="!to">
-				<v-list-item>
-					<span>{{title}}</span>
-					<span>{{content}}</span>
-				</v-list-item>
-		</v-list>
-		
 	</div>
 </template>
 

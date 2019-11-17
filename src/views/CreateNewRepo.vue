@@ -25,14 +25,15 @@
 			<!--选择repo的state-->
 			<div class="create_radio">
 				<div class="radio">
-					<input type="radio" id="one" value="false" v-model="picked" checked>
+					<input type="radio" id="one" value="public" v-model="picked">
 					<label for="one" class="radio-label">Public</label>
 				</div>
 
 				<div class="radio">
-					<input type="radio" id="two" value="true" v-model="picked">
+					<input type="radio" id="two" value="private" v-model="picked">
 					<label for="two" class="radio-label">Private</label><br>
 				</div>
+				<!--{{picked}}-->
 			</div>
 			
 			
@@ -45,16 +46,16 @@
 					v-model="AutoInit">
 				</von-toggle>
 				
-					<e-edit-content v-model="historyGitignore"
-						v-model-link="`/AddGitignore`"
+					<e-edit-content 
+						:to="`/AddGitignore`"
 						title='AddGitignore' 
-						:content='historyGitignore'>
+						:content='gitignore'>
 					</e-edit-content>
 					
-					<e-edit-content v-model="content2"
-						v-model-link="`/AddGitignore`"
+					<e-edit-content
+						:to="`/AddLicense`"
 						title='AddLicense' 
-						:content='content2'>
+						:content='license'>
 					</e-edit-content>
 			</div>
 			
@@ -84,24 +85,21 @@
 			return {
 				reponame: '',
 				description: '',
-				content1:'',
-				content2:'',
 				AutoInit:'false',
-				picked: 'false',
+				picked: '',
 				users: {},
-				historyGitignore:''
+				gitignore:'',
+				license:''
 			}
 		},
 		created() {
 			const user = localStorage.getItem('LOGIN_USER')
 			this.users = JSON.parse(user)
-			this.getHistoryData()
-		},
-		activated(){
-			
+			this.getContent()
 		},
 		methods: {
 			creatRepo() {
+				this.selectBtn()
 				if(this.reponame === '') {
 					alert("please input reponame")
 				} else {
@@ -120,11 +118,18 @@
 					})
 				}
 			},
-			getHistoryData(){
+			getContent(){
 				if(this.$route.query.gitignore){
-					this.historyGitignore=this.$route.query.gitignore
+					this.gitignore=this.$route.query.gitignore
 				}else if(this.$route.query.license){
-					this.content2=this.$route.query.license
+					this.license=this.$route.query.license
+				}
+			},
+			selectBtn(){
+				if(this.picked=='public'){
+					this.picked=false
+				}else{
+					this.picked=true
 				}
 			}
 		}

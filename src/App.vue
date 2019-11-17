@@ -3,7 +3,10 @@
 我们可以在这里写一些适合全局的css样式。-->
 <template>
 	<div>
-		<router-view></router-view>
+		<keep-alive>
+      <router-view v-if="$route.meta.keepAlive"></router-view>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive"></router-view>
 	</div>
 </template>
 <script>

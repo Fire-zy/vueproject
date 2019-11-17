@@ -5,7 +5,7 @@
 			<span>
 			<input class="mui-switch mui-switch-animbg" type="checkbox" ref="checkbox" :value="value" :checked="checked"
 					@click="onPrivateToggle($event.target.checked)">
-					<span>{{value}}</span>
+					<!--<span>{{value}}</span>-->
 			</span>
 		</v-list-item>
 	</div>
